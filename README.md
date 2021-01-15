@@ -1,1 +1,1 @@
-# BoardHub
+# Board Hub
