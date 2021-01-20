@@ -28,6 +28,9 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
+    "rules": {
+      "semi": ["error", "always"]
+    },
     "extends": [
       "react-app",
       "react-app/jest"
