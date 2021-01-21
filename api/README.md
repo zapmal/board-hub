@@ -3,7 +3,7 @@
 ### Configuration and Build steps
 > This assumes that you have installed both MySQL (preferable >= 8.0) and a package manager (Yarn, NPM).
 
-If needed, things like the host, the port and the dialect can be changed in `database/config.js`.
+If needed, database stuff like the host, the port and the dialect can be changed in `database/config.js`.
 
 ### Setup
 - Enter in your MySQL CLI and run `CREATE DATABASE board_hub;`, this can also be done with MySQL Workbench.
