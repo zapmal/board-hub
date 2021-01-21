@@ -1,16 +1,16 @@
-'use strict';
 const {
   Model
 } = require('sequelize');
+
 module.exports = (sequelize, DataTypes) => {
-  const UserCellphone = sequelize.define('UserCellphone', {
+  const Cellphone = sequelize.define('cellphone', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
     cellphone: DataTypes.STRING,
     user_id: DataTypes.INTEGER,
-  }, { tableName: 'user_cellphone' });
+  }, { tableName: 'cellphone' });
 
-  return UserCellphone;
+  return Cellphone;
 };

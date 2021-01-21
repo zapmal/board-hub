@@ -2,6 +2,13 @@
   "name": "board-hub-api",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src/index.js",
+    "prod": "node src/index.js",
+    "migrate": "npx sequelize db:migrate",
+    "undo-migrations": "npx sequelize db:migrate:undo:all",
+    "seed": "npx sequelize db:seed"
+  },
   "license": "MIT",
   "private": true,
   "devDependencies": {
