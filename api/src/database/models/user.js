@@ -2,6 +2,7 @@ const {
   Model,
 } = require('sequelize');
 const Cellphone = require('./cellphone');
+const Board = require('./board');
 
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('user', {
@@ -18,5 +19,9 @@ module.exports = (sequelize, DataTypes) => {
 
   User.hasOne(Cellphone, { foreignKey: 'user_id', sourceKey: 'id' });
   Cellphone.belongsTo(User, { foreignKey: 'user_id', sourceKey: 'id' });
+
+  User.hasMany(Board, { foreignKey: 'user_id', sourceKey: 'id' });
+  Board.belongsTo(User, { foreignKey: 'user_id', sourceKey: 'id' });
+
   return User;
 };
