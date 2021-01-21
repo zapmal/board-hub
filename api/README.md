@@ -10,7 +10,7 @@ If needed, database stuff like the host, the port and the dialect can be changed
 - Install dependencies → `yarn`
 - Create .env file (assumes that you're in root folder) → `cp .env.example .env`
 - Fill the empty fields in the `.env`
-- Run migrations → `yarn migrate`, if needed migrations can be reverted `yarn undo:migration`
+- Run migrations → `yarn migrate`, if needed migrations can be reverted with → `yarn undo:migration`
 - Seed data → `yarn seed`
 
 ### Build
