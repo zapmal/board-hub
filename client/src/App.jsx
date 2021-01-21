@@ -6,10 +6,9 @@ const App = () => {
     <div>
       <header>
         <h4>Hey</h4>
-        <img src={logo} />
       </header>
     </div>
   );
-}
+};
 
 export default App;
