@@ -16,3 +16,7 @@ If needed, database stuff like the host, the port and the dialect can be changed
 ### Build
 - Run in development mode → `yarn dev`
 - Build for production → `yarn prod`
+
+### About changes to columns (deletes, updates, etc)
+
+- Create a new migration for it `npx sequelize migration:generate <migration name>`, don't overwrite existing ones.
