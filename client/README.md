@@ -1,5 +1,11 @@
-# Board-Hub Client
+## Board-Hub Client
 
+
+### Configuration and Build steps
+
+- Todo.
+
+### Available Scripts
 ### `yarn start`
 
 Runs the app in the development mode.\
