@@ -13,6 +13,7 @@ module.exports = {
       board_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        references: { model: 'board', key: 'id' },
       },
       createdAt: {
         allowNull: false,
