@@ -1,7 +1,3 @@
-const {
-  Model,
-} = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
   const Card = sequelize.define('card', {
     id: {

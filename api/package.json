@@ -7,7 +7,8 @@
     "prod": "node src/index.js",
     "migrate": "npx sequelize db:migrate",
     "undo:migrations": "npx sequelize db:migrate:undo:all",
-    "seed": "npx sequelize db:seed"
+    "seed": "npx sequelize db:seed",
+    "db:commands": "npx sequelize --help"
   },
   "license": "MIT",
   "private": true,

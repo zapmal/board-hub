@@ -12,6 +12,7 @@ module.exports = {
       },
       board_id: {
         type: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

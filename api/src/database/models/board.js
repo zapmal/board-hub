@@ -1,6 +1,3 @@
-const {
-  Model,
-} = require('sequelize');
 const List = require('./list');
 
 module.exports = (sequelize, DataTypes) => {
@@ -14,7 +11,15 @@ module.exports = (sequelize, DataTypes) => {
     user_id: DataTypes.INTEGER,
   }, { tableName: 'board' });
 
-  Board.hasMany(List, { foreignKey: 'board_id', sourceKey: 'id' });
+  Board.hasMany(List, {
+    foreignKey: {
+      name: 'board_id',
+      allowNull: false,
+    },
+    sourceKey: 'id',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  });
   List.belongsTo(Board, { foreignKey: 'board_id', sourceKey: 'id' });
 
   return Board;

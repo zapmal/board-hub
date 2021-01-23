@@ -1,6 +1,3 @@
-const {
-  Model,
-} = require('sequelize');
 const Cellphone = require('./cellphone');
 const Board = require('./board');
 
@@ -17,10 +14,26 @@ module.exports = (sequelize, DataTypes) => {
     avatar_url: DataTypes.STRING,
   }, { tableName: 'user' });
 
-  User.hasOne(Cellphone, { foreignKey: 'user_id', sourceKey: 'id' });
+  User.hasOne(Cellphone, {
+    foreignKey: {
+      name: 'user_id',
+      allowNull: false,
+    },
+    sourceKey: 'id',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  });
   Cellphone.belongsTo(User, { foreignKey: 'user_id', sourceKey: 'id' });
 
-  User.hasMany(Board, { foreignKey: 'user_id', sourceKey: 'id' });
+  User.hasMany(Board, {
+    foreignKey: {
+      name: 'user_id',
+      allowNull: false,
+    },
+    sourceKey: 'id',
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+  });
   Board.belongsTo(User, { foreignKey: 'user_id', sourceKey: 'id' });
 
   return User;
