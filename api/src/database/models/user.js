@@ -1,19 +1,21 @@
+const sequelize = require('../database');
+const { DataTypes } = require('sequelize');
 const Cellphone = require('./cellphone');
 const Board = require('./board');
 
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('user', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-    },
-    full_name: DataTypes.STRING,
-    user_name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    avatar_url: DataTypes.STRING,
-  }, { tableName: 'user' });
+const User = sequelize.define('user', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+  },
+  full_name: DataTypes.STRING,
+  user_name: DataTypes.STRING,
+  email: DataTypes.STRING,
+  password: DataTypes.STRING,
+  avatar_url: DataTypes.STRING,
+}, { tableName: 'user' });
 
+User.associate = (models) => {
   User.hasOne(Cellphone, {
     foreignKey: {
       name: 'user_id',
@@ -35,6 +37,6 @@ module.exports = (sequelize, DataTypes) => {
     onUpdate: 'CASCADE',
   });
   Board.belongsTo(User, { foreignKey: 'user_id', sourceKey: 'id' });
-
-  return User;
 };
+
+module.exports = User;

@@ -1,15 +1,17 @@
+const sequelize = require('../database');
+const { DataTypes } = require('sequelize');
 const Card = require('./list');
 
-module.exports = (sequelize, DataTypes) => {
-  const List = sequelize.define('list', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-    },
-    name: DataTypes.STRING,
-    board_id: DataTypes.INTEGER,
-  }, { tableName: 'list' });
+const List = sequelize.define('list', {
+  id: {
+    type: DataTypes.INTEGER,
+    primaryKey: true,
+  },
+  name: DataTypes.STRING,
+  board_id: DataTypes.INTEGER,
+}, { tableName: 'list' });
 
+List.associate = (models) => {
   List.hasMany(Card, {
     foreignKey: {
       name: 'list_id',
@@ -20,6 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     onUpdate: 'CASCADE',
   });
   Card.belongsTo(List, { foreignKey: 'list_id', sourceKey: 'id' });
-
-  return List;
 };
+
+module.exports = List;
