@@ -1,5 +1,5 @@
 const List = require('./list');
-const sequelize = require('../database');
+const sequelize = require('../sequelize');
 const { DataTypes } = require('sequelize');
 
 const Board = sequelize.define('board', {

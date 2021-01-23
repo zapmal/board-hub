@@ -1,4 +1,4 @@
-const sequelize = require('../database');
+const sequelize = require('../sequelize');
 const DataTypes = require('sequelize').DataTypes;
 
 const Cellphone = sequelize.define('cellphone', {
