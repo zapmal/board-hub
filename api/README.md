@@ -19,4 +19,4 @@ If needed, database stuff like the host, the port and the dialect can be changed
 
 ### About changes to columns (deletes, updates, etc)
 
-- Create a new migration for it `npx sequelize migration:generate <migration name>`, don't overwrite existing ones.
+- Create a new migration for it → `npx sequelize migration:generate <migration name>`, don't overwrite existing ones.
