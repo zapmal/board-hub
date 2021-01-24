@@ -1,13 +1,12 @@
-const sequelize = require('../sequelize');
-const DataTypes = require('sequelize').DataTypes;
+module.exports = (sequelize, DataTypes) => {
+  const Cellphone = sequelize.define('cellphone', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+    },
+    cellphone: DataTypes.STRING,
+    user_id: DataTypes.INTEGER,
+  }, { tableName: 'cellphone' });
 
-const Cellphone = sequelize.define('cellphone', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-  },
-  cellphone: DataTypes.STRING,
-  user_id: DataTypes.INTEGER,
-}, { tableName: 'cellphone' });
-
-module.exports = Cellphone;
+  return Cellphone;
+};

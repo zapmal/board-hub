@@ -1,27 +1,21 @@
-const sequelize = require('../sequelize');
-const { DataTypes } = require('sequelize');
-const Card = require('./list');
-
-const List = sequelize.define('list', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-  },
-  name: DataTypes.STRING,
-  board_id: DataTypes.INTEGER,
-}, { tableName: 'list' });
-
-List.associate = (models) => {
-  List.hasMany(Card, {
-    foreignKey: {
-      name: 'list_id',
-      allowNull: false,
+module.exports = (sequelize, DataTypes) => {
+  const List = sequelize.define('list', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
     },
-    sourceKey: 'id',
-    onDelete: 'CASCADE',
-    onUpdate: 'CASCADE',
-  });
-  Card.belongsTo(List, { foreignKey: 'list_id', sourceKey: 'id' });
-};
+    name: DataTypes.STRING,
+    board_id: DataTypes.INTEGER,
+  }, { tableName: 'list' });
 
-module.exports = List;
+  List.associate = (models) => {
+    List.hasMany(models.card, {
+      foreignKey: 'list_id',
+      as: 'listCards',
+      onDelete: 'CASCADE',
+      onUpdate: 'CASCADE',
+    });
+  };
+
+  return List;
+};
