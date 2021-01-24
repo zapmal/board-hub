@@ -5,15 +5,20 @@
 
 ### Setup
 - Enter in your MySQL CLI and run `CREATE DATABASE board_hub;`, this can also be done with MySQL Workbench.
-- Install dependencies → `yarn`
+- Install dependencies → `yarn`.
 - Create .env file (assumes that you're in root folder) → `cp .env.example .env`
-- Fill the empty fields in the `.env`
-- Run migrations → `yarn migrate`, if needed migrations can be reverted with → `yarn undo:migration`
+- Fill the empty fields in the `.env`.
+- Run migrations → `yarn migrate`, if needed migrations can be reverted with → `yarn undo:migration`.
 - Seed data → `yarn seed`, this will create 50 users, the password for all of the seeded users is `password`.
 
+If needed, migrations and seeding can be reverted:
+
+- `yarn undo:migration`.
+- `yarn undo:seeding`.
+
 ### Build
-- Run in development mode → `yarn dev`
-- Build for production → `yarn prod`
+- Run in development mode → `yarn dev`.
+- Build for production → `yarn prod`.
 
 ### About changes to migrations (deletes, updates, etc)
 
