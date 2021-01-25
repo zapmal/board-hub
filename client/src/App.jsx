@@ -1,12 +1,14 @@
 import React from 'react';
-import logo from './images/logo.png';
+import Button from '@material-ui/core/Button';
 
+import GlobalStyle from './components/GlobalStyle';
+
+// #f6914d
 const App = () => {
   return (
     <div>
-      <header>
-        <h4>Hey</h4>
-      </header>
+      <Nav />
+      <GlobalStyle />
     </div>
   );
 };

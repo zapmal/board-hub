@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "BoardHub",
+  "name": "Task helper for people and teams.",
   "icons": [
     {
       "src": "favicon.ico",
