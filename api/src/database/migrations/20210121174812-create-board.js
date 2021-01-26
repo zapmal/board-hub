@@ -13,6 +13,7 @@ module.exports = {
       },
       is_favorite: {
         type: Sequelize.BOOLEAN,
+        defaultValue: '0',
       },
       user_id: {
         type: Sequelize.INTEGER,

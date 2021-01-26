@@ -4,8 +4,17 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
-    name: DataTypes.STRING,
-    is_favorite: DataTypes.BOOLEAN,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { message: 'Board name cannot be empty.' },
+      },
+    },
+    is_favorite: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: '0',
+    },
     user_id: DataTypes.INTEGER,
   }, { tableName: 'board' });
 

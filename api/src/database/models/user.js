@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     full_name: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         notNull: { message: 'Please enter your name.' },
         isAlpha: { message: 'Your name can only contain letters.' },
@@ -13,17 +14,29 @@ module.exports = (sequelize, DataTypes) => {
     },
     user_name: {
       type: DataTypes.STRING,
+      allowNull: false,
       unique: true,
+      validate: {
+        notNull: { message: 'Username cannot be empty.' },
+      },
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
       unique: true,
       validate: {
         notNull: { message: 'Please enter your name.' },
-        isEmail: { message: 'Your email must be a valid email adress.' },
+        isEmail: { message: 'Your email must be a valid email address.' },
       },
     },
-    password: DataTypes.STRING,
+    password: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { message: 'Password cannot be empty.' },
+        min: 8,
+      },
+    },
     avatar_url: DataTypes.STRING,
   }, { tableName: 'user' });
 

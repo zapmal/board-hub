@@ -4,7 +4,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
-    cellphone: DataTypes.STRING,
+    cellphone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notNull: { message: 'Cellphone cannot be empty.' },
+      },
+    },
     user_id: DataTypes.INTEGER,
   }, { tableName: 'cellphone' });
 

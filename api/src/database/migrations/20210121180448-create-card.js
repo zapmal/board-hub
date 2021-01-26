@@ -8,13 +8,16 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       title: {
+        allowNull: false,
         type: Sequelize.STRING,
       },
       content: {
         type: Sequelize.TEXT,
       },
       completed: {
+        allowNull: false,
         type: Sequelize.BOOLEAN,
+        defaultValue: '0',
       },
       due_date: {
         type: Sequelize.DATE,

@@ -4,9 +4,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       primaryKey: true,
     },
-    title: DataTypes.STRING,
+    title: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validation: {
+        notNull: { message: 'Card must have a title.' },
+      },
+    },
     content: DataTypes.TEXT,
-    completed: DataTypes.BOOLEAN,
+    completed: {
+      allowNull: false,
+      type: DataTypes.BOOLEAN,
+      defaultValue: '0',
+    },
     due_date: DataTypes.DATE,
     list_id: DataTypes.INTEGER,
   }, { tableName: 'card' });
