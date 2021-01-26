@@ -11,9 +11,13 @@ import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { Link } from 'react-router-dom';
 
-import logo from '../images/logo-alter.png';
+import logoImage from '../images/logo-alter.png';
 
 const useStyles = makeStyles(theme => ({
+  logo: {
+    marginTop: '5px',
+  },
+
   toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -55,20 +59,29 @@ const navRoutes = [
   },
   {
     label: 'Open Source',
-    href: 'https://github.com/Zondazx/board-hub',
+    href: '/opensource',
     icon: <GitHubIcon />,
   },
 ];
 
 const Nav = () => {
-  const { header, toolbar, button, actionButtons } = useStyles();
+  const { 
+    logo,
+    header, 
+    toolbar, 
+    button, 
+    actionButtons 
+  } = useStyles();
 
   return (
     <header>
       <AppBar className={header}>
         <Toolbar className={toolbar}>
-          <img src={logo} width='160px' alt='Logo' />
-          {/* <a><img src={logo} width='160px' /></a> */}
+
+          <Link to={'/'}>
+            <img src={logoImage} className={logo} width='160px' alt='Logo' />
+          </Link>
+
           <Box>
             {navRoutes.map(({ label, href, icon }) => (
               <Button
@@ -77,7 +90,7 @@ const Nav = () => {
                 color='secondary'
                 to={href}
                 className={button}
-                  // component: Link,
+                component={Link}
               >
                 {label}
               </Button>
@@ -85,7 +98,8 @@ const Nav = () => {
             <Button 
               variant='contained' 
               color='secondary' 
-              href='/signin'
+              to='/signin'
+              component={Link}
               className={actionButtons}
             >
               Inicio de sesión
@@ -94,7 +108,8 @@ const Nav = () => {
             <Button 
               variant='contained' 
               color='secondary'
-              href='/signup'
+              to='/signup'
+              component={Link}
               className={actionButtons}
             >
               Registro
