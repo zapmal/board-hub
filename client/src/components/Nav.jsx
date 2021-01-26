@@ -6,15 +6,14 @@ import {
   Box,
   makeStyles,
 } from '@material-ui/core';
+import InfoIcon from '@material-ui/icons/Info';
+import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
+import GitHubIcon from '@material-ui/icons/GitHub';
 import { Link } from 'react-router-dom';
 
 import logo from '../images/logo-alter.png';
 
-const useStyles = makeStyles(() => ({
-  header: {
-    backgroundColor: '#f6914d'
-  },
-
+const useStyles = makeStyles(theme => ({
   toolbar: {
     display: 'flex',
     justifyContent: 'space-between',
@@ -23,52 +22,83 @@ const useStyles = makeStyles(() => ({
   button: {
     fontWeight: 700,
     size: '18px',
-    marginLeft: '25px'
+    marginLeft: '5px',
+    marginRight: '20px',
+    transition: '200ms ease-in',
+
+    '&:hover': {
+      backgroundColor: theme.palette.primary.light
+    }
+  },
+
+  actionButtons: {
+    marginRight: '10px',
+    color: theme.palette.primary.main,
+    transition: '100ms ease-in',
+
+    '&:hover': {
+      backgroundColor: '#ffffffff'
+    },
   },
 }));
 
-const headerRoutes = [
+const navRoutes = [
   {
     label: 'Acerca de nosotros',
     href: '/about',
+    icon: <InfoIcon />,
+  },
+  {
+    label: 'Contacto',
+    href: '/contact',
+    icon: <ContactPhoneIcon />,
   },
   {
     label: 'Open Source',
-    href: '/opensource',
-  },
-  {
-    label: 'Inicio de sesión',
-    href: '/signin',
-  },
-  {
-    label: 'Registro',
-    href: '/signup',
+    href: 'https://github.com/Zondazx/board-hub',
+    icon: <GitHubIcon />,
   },
 ];
 
 const Nav = () => {
-  const { header, toolbar, button } = useStyles();
+  const { header, toolbar, button, actionButtons } = useStyles();
 
   return (
     <header>
       <AppBar className={header}>
         <Toolbar className={toolbar}>
-          <img src={logo} width='160px' />
+          <img src={logo} width='160px' alt='Logo' />
           {/* <a><img src={logo} width='160px' /></a> */}
           <Box>
-            {headerRoutes.map(({ label, href }) => (
+            {navRoutes.map(({ label, href, icon }) => (
               <Button
-                {...{
-                  key: label,
-                  color: 'inherit',
-                  to: href,
-                  className: button
+                startIcon={icon}
+                key={label}
+                color='secondary'
+                to={href}
+                className={button}
                   // component: Link,
-                }}
               >
                 {label}
               </Button>
             ))}
+            <Button 
+              variant='contained' 
+              color='secondary' 
+              href='/signin'
+              className={actionButtons}
+            >
+              Inicio de sesión
+            </Button>
+
+            <Button 
+              variant='contained' 
+              color='secondary'
+              href='/signup'
+              className={actionButtons}
+            >
+              Registro
+            </Button>
           </Box>
         </Toolbar>
       </AppBar>
