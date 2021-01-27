@@ -11,7 +11,7 @@ import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { Link } from 'react-router-dom';
 
-import logoImage from '../images/logo-alter.png';
+import logoImage from '../images/logo.png';
 
 const useStyles = makeStyles(theme => ({
   logo: {
@@ -25,13 +25,15 @@ const useStyles = makeStyles(theme => ({
 
   button: {
     fontWeight: 700,
+    color: theme.palette.extraColors.darkBlue,
     size: '18px',
     marginLeft: '5px',
     marginRight: '20px',
     transition: '200ms ease-in',
 
     '&:hover': {
-      backgroundColor: theme.palette.primary.light
+      color: theme.palette.primary.main,
+      backgroundColor: theme.palette.secondary.light
     }
   },
 
@@ -41,7 +43,7 @@ const useStyles = makeStyles(theme => ({
     transition: '100ms ease-in',
 
     '&:hover': {
-      backgroundColor: '#ffffffff'
+      backgroundColor: theme.palette.secondary.main
     },
   },
 }));
@@ -87,7 +89,6 @@ const Nav = () => {
               <Button
                 startIcon={icon}
                 key={label}
-                color='secondary'
                 to={href}
                 className={button}
                 component={Link}

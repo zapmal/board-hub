@@ -3,37 +3,21 @@ import styled from 'styled-components/macro';
 
 import Nav from './Nav';
 
-const Main = styled.main`
+const StyledLayout = styled.div`
   position: relative;
-  height: calc(100% - 180px);
-  width: 100%;
-  top: 60px;
+  top: 80px;
 `;
 
-/**
 const Main = styled.main`
-  position: fixed;
-  height: calc(100% - 185px);
-  width: 100%;
-  padding: 1em;
-  overflow-y: scroll;
-
-  @media (min-width: 700px) {
-    flex: 1;
-    margin-left: 220px;
-    height: calc(100% - 64px);
-    width: calc(100% - 220px);
-  }
+  margin: 0 30px;
 `;
-
- */
 
 const Layout = ({ children }) => {
   return (
-    <div>
+    <StyledLayout>
       <Nav />
       <Main>{children}</Main>
-    </div>
+    </StyledLayout>
   );
 };
 
