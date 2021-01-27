@@ -11,7 +11,7 @@ import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { Link } from 'react-router-dom';
 
-import logoImage from '../images/logo.png';
+import logoImage from '../assets/logo.png';
 
 const useStyles = makeStyles(theme => ({
   logo: {

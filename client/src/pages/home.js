@@ -13,16 +13,18 @@ import BeenhereIcon from '@material-ui/icons/Beenhere';
 import FaceIcon from '@material-ui/icons/Face';
 
 import ButtonWithPrompt from '../components/ButtonWithPrompt';
+import Footer from '../components/Footer';
 
-import teamStock from '../images/team-stock.png';
-import card from '../images/card.svg';
-import review from '../images/review.svg';
-import note from '../images/note.svg';
+import teamStock from '../assets/team-stock.png';
+import blankCanvas from '../assets/blank-canvas.svg';
+import card from '../assets/card.svg';
+import review from '../assets/review.svg';
+import note from '../assets/note.svg';
 
 
 const useStyles = makeStyles(() => ({
   root: {
-    maxWidth: 1000,
+    maxWidth: 800,
     margin: '0 15px',
   },
 
@@ -37,6 +39,11 @@ const useStyles = makeStyles(() => ({
     '& > *': {
       textAlign: 'center',
     },
+  },
+
+  missionContainer: {
+    justifyContent: 'space-around',
+    marginBottom: '40px',
   },
 }));
 
@@ -83,7 +90,7 @@ const Highlight = styled.strong`
 `;
 
 const Home = (props) => {
-  const { root, container, media, adapt } = useStyles();
+  const { root, container, missionContainer, media, adapt } = useStyles();
 
   return (
     <>
@@ -143,7 +150,7 @@ const Home = (props) => {
             <CardMedia title='Busquedas' className={media} image={review}/>
             <CardContent>
               <Typography variant='body2' component='p'>
-                Accede rápidamente a tus <Highlight>cartas</Highlight>.
+                Accede rápidamente a tu <Highlight>contenido</Highlight>.
               </Typography>
             </CardContent>
           </Card>
@@ -161,6 +168,47 @@ const Home = (props) => {
           <FaceIcon color='primary' fontSize='large'/>
         </div>
       </Separation>
+
+      <Grid container spacing={20} className={missionContainer}>
+        <Grid item md={4}>
+          <Card className={root}>
+            <CardMedia title='Canvas vacío' className={media} image={blankCanvas} />
+          </Card>
+        </Grid>
+
+        <Grid item md={3}>
+          <Card className={root}>
+            <CardHeader 
+              title='Somos iguales.' 
+              subheader='Nosotros también perdemos el rumbo en algunos días.'
+            />
+            <CardContent>
+              <Typography variant='body1' component='p'>
+                Tareas, eventos imprevistos, trabajo, etc. Todos vivimos eso, todos necesitamos
+                organizarnos de una forma u otra. Es por eso que creamos <Highlight>BoardHub</Highlight>.
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+
+        <Grid item md={3}>
+          <Card className={root}>
+            <CardHeader 
+              title='Permitenos ayudarte.' 
+              subheader='Create una cuenta, acompañanos en este viaje.'
+            />
+            <CardContent>
+              <Typography variant='body1' component='p'>
+                Hagamos tu vida un poco más fácil, <Highlight>unete</Highlight>.
+                Y empieza a crear, organizar y manejar de mejor forma tu rutina, o tu equipo en
+                caso de que manejes un proyecto, sin importar su tamaño. 
+              </Typography>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+
+      <Footer />
     </>
   );
 };
