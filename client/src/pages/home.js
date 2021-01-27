@@ -207,8 +207,6 @@ const Home = (props) => {
           </Card>
         </Grid>
       </Grid>
-
-      <Footer />
     </>
   );
 };

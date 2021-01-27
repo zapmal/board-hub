@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import Footer from './Footer';
 
 import Nav from './Nav';
 
@@ -18,6 +19,7 @@ const Layout = ({ children }) => {
     <StyledLayout>
       <Nav />
       <Main>{children}</Main>
+      <Footer />
     </StyledLayout>
   );
 };
