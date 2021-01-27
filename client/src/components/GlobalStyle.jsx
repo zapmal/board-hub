@@ -9,14 +9,16 @@ export default createGlobalStyle`
   body,
   html {
     height: 100%;
+    width: 100%;
     margin: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   body {
     font-family: 'Roboto', 'Segoe UI', Helvetica;
     background-color: #ffffff;
     line-height: 1.4;
-    overflow: hidden;
   }
 
   a:link,

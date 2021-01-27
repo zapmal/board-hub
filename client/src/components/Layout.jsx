@@ -4,12 +4,13 @@ import styled from 'styled-components/macro';
 import Nav from './Nav';
 
 const StyledLayout = styled.div`
-  position: relative;
-  top: 80px;
+  padding-top: 60px;
+  /* position: relative;
+  top: 60px; */
 `;
 
 const Main = styled.main`
-  margin: 0 30px;
+  /* margin: 0 30px; */
 `;
 
 const Layout = ({ children }) => {
