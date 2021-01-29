@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import Home from './home';
+import About from './about';
 
 const RouteWithSubRoutes = (route) => {
   return (
@@ -26,7 +27,7 @@ export const RenderRoutes = ({ routes }) => {
 
 const ROUTES = [
   { path: '/', key: 'ROOT', exact: true, component: Home },
-  { path: '/about', key: 'ABOUT_US', component: () => <h1>About Us</h1> },
+  { path: '/about', key: 'ABOUT_US', component: About },
   { path: '/contact', key: 'CONTACT', component: () => <h1>Contact</h1> },
   { path: '/opensource', key: 'OPEN_SOURCE', component: () => <h1>Open Source</h1> },
   { path: '/signin', key: 'SIGN_IN', component: () => <h1>Sign In</h1> },

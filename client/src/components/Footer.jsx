@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 
-import background from '../assets/background-light.svg'; 
+import background from '../assets/svgs/background-light.svg'; 
 
 const StyledFooter = styled.footer`
   display: block;

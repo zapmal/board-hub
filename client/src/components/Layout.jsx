@@ -6,13 +6,9 @@ import Nav from './Nav';
 
 const StyledLayout = styled.div`
   padding-top: 60px;
-  /* position: relative;
-  top: 60px; */
 `;
 
-const Main = styled.main`
-  /* margin: 0 30px; */
-`;
+const Main = styled.main``;
 
 const Layout = ({ children }) => {
   return (

@@ -13,13 +13,12 @@ import BeenhereIcon from '@material-ui/icons/Beenhere';
 import FaceIcon from '@material-ui/icons/Face';
 
 import ButtonWithPrompt from '../components/ButtonWithPrompt';
-import Footer from '../components/Footer';
 
-import teamStock from '../assets/team-stock.png';
-import blankCanvas from '../assets/blank-canvas.svg';
-import card from '../assets/card.svg';
-import review from '../assets/review.svg';
-import note from '../assets/note.svg';
+import teamStock from '../assets/images/team-stock.png';
+import blankCanvas from '../assets/images/blank-canvas.svg';
+import card from '../assets/svgs/card.svg';
+import review from '../assets/svgs/review.svg';
+import note from '../assets/svgs/note.svg';
 
 
 const useStyles = makeStyles(() => ({
