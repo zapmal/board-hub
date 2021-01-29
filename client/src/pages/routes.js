@@ -3,6 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 
 import Home from './home';
 import About from './about';
+import Contact from './contact';
+import OpenSource from './opensource';
 
 const RouteWithSubRoutes = (route) => {
   return (
@@ -28,8 +30,8 @@ export const RenderRoutes = ({ routes }) => {
 const ROUTES = [
   { path: '/', key: 'ROOT', exact: true, component: Home },
   { path: '/about', key: 'ABOUT_US', component: About },
-  { path: '/contact', key: 'CONTACT', component: () => <h1>Contact</h1> },
-  { path: '/opensource', key: 'OPEN_SOURCE', component: () => <h1>Open Source</h1> },
+  { path: '/contact', key: 'CONTACT', component: Contact },
+  { path: '/opensource', key: 'OPEN_SOURCE', component: OpenSource },
   { path: '/signin', key: 'SIGN_IN', component: () => <h1>Sign In</h1> },
   { path: '/signup', key: 'SIGN_UP', component: () => <h1>Sign Up</h1> },
   { 

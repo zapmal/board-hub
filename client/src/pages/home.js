@@ -13,13 +13,13 @@ import BeenhereIcon from '@material-ui/icons/Beenhere';
 import FaceIcon from '@material-ui/icons/Face';
 
 import ButtonWithPrompt from '../components/ButtonWithPrompt';
+import Highlight from '../components/Highlight';
 
 import teamStock from '../assets/images/team-stock.png';
 import blankCanvas from '../assets/svgs/blank-canvas.svg';
 import card from '../assets/svgs/card.svg';
 import review from '../assets/svgs/review.svg';
 import note from '../assets/svgs/note.svg';
-
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -84,10 +84,6 @@ const Separation = styled.div`
   }
 `;
 
-const Highlight = styled.strong`
-  color: #7362d0;
-`;
-
 const Home = (props) => {
   const { root, container, missionContainer, media, adapt } = useStyles();
 
@@ -125,7 +121,7 @@ const Home = (props) => {
             <CardMedia title='Organización' className={media} image={card}/>
             <CardContent>
               <Typography variant='body2' component='p'>
-                Organiza a tu manera, sin <Highlight>limites</Highlight>.
+                Organiza a tu manera, sin <Highlight color='#7362d0'>limites</Highlight>.
               </Typography>
             </CardContent>
           </Card>
@@ -137,7 +133,7 @@ const Home = (props) => {
             <CardMedia title='Creación' className={media} image={note}/>
             <CardContent className={adapt}>
               <Typography variant='body2' component='p'>
-                Crea nuevas listas y cartas con <Highlight>facilidad</Highlight>.
+                Crea nuevas listas y cartas con <Highlight color='#7362d0'>facilidad</Highlight>.
               </Typography>
             </CardContent>
           </Card>
@@ -149,7 +145,7 @@ const Home = (props) => {
             <CardMedia title='Busquedas' className={media} image={review}/>
             <CardContent>
               <Typography variant='body2' component='p'>
-                Accede rápidamente a tu <Highlight>contenido</Highlight>.
+                Accede rápidamente a tu <Highlight color='#7352d0'>contenido</Highlight>.
               </Typography>
             </CardContent>
           </Card>
@@ -184,7 +180,7 @@ const Home = (props) => {
             <CardContent>
               <Typography variant='body1' component='p'>
                 Tareas, eventos imprevistos, trabajo, etc. Todos vivimos eso, todos necesitamos
-                organizarnos de una forma u otra. Es por eso que creamos <Highlight>BoardHub</Highlight>.
+                organizarnos de una forma u otra. Es por eso que creamos <Highlight color='#7352d0'>BoardHub</Highlight>.
               </Typography>
             </CardContent>
           </Card>
@@ -198,7 +194,7 @@ const Home = (props) => {
             />
             <CardContent>
               <Typography variant='body1' component='p'>
-                Hagamos tu vida un poco más fácil, <Highlight>unete</Highlight>.
+                Hagamos tu vida un poco más fácil, <Highlight color='#7352d0'>unete</Highlight>.
                 Y empieza a crear, organizar y manejar de mejor forma tu rutina, o tu equipo en
                 caso de que manejes un proyecto, sin importar su tamaño. 
               </Typography>
