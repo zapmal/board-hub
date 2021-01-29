@@ -4,23 +4,16 @@ import styled from 'styled-components/macro';
 import background from '../assets/svgs/background-light.svg'; 
 
 const StyledFooter = styled.footer`
-  display: block;
-  margin: 0;
   padding: 30px 40px;
   background-color: #504491;
   background-image: url(${background});
   background-size: 80%;
   background-position: 400% 70%;
-  background-repeat: no-repeat;
 `;
 
 const Container = styled.div`
   color: #ffffff;
-  display: block;
-
-  p, strong {
-    margin: 20px 0;
-  }
+  text-align: center;
 `;
 
 const Contributors = styled.a`

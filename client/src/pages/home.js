@@ -15,7 +15,7 @@ import FaceIcon from '@material-ui/icons/Face';
 import ButtonWithPrompt from '../components/ButtonWithPrompt';
 
 import teamStock from '../assets/images/team-stock.png';
-import blankCanvas from '../assets/images/blank-canvas.svg';
+import blankCanvas from '../assets/svgs/blank-canvas.svg';
 import card from '../assets/svgs/card.svg';
 import review from '../assets/svgs/review.svg';
 import note from '../assets/svgs/note.svg';

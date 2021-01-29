@@ -7,8 +7,21 @@ import {
   Typography,
   Grid
 } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 import wave from '../assets/svgs/wave.svg';
+
+const useStyles = makeStyles(() => ({
+  root: {
+    maxWidth: 800,
+    margin: '0 15px',
+  },
+
+  media: {
+    height: 0,
+    paddingTop: '70%',
+  },
+}));
 
 const Waves = styled.img`
   transition: all ease-in 2s;
@@ -27,6 +40,8 @@ const WaveText = styled.h1`
 `;
 
 const About = () => {
+  const { root, media } = useStyles();
+
   return (
     <>
       <header>
@@ -35,6 +50,9 @@ const About = () => {
       </header>
 
       <main>
+        <Grid container spacing={25}>
+
+        </Grid>
       </main>
     </>
   );
