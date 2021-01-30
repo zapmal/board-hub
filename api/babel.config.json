@@ -9,7 +9,8 @@
             "alias": {
                 "@libs": "./src/libs",
                 "@models": "./src/database/models",
-                "@middleware": "./src/middleware"
+                "@middlewares": "./src/middlewares",
+                "@components": "./src/components"
             }
         }
         ]
