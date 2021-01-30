@@ -1,5 +1,5 @@
-const faker = require('faker');
-const bcrypt = require('bcryptjs');
+import faker from 'faker';
+import bcrypt from 'bcryptjs';
 
 const users = [...Array(50)].map(user => ({
   full_name: `${faker.name.firstName()} ${faker.name.lastName()}`,

@@ -1,7 +1,7 @@
 require('dotenv').config();
-const Sequelize = require('sequelize');
-const fs = require('fs');
-const path = require('path');
+import Sequelize from 'sequelize';
+import fs from 'fs';
+import path from 'path';
 const basename = path.basename(__filename);
 
 const database = {};
