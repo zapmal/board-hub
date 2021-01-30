@@ -9,11 +9,6 @@ app.use(morgan(customMorganFormat));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/logger', (req, res) => {
-  logger.error(req.query.id);
-  res.json({ m: 'j' });
-});
-
 module.exports = {
   app,
   PORT,

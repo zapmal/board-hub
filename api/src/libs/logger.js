@@ -1,13 +1,15 @@
 import { createLogger, transports, format } from 'winston';
 
 /**
- * Simple logger with limit size of 10MB, starts creating
+ * Simple logger with limit size of 5MB, starts creating
  * copies of 'errors.log' when the limit is reached.
  *
  * To use, simply:
  * - Import this module.
  * - Add it in the exception or whenever you need to log an error like:
  * logger.error(<message>);
+ *
+ * <message> can be an object.
  *
  * It will store the current time, the message and a label 'error' in JSON.
  */
@@ -22,12 +24,13 @@ const logger = new createLogger({
     new transports.File({
       level: 'error',
       filename: './logs/errors.log',
-      maxsize: 10000000,
+      maxsize: 5242880,
       maxFiles: 3,
       handleExceptions: true,
       json: true,
     }),
   ],
+  exitOnError: false,
 });
 
 const customMorganFormat = '\
