@@ -1,10 +1,10 @@
 {
   "name": "board-hub-api",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "src/serve.js",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "prod": "node src/index.js",
+    "dev": "nodemon src/server.js --exec babel-node",
+    "prod": "babel src --out-dir dist",
     "migrate": "npx sequelize db:migrate",
     "undo:migrations": "npx sequelize db:migrate:undo:all",
     "seed": "npx sequelize db:seed:all",
@@ -14,6 +14,11 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/core": "^7.12.10",
+    "@babel/node": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "babel-plugin-module-resolver": "^4.1.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.18.0",
     "faker": "^5.1.0",
@@ -25,6 +30,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "helmet": "^4.4.1",
+    "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
     "md5": "^2.3.0",
     "morgan": "^1.10.0",

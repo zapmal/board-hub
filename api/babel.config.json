@@ -1,0 +1,17 @@
+{
+    "presets": [
+        "@babel/preset-env"
+    ],
+    "plugins": [
+        [
+        "module-resolver",
+        {
+            "alias": {
+                "@libs": "./src/libs",
+                "@models": "./src/database/models",
+                "@middleware": "./src/middleware"
+            }
+        }
+        ]
+    ]
+}
