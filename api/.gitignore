@@ -1,3 +1,4 @@
-components/example
 node_modules
 .env
+dist
+logs

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "nodemon src/server.js --exec babel-node",
     "prod": "babel src --out-dir dist",
+    "start": "node dist/server",
     "migrate": "npx sequelize db:migrate",
     "undo:migrations": "npx sequelize db:migrate:undo:all",
     "seed": "npx sequelize db:seed:all",
@@ -37,6 +38,7 @@
     "mysql2": "^2.2.5",
     "node-fetch": "^2.6.1",
     "sequelize": "^6.4.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "winston": "^3.3.3"
   }
 }

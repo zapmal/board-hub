@@ -10,7 +10,8 @@
                 "@libs": "./src/libs",
                 "@models": "./src/database/models",
                 "@middlewares": "./src/middlewares",
-                "@components": "./src/components"
+                "@components": "./src/components",
+                "@logs": "./logs"
             }
         }
         ]
