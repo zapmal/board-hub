@@ -1,12 +1,15 @@
 import { createLogger, transports, format } from 'winston';
 
 /**
- * Simple logger with limit size of 5MB, starts creating
+ * Logger with limit size of 5MB, starts creating
  * copies of 'errors.log' when the limit is reached.
  *
- * To use, simply:
+ * Catches (automatically) unhandled rejections and
+ * exceptions, and it saves them in /logs/exceptions.log
+ *
+ * To use the error logger, simply:
  * - Import this module.
- * - Add it in the exception or whenever you need to log an error like:
+ * - Add it like:
  * logger.error(<message>);
  *
  * <message> can be an object.
@@ -26,7 +29,20 @@ const logger = new createLogger({
       filename: './logs/errors.log',
       maxsize: 5242880,
       maxFiles: 3,
-      handleExceptions: true,
+      json: true,
+    }),
+  ],
+  exceptionHandlers: [
+    new transports.File({
+      filename: './logs/exceptions.log',
+      maxsize: 5242880,
+      maxFiles: 2,
+      json: true,
+    }),
+  ],
+  rejectionHandlers: [
+    new transports.File({
+      filename: './logs/exceptions.log',
       json: true,
     }),
   ],
@@ -34,7 +50,7 @@ const logger = new createLogger({
 });
 
 const customMorganFormat = '\
- Requested ":url" using :method method with HTTP :http-version.\
+Requested ":url" using :method method with HTTP :http-version.\
   \nIt took :total-time[2] milliseconds to be completed and returned a :status status code.\
   \n:date[web]\n:user-agent \n';
 
