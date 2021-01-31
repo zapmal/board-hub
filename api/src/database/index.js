@@ -1,10 +1,12 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
 import Sequelize from 'sequelize';
 import fs from 'fs';
 import path from 'path';
 const basename = path.basename(__filename);
 
 const database = {};
+
+dotenv.config();
 
 const sequelize = new Sequelize(
   process.env.DATABASE_NAME,

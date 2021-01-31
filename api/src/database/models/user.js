@@ -38,6 +38,13 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     avatar_url: DataTypes.STRING,
+    ip_address: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isIP: true,
+      },
+    },
   }, { tableName: 'user' });
 
   User.associate = (models) => {

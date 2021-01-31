@@ -4,7 +4,6 @@
  * exampleService
  * exampleRoutes
  * exampleErrors
- * example (model)
  *
  * index
  *

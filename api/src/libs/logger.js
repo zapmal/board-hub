@@ -4,8 +4,8 @@ import { createLogger, transports, format } from 'winston';
  * Logger with limit size of 5MB, starts creating
  * copies of 'errors.log' when the limit is reached.
  *
- * Catches (automatically) unhandled rejections and
- * exceptions, and it saves them in /logs/exceptions.log
+ * Catches logs automatically unhandled rejections and
+ * exceptions in their respective log files.
  *
  * To use the error logger, simply:
  * - Import this module.
@@ -42,7 +42,9 @@ const logger = new createLogger({
   ],
   rejectionHandlers: [
     new transports.File({
-      filename: './logs/exceptions.log',
+      filename: './logs/rejections.log',
+      maxsize: 5242880,
+      maxFiles: 1,
       json: true,
     }),
   ],
