@@ -49,12 +49,9 @@ const logger = new createLogger({
   exitOnError: false,
 });
 
-const customMorganFormat = '\
+export const customMorganFormat = '\
 Requested ":url" using :method method with HTTP :http-version.\
   \nIt took :total-time[2] milliseconds to be completed and returned a :status status code.\
   \n:date[web]\n:user-agent \n';
 
-export {
-  logger,
-  customMorganFormat,
-};
+export default logger;
