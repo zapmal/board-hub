@@ -1,6 +1,7 @@
 import express from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
+import cors from 'cors';
 import { customMorganFormat } from '@libs/logging/logger';
 import { authRoutes } from '@components/auth';
 
@@ -10,6 +11,7 @@ const PREFIX = '/api';
 
 app.use(morgan(customMorganFormat));
 app.use(helmet());
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

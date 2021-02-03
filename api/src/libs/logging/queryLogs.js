@@ -24,7 +24,7 @@ const readLogFile = (filename = 'errors', lines = 10) => {
 
 if (!argv.name || argv.lines <= 0) {
   console.log(
-    chalk.red('One of the provided args is invalid, default ones will be used.'),
+    chalk.red('One of the args is missing or it is invalid, default ones will be used.'),
   );
   console.log('');
   readLogFile();
