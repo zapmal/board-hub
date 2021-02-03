@@ -30,9 +30,9 @@ if (!argv.name || argv.lines <= 0) {
   readLogFile();
 }
 else {
-  const validLogName = currentLogFiles.find(filename => filename === argv.name);
+  const isValidLogName = currentLogFiles.find(filename => filename === argv.name);
 
-  if (validLogName) {
+  if (isValidLogName) {
     console.log(
       chalk.greenBright(`Querying ${argv.name}!`),
     );
