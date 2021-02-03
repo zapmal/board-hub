@@ -9,7 +9,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: { message: 'Please enter your name.' },
-        isAlpha: { message: 'Your name can only contain letters.' },
       },
     },
     user_name: {

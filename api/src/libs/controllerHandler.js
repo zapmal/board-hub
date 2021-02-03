@@ -1,3 +1,5 @@
+import logger from './logging/logger';
+
 /**
  * Handles controller execution and responds to user.
  * This way controllers are not attached to the API.
@@ -9,14 +11,13 @@
 const handler = (promise, params) => async (request, response, next) => {
   const boundParameters = params ? params(request, response, next) : [];
 
-  console.log({ boundParameters });
   try {
     const result = await promise(...boundParameters);
-    return response.json(result || { message: 'Custom message here!' });
+    return response.json(result || { message: 'OK' });
   }
   catch (error) {
+    logger.error(error.message);
     return response.status(500).json(error);
-    // log shit
   }
 };
 

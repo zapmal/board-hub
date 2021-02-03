@@ -43,7 +43,7 @@ const Footer = () => {
       </Container>
       <Container>
         <p>¿Encontraste un error o tienes una sugerencia?</p>
-        <Contributors href='https://github.com/Zondazx/board-hub/issues' target='_blank'>
+        <Contributors href='https://github.com/Zondazx/boardhub/issues' target='_blank'>
           Hablanos de eso
         </Contributors>
       </Container>

@@ -1,5 +1,5 @@
 {
-  "name": "board-hub-api",
+  "name": "boardhub-api",
   "version": "1.0.0",
   "main": "src/serve.js",
   "scripts": {
