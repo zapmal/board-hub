@@ -18,7 +18,8 @@ const currentLogFiles = ['exceptions', 'errors', 'rejections'];
 
 const readLogFile = (filename = 'errors', lines = 10) => {
   readLastLines.read(`logs/${filename}.log`, lines)
-    .then(data => console.log(data));
+    .then(data => console.log(data))
+    .catch(error => console.log(chalk.red('There was an error, check that the file exists.')));
 };
 
 if (!argv.name || argv.lines <= 0) {
