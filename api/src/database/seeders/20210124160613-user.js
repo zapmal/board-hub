@@ -1,5 +1,5 @@
-import faker from 'faker';
-import bcrypt from 'bcryptjs';
+const faker = require('faker');
+const bcrypt = require('bcryptjs');
 
 const users = [...Array(50)].map(user => ({
   full_name: `${faker.name.firstName()} ${faker.name.lastName()}`,
@@ -7,6 +7,7 @@ const users = [...Array(50)].map(user => ({
   user_name: faker.internet.userName(),
   password: bcrypt.hashSync('password'),
   avatar_url: faker.image.imageUrl(),
+  ip_address: faker.internet.ip(),
   createdAt: new Date(),
   updatedAt: new Date(),
 }));

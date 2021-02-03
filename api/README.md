@@ -16,6 +16,11 @@ If needed, migrations and seeding can be reverted:
 - `yarn undo:migration`.
 - `yarn undo:seeding`.
 
+Logs can be queried with:
+> --lines is an optional argument.
+
+- `yarn query:logs --name <log name> --lines <amount of lines>`.
+
 ### Build
 - Run in development mode → `yarn dev`.
 - Build for production → `yarn prod`.

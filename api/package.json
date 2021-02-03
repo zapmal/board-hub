@@ -7,10 +7,11 @@
     "prod": "babel src --out-dir dist",
     "start": "node dist/server",
     "migrate": "npx sequelize db:migrate",
-    "undo:migrations": "npx sequelize db:migrate:undo:all",
     "seed": "npx sequelize db:seed:all",
+    "undo:migrations": "npx sequelize db:migrate:undo:all",
     "undo:seeding": "npx sequelize db:seed:undo:all",
-    "db:commands": "npx sequelize --help"
+    "db:commands": "npx sequelize --help",
+    "query:logs": "babel-node src/libs/logging/queryLogs"
   },
   "license": "MIT",
   "private": true,
@@ -20,15 +21,22 @@
     "@babel/node": "^7.12.10",
     "@babel/preset-env": "^7.12.11",
     "babel-plugin-module-resolver": "^4.1.0",
+    "chalk": "^4.1.0",
+    "clear": "^0.1.0",
     "dotenv": "^8.2.0",
     "eslint": "^7.18.0",
     "faker": "^5.1.0",
+    "figlet": "^1.5.0",
     "nodemon": "^2.0.7",
-    "sequelize-cli": "^6.2.0"
+    "read-last-lines": "^1.8.0",
+    "sequelize-cli": "^6.2.0",
+    "yargs": "^16.2.0"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
+    "csurf": "^1.11.0",
     "express": "^4.17.1",
     "helmet": "^4.4.1",
     "joi": "^17.3.0",

@@ -8,9 +8,9 @@
         {
             "alias": {
                 "@libs": "./src/libs",
-                "@models": "./src/database/models",
+                "@models": "./src/database",
                 "@middlewares": "./src/middlewares",
-                "@components": "./src/components",
+                "@components": "./src/components"
             }
         }
         ]
