@@ -7,7 +7,7 @@ app.listen(PORT, () => {
   clear();
   console.log(
     chalk.magenta(
-      figlet.textSync('BoardHub API'),
+      figlet.textSync('Board Hub API'),
     ),
   );
   console.log(

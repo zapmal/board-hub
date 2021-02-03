@@ -63,7 +63,7 @@ const About = () => {
     <>
       <Header>
         <Waves src={wave} alt='Wave'/>
-        <WaveText>Las mentes detrás de <strong>BoardHub</strong></WaveText>
+        <WaveText>Las mentes detrás de <strong>Board Hub</strong></WaveText>
       </Header>
 
       <main>

@@ -180,7 +180,7 @@ const Home = (props) => {
             <CardContent>
               <Typography variant='body1' component='p'>
                 Tareas, eventos imprevistos, trabajo, etc. Todos vivimos eso, todos necesitamos
-                organizarnos de una forma u otra. Es por eso que creamos <Highlight color='#7352d0'>BoardHub</Highlight>.
+                organizarnos de una forma u otra. Es por eso que creamos <Highlight color='#7352d0'>Board Hub</Highlight>.
               </Typography>
             </CardContent>
           </Card>

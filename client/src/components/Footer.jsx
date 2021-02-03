@@ -39,11 +39,11 @@ const Footer = () => {
   return (
     <StyledFooter>
       <Container>
-        <strong>Copyright © BoardHub 2021</strong>
+        <strong>Copyright © Board Hub 2021</strong>
       </Container>
       <Container>
         <p>¿Encontraste un error o tienes una sugerencia?</p>
-        <Contributors href='https://github.com/Zondazx/boardhub/issues' target='_blank'>
+        <Contributors href='https://github.com/Zondazx/board-hub/issues' target='_blank'>
           Hablanos de eso
         </Contributors>
       </Container>

@@ -58,7 +58,7 @@ const OpenSource = () => {
           <Button 
             variant='contained' 
             color='primary' 
-            href='https://github.com/Zondazx/boardhub' 
+            href='https://github.com/Zondazx/board-hub' 
             target='_blank'
           >
             Únetenenos

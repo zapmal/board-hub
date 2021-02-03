@@ -1,4 +1,4 @@
-## BoardHub Client
+## Board Hub Client
 
 
 ### Configuration and Build steps

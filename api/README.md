@@ -1,4 +1,4 @@
-## BoardHub API 
+## Board Hub API 
 
 ### Configuration and Build steps
 > This assumes that you have installed both MySQL (preferable >= 8.0) and a package manager (Yarn, NPM).

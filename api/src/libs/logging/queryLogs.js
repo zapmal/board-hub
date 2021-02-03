@@ -8,8 +8,8 @@ import figlet from 'figlet';
 clear();
 
 console.log(
-  chalk.yellow(
-    figlet.textSync('BoardHub Logs'),
+  chalk.magenta(
+    figlet.textSync('Board Hub Logs'),
   ),
 );
 
