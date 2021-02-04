@@ -1,10 +1,6 @@
 import Joi from 'joi';
+import validateSchema from '@libs/validateSchema';
 
-/**
- * If needed, this can be abstracted a little bit more
- * in a separate function/file that receives:
- * (schema, options, data).
-*/
 const validateSignup = (request, response, next) => {
   const schema = Joi.object({
     username: Joi.string().required(),
@@ -16,16 +12,7 @@ const validateSignup = (request, response, next) => {
     }),
   });
 
-  const options = {
-    abortEarly: false,
-    allowUnknown: true,
-    stripUnknown: true,
-  };
-
-  const {
-    error,
-    value,
-  } = schema.validate(request.body, options);
+  const { value, error } = validateSchema(schema, request.body);
 
   if (error) {
     const errors = error.details.map(({ message }) => message).join(', ');
@@ -47,16 +34,10 @@ const validateSignin = (request, response, next) => {
     password: Joi.string().min(8).required(),
   });
 
-  const options = {
+  const { value, error } = validateSchema(schema, request.body, {
     abortEarly: false,
-    allowUnknown: true,
-    stripUnknown: true,
-  };
-
-  const {
-    error,
-    value,
-  } = schema.validate(request.body, options);
+    allowUnknown: false,
+  });
 
   if (error) {
     const errors = error.details.map(({ message }) => message).join(', ');
