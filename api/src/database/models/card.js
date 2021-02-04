@@ -7,9 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     title: {
       type: DataTypes.STRING,
       allowNull: false,
-      validation: {
-        notNull: { message: 'Card must have a title.' },
-      },
     },
     content: DataTypes.TEXT,
     completed: {

@@ -7,8 +7,6 @@ dotenv.config();
 
 const SECRET = process.env.JWT_SECRET;
 
-// todo: promisify this?
-
 const createUser = async (fullname, username, password, email, ip) => {
   const salt = await genSalt(10);
   const hashedPassword = await hash(password, salt);
@@ -27,7 +25,7 @@ const createUser = async (fullname, username, password, email, ip) => {
 };
 
 const getUser = async (email) => {
-  const foundUser = user.findOne({ where: { email } });
+  const foundUser = await user.findOne({ where: { email } });
 
   return foundUser;
 };

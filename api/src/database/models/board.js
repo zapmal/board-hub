@@ -7,9 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notNull: { message: 'Board name cannot be empty.' },
-      },
     },
     is_favorite: {
       type: DataTypes.BOOLEAN,

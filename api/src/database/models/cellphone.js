@@ -7,9 +7,6 @@ module.exports = (sequelize, DataTypes) => {
     cellphone: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        notNull: { message: 'Cellphone cannot be empty.' },
-      },
     },
     user_id: DataTypes.INTEGER,
   }, { tableName: 'cellphone' });

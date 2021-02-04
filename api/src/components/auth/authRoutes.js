@@ -1,10 +1,12 @@
 import { Router } from 'express';
-import handler from '@libs/controllerHandler';
 import { signup, signin } from './authController';
+import { validateSignup, validateSignin } from '@middlewares/validators/auth';
+import handler from '@libs/controllerHandler';
 
 const router = Router();
 
 router.post('/signup',
+  validateSignup,
   handler(signup, (request) => (
     [request.body, request.connection.remoteAddress]
   )),
