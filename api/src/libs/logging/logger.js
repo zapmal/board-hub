@@ -4,10 +4,10 @@ import { createLogger, transports, format } from 'winston';
  * Logger with limit size of 5MB, starts creating
  * copies of 'errors.log' when the limit is reached.
  *
- * Catches logs automatically unhandled rejections and
- * exceptions in their respective log files.
+ * Catches and logs automatically unhandled rejections and
+ * exceptions.
  *
- * To use the error logger, simply:
+ * To use it, simply:
  * - Import this module.
  * - Add it like:
  * logger.error(<message>);

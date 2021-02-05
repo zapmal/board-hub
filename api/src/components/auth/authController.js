@@ -27,9 +27,7 @@ const signin = async (email, password) => {
   const passwordsMatch = await compare(password, user.password);
 
   if (passwordsMatch) {
-    const token = await getToken(email);
-
-    return token;
+    return getToken(email);
   }
   else {
     return {

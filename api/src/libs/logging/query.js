@@ -13,16 +13,16 @@ console.log(
   ),
 );
 
-const argv = yargs(hideBin(process.argv)).argv;
+const { name, lines } = yargs(hideBin(process.argv)).argv;
 const currentLogFiles = ['exceptions', 'errors', 'rejections'];
 
-const readLogFile = (filename = 'errors', lines = 10) => {
-  readLastLines.read(`logs/${filename}.log`, lines)
+const readLogFile = (filename = 'errors', linesToDisplay = 10) => {
+  readLastLines.read(`logs/${filename}.log`, linesToDisplay)
     .then(data => console.log(data))
     .catch(error => console.log(chalk.red('There was an error, check that the file exists.')));
 };
 
-if (!argv.name || argv.lines <= 0) {
+if (!name || lines <= 0) {
   console.log(
     chalk.red('One of the args is missing or it is invalid, default ones will be used.'),
   );
@@ -30,18 +30,18 @@ if (!argv.name || argv.lines <= 0) {
   readLogFile();
 }
 else {
-  const isValidLogName = currentLogFiles.find(filename => filename === argv.name);
+  const isValidLogName = currentLogFiles.find(filename => filename === name);
 
   if (isValidLogName) {
     console.log(
-      chalk.greenBright(`Querying ${argv.name}!`),
+      chalk.greenBright(`Querying ${name}!`),
     );
     console.log('');
-    readLogFile(argv.name, argv.lines);
+    readLogFile(name, lines);
   }
   else {
     console.log(
-      chalk.red('One of the provided values is invalid, try again.'),
+      chalk.red(`Requested log file "${name}" does not exist.`),
     );
     process.exit();
   }

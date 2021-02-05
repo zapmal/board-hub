@@ -1,5 +1,6 @@
 import Joi from 'joi';
 import validateSchema from '@libs/validateSchema';
+import logger from '@libs/logging/logger';
 
 const validateSignup = (request, response, next) => {
   const schema = Joi.object({
@@ -16,11 +17,9 @@ const validateSignup = (request, response, next) => {
 
   if (error) {
     const errors = error.details.map(({ message }) => message).join(', ');
-    response
-      .status(400)
-      .json({
-        errors,
-      });
+
+    response.status(400).json({ errors });
+    logger.error(errors);
   }
   else {
     request.body = value;
@@ -41,11 +40,9 @@ const validateSignin = (request, response, next) => {
 
   if (error) {
     const errors = error.details.map(({ message }) => message).join(', ');
-    response
-      .status(400)
-      .json({
-        errors,
-      });
+
+    response.status(400).json({ errors });
+    logger.error(errors);
   }
   else {
     request.body = value;
