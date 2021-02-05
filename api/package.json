@@ -11,7 +11,7 @@
     "undo:migrations": "npx sequelize db:migrate:undo:all",
     "undo:seeding": "npx sequelize db:seed:undo:all",
     "db:commands": "npx sequelize --help",
-    "query:logs": "babel-node src/libs/logging/queryLogs"
+    "query:logs": "babel-node src/libs/logging/query"
   },
   "license": "MIT",
   "private": true,
