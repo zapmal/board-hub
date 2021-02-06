@@ -27,12 +27,14 @@ const signin = async (email, password) => {
   const passwordsMatch = await compare(password, user.password);
 
   if (passwordsMatch) {
-    return getToken(email);
+    const token = await getToken(email);
+
+    return token;
   }
   else {
     return {
       token: null,
-      message: 'Password does not match.',
+      message: 'Invalid password.',
     };
   }
 };
