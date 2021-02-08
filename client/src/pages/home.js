@@ -114,7 +114,7 @@ const Home = (props) => {
         </div>
       </Separation>
       
-      <Grid container spacing={30} className={container}>
+      <Grid container className={container}>
         <Grid item md={3}>
           <Card className={root}>
             <CardHeader title='Organización' subheader='Se adaptan a ti.' />
@@ -133,7 +133,7 @@ const Home = (props) => {
             <CardMedia title='Creación' className={media} image={note}/>
             <CardContent className={adapt}>
               <Typography variant='body2' component='p'>
-                Crea nuevas listas y cartas con <Highlight color='#7362d0'>facilidad</Highlight>.
+                Crea cartas con <Highlight color='#7362d0'>facilidad</Highlight>.
               </Typography>
             </CardContent>
           </Card>
@@ -164,7 +164,7 @@ const Home = (props) => {
         </div>
       </Separation>
 
-      <Grid container spacing={20} className={missionContainer}>
+      <Grid container className={missionContainer}>
         <Grid item md={4}>
           <Card className={root}>
             <CardMedia title='Canvas vacío' className={media} image={blankCanvas} />

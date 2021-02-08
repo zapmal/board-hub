@@ -67,14 +67,14 @@ const About = () => {
       </Header>
 
       <main>
-        <Grid container spacing={25} className={container}>
+        <Grid container spacing={10} className={container}>
           <Grid item md={3}>
             <Card className={root}>
               <CardHeader title='Manuel Zapata' />
               <CardMedia title='Foto de Manuel Zapata' className={media} image={noImage}/>
               <CardContent>
                 <Typography variant='body2' component='p'>
-                  <Highlight color='#7362d0'>Frontend, Backend, Database and Design.</Highlight>
+                  <Highlight>Frontend, Backend, Database and Design.</Highlight>
                 </Typography>
 
                 <Button color='secondary' href='https://github.com/Zondazx' target='_blank' endIcon={<GitHubIcon/>}>
@@ -90,7 +90,7 @@ const About = () => {
               <CardMedia title='Foto de Victor Homez' className={media} image={noImage}/>
               <CardContent>
                 <Typography variant='body2' component='p'>
-                  <Highlight color='#7362d0'>Backend.</Highlight>
+                  <Highlight>Backend.</Highlight>
                 </Typography>
 
                 <Button color='secondary' href='https://github.com/Biktol' target='_blank' endIcon={<GitHubIcon/>}>
@@ -108,7 +108,7 @@ const About = () => {
               <CardMedia title='Foto de Samuel Yépez' className={media} image={noImage}/>
               <CardContent>
                 <Typography variant='body2' component='p'>
-                  Cédula de identidad: <Highlight color='#7362d0'>27.363.562</Highlight>.
+                  Cédula de identidad: <Highlight>27.363.562</Highlight>.
                 </Typography>
               </CardContent>
             </Card>
@@ -121,7 +121,7 @@ const About = () => {
               <CardMedia title='Foto de Andrés Gonzáles' className={media} image={noImage}/>
               <CardContent>
                 <Typography variant='body2' component='p'>
-                  Cédula de identidad: <Highlight color='#7362d0'>29.842.253</Highlight>.
+                  Cédula de identidad: <Highlight>29.842.253</Highlight>.
                 </Typography>
               </CardContent>
             </Card>
@@ -133,7 +133,7 @@ const About = () => {
               <CardMedia title='Foto de Noel Duque' className={media} image={noImage}/>
               <CardContent>
                 <Typography variant='body2' component='p'>
-                  Cédula de identidad: <Highlight color='#7362d0'>28.061.952</Highlight>.
+                  Cédula de identidad: <Highlight>28.061.952</Highlight>.
                 </Typography>
               </CardContent>
             </Card>

@@ -19,6 +19,7 @@ export default createGlobalStyle`
     font-family: 'Roboto', 'Segoe UI', Helvetica;
     background-color: #ffffff;
     line-height: 1.4;
+    color: #2F3342;
   }
 
   a:link,
