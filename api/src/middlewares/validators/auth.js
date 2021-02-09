@@ -13,9 +13,6 @@ const validateSignup = (request, response, next) => {
     fullname: Joi.string().required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(8).required(),
-    confirmPassword: Joi.string().valid(Joi.ref('password')).required().messages({
-      'any.only': 'Password does not match.',
-    }),
   });
 
   const { value, error } = validateSchema(schema, request.body);

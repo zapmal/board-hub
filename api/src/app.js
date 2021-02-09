@@ -6,7 +6,7 @@ import { customMorganFormat } from '@libs/logging/logger';
 import { authRoutes } from '@components/auth';
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 9000;
 const PREFIX = '/api';
 
 app.use(morgan(customMorganFormat));
