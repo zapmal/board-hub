@@ -36,4 +36,9 @@ export default createGlobalStyle`
   pre {
     max-width: 100%;
   }
+
+  ::selection {
+    color: #ffffff;
+    background: #7362d0;
+  }
 `;

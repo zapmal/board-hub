@@ -1,3 +1,3 @@
 # Board Hub
 
-Both the `api/` and the `client/` contain instructions for setup and use.
+Both the `api` and the `web` contain instructions for configuration and use.

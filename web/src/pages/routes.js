@@ -7,6 +7,7 @@ import Contact from './contact';
 import OpenSource from './opensource';
 
 import Signup from './signup';
+import Signin from './signin';
 
 const RouteWithSubRoutes = (route) => {
   return (
@@ -34,7 +35,7 @@ const ROUTES = [
   { path: '/about', key: 'ABOUT_US', component: About },
   { path: '/contact', key: 'CONTACT', component: Contact },
   { path: '/opensource', key: 'OPEN_SOURCE', component: OpenSource },
-  { path: '/signin', key: 'SIGN_IN', component: () => <h1>sign in ayo</h1> },
+  { path: '/signin', key: 'SIGN_IN', component: Signin },
   { path: '/signup', key: 'SIGN_UP', component: Signup },
   { 
     path: '/b', 
