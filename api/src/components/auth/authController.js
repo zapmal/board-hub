@@ -14,14 +14,13 @@ const signup = async (data, ip) => {
   return userToken;
 };
 
-const signin = async (email, password) => {
+const signin = async (email, password, response) => {
   const user = await getUser(email);
 
   if (!user) {
-    return {
-      token: null,
-      message: 'User does not exist.',
-    };
+    return response
+      .status(400)
+      .json({ message: 'No existe un usuario con ese email.' });
   }
 
   const passwordsMatch = await compare(password, user.password);
@@ -32,10 +31,9 @@ const signin = async (email, password) => {
     return token;
   }
   else {
-    return {
-      token: null,
-      message: 'Invalid password.',
-    };
+    return response
+      .status(400)
+      .json({ message: 'Contraseña incorrecta.' });
   }
 };
 

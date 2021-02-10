@@ -17,8 +17,8 @@ router.post('/signup', [validateSignup, checkDuplicatedUser],
 
 router.post('/signin',
   validateSignin,
-  handler(signin, (request) => (
-    [request.body.email, request.body.password]
+  handler(signin, (request, response) => (
+    [request.body.email, request.body.password, response]
   )),
 );
 
