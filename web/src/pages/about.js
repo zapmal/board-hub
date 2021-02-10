@@ -90,7 +90,7 @@ const About = () => {
               <CardMedia title='Foto de Victor Homez' className={media} image={noImage}/>
               <CardContent>
                 <Typography variant='body2' component='p'>
-                  <Highlight>Backend.</Highlight>
+                  <Highlight>Backend and Documentation.</Highlight>
                 </Typography>
 
                 <Button color='secondary' href='https://github.com/Biktol' target='_blank' endIcon={<GitHubIcon/>}>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMutation } from 'react-query';
 
 import { signinSchema } from '../libs/validation/auth';
 import apiClient from '../services/api';
@@ -6,17 +7,21 @@ import apiClient from '../services/api';
 import AuthForm from '../components/AuthForm';
 
 const Signin = () => {
+  const { mutateAsync } = useMutation(data => apiClient.post('/signin', data)); 
+
   const handleSubmit = async (data, { setStatus, resetForm, setSubmitting }) => {
     try {
-      const { 
-        data: { token }, 
-        status 
-      } = await apiClient.post('/signin', data);
-    
-      if (status === 200) {
-        console.log('beep boop magic happening, im storing the token');
-        console.log(token, status);
-      }
+      setSubmitting(true);
+
+      await mutateAsync(data);
+      setSubmitting(false);
+
+      resetForm();
+
+      /**
+       * - Store token in local storage.
+       * - Redirect to home page.
+       */
     }
     catch (error) {
       setStatus(error.response.data.message);

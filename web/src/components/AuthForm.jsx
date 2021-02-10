@@ -90,6 +90,7 @@ const AuthForm = ({ type, validationSchema, handleSubmit, maxWidth = 700 }) => {
                   type='submit' 
                   variant='contained' 
                   color='secondary'
+                  disabled={isSubmitting}
                 >
                   Enviar
                 </Button>

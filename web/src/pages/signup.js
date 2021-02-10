@@ -1,4 +1,5 @@
 import React from 'react';
+import { useMutation } from 'react-query';
 
 import { signupSchema } from '../libs/validation/auth';
 import apiClient from '../services/api';
@@ -13,27 +14,23 @@ import AuthForm from '../components/AuthForm';
  */
 
 const Signup = () => {
+  const { mutateAsync } = useMutation(data => apiClient.post('/signup', data)); 
 
   const handleSubmit = async (data, { setStatus, resetForm, setSubmitting }) => {
     try {
-      const {
-        data: { token },
-        status,
-      } = await apiClient.post('/signup', data);
+      setSubmitting(true);
 
-      if (status === 200) {
-        console.log('bipity bopity storing the tokity');
-        console.log(token);
-        resetForm();
-        /**
-         * Here a context-level method (could) be called. 
-         * That method could store the JWT, or it can be done without 
-         * relying on context at all.
-         */
-      }
+      await mutateAsync(data);
+      setSubmitting(false);
+
+      resetForm();
+
+      /**
+       * - Store token in local storage.
+       * - Redirect to home page.
+       */
     }
     catch (error) {
-      console.log(error);
       setStatus(error.response.data.message);
     }
   };
