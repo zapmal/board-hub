@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import { Form, Formik, useField } from 'formik';
+import { withRouter } from 'react-router-dom';
 import { 
   Grid,
   Typography,
@@ -11,6 +12,7 @@ import {
 import { useMutation } from 'react-query';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 import Highlight from '../components/Highlight';
 
@@ -54,7 +56,7 @@ const Container = styled.div`
   }
 `;
 
-const AuthForm = ({ route, validationSchema, maxWidth = 700 }) => {
+const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
   const { mutateAsync } = useMutation(data => apiClient.post(route, data));
 
   const initialValues = route === 'signin'
@@ -74,15 +76,13 @@ const AuthForm = ({ route, validationSchema, maxWidth = 700 }) => {
     try {
       setSubmitting(true);
 
-      await mutateAsync(data);
+      const { data: { token } } = await mutateAsync(data);
       setSubmitting(false);
 
       resetForm();
 
-      /**
-       * - Store token in local storage.
-       * - Redirect to home page.
-       */
+      localStorage.setItem('token', token);
+      history.push('/');
     }
     catch (error) {
       setStatus(error.response.data.message);
@@ -115,6 +115,7 @@ const AuthForm = ({ route, validationSchema, maxWidth = 700 }) => {
                   variant='contained' 
                   color='secondary'
                   disabled={isSubmitting}
+                  startIcon={<ClipLoader loading={isSubmitting} size={15} color={'#ffffff'} />}
                 >
                   Enviar
                 </Button>
@@ -233,4 +234,4 @@ const CustomTextField = (props) => {
   return <TextField {...field} {...props} helperText={error} error={!!error}/>;
 };
 
-export default AuthForm;
+export default withRouter(AuthForm);

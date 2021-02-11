@@ -54,7 +54,7 @@ const checkDuplicatedUser = async (request, response, next) => {
       response
         .status(400)
         .json({
-          message: 'That email is already taken.',
+          message: 'Ese correo ya está en uso.',
         });
     }
 
@@ -64,14 +64,14 @@ const checkDuplicatedUser = async (request, response, next) => {
       response
         .status(400)
         .json({
-          message: 'That username is already taken.',
+          message: 'Ese nombre de usuario ya está en uso.',
         });
     }
     next();
 
   }
   catch (error) {
-    response.status(500).json({ message: 'Oops, an error occured in our side, try again.' });
+    response.status(500).json({ message: 'Hubo un error de nuestro lado, intenta otra vez.' });
     logger.error(error.message);
   }
 };
@@ -81,12 +81,13 @@ const checkToken = async (request, response, next) => {
   const SECRET = process.env.JWT_SECRET;
 
   try {
-    if (!authHeader && !authHeader.startsWith('Bearer ')) {
-      response.status(401).json({ message: 'Invalid token.' });
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      response.status(401).json({ message: 'Token inválido o no enviado.' });
     }
 
     const token = authHeader.split(' ')[1];
     const { email } = verify(token, SECRET);
+    response.locals.email = email;
 
     const tokenOwner = await user.findOne({ where: { email } });
 
@@ -94,7 +95,7 @@ const checkToken = async (request, response, next) => {
       response
         .status(404)
         .json({
-          message: 'The provided token is not associated to an existing account.',
+          message: 'El token que provees no está asociado a ninguna cuenta.',
         });
     }
 
@@ -104,7 +105,7 @@ const checkToken = async (request, response, next) => {
     response
       .status(500)
       .json({
-        message: 'Huh, an error happened on our side, try again.',
+        message: 'Hubo un error de nuestro lado, intenta otra vez.',
       });
   }
 };
