@@ -8,10 +8,13 @@ import {
   TextField,
   Button,
 } from '@material-ui/core';
+import { useMutation } from 'react-query';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 import Highlight from '../components/Highlight';
+
+import apiClient from '../services/api';
 
 import graduated from '../assets/svgs/graduated.svg';
 import team from '../assets/svgs/team.svg';
@@ -51,8 +54,10 @@ const Container = styled.div`
   }
 `;
 
-const AuthForm = ({ type, validationSchema, handleSubmit, maxWidth = 700 }) => {
-  const initialValues = type === 'signin'
+const AuthForm = ({ route, validationSchema, maxWidth = 700 }) => {
+  const { mutateAsync } = useMutation(data => apiClient.post(route, data));
+
+  const initialValues = route === 'signin'
     ? { 
       email: '', 
       password: '',
@@ -64,6 +69,25 @@ const AuthForm = ({ type, validationSchema, handleSubmit, maxWidth = 700 }) => {
       passwordConfirmation: '', 
       fullname: '',
     };
+  
+  const handleSubmit = async (data, { setStatus, resetForm, setSubmitting })  => {
+    try {
+      setSubmitting(true);
+
+      await mutateAsync(data);
+      setSubmitting(false);
+
+      resetForm();
+
+      /**
+       * - Store token in local storage.
+       * - Redirect to home page.
+       */
+    }
+    catch (error) {
+      setStatus(error.response.data.message);
+    }
+  };
   
   return (
     <>
@@ -77,13 +101,13 @@ const AuthForm = ({ type, validationSchema, handleSubmit, maxWidth = 700 }) => {
           {({ status, isSubmitting }) => (
             <Form>
               <Typography variant='h4' align='center' gutterBottom>
-                {type === 'signin' ? 'Inicia sesión' : 'Registrate' } y empieza a usar <Highlight>Board Hub</Highlight>
+                {route === 'signin' ? 'Inicia sesión' : 'Registrate' } y empieza a usar <Highlight>Board Hub</Highlight>
               </Typography>
 
               <Paper elevation={4} style={{ padding: '30px 20px' }}>
 
                 <Grid container alignItems='flex-start' spacing={4}>
-                  {type === 'signin' ? <Signin /> : <Signup />}
+                  {route === 'signin' ? <Signin /> : <Signup />}
                 </Grid>
 
                 <Button 

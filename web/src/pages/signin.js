@@ -1,38 +1,26 @@
 import React from 'react';
-import { useMutation } from 'react-query';
 
 import { signinSchema } from '../libs/validation/auth';
-import apiClient from '../services/api';
 
 import AuthForm from '../components/AuthForm';
 
+/**
+ * - Move handleSubmit to AuthForm. [done]
+ * - Rename type to "formType" or "route". [done]
+ * 
+ * - Double-check controllerHandler and signin controller.
+ * - Translate backend validations.
+ * - Store JWT in LS.
+ * - Context (?).
+ * - Redirect after successful signin/signup.
+ * - Loading component.
+ */
+
 const Signin = () => {
-  const { mutateAsync } = useMutation(data => apiClient.post('/signin', data)); 
-
-  const handleSubmit = async (data, { setStatus, resetForm, setSubmitting }) => {
-    try {
-      setSubmitting(true);
-
-      await mutateAsync(data);
-      setSubmitting(false);
-
-      resetForm();
-
-      /**
-       * - Store token in local storage.
-       * - Redirect to home page.
-       */
-    }
-    catch (error) {
-      setStatus(error.response.data.message);
-    }
-  };
-
   return (
     <AuthForm
-      type='signin'
+      route='signin'
       validationSchema={signinSchema}
-      handleSubmit={handleSubmit}
       maxWidth={500}
     />
   );

@@ -22,16 +22,6 @@ export default createGlobalStyle`
     color: #2F3342;
   }
 
-  a:link,
-  a:visited {
-    /* color: #0077cc; */
-  }
-
-  a:hover,
-  a:focus {
-    /* color: #004499; */
-  }
-
   code,
   pre {
     max-width: 100%;

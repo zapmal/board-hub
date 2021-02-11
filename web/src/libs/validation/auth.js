@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 export const signupSchema = yup.object({
-  email: yup.string().email().required('Este campo es requerido.'),
+  email: yup.string().email('Debes proveer un email válido.').required('Este campo es requerido.'),
   username: yup.string().required('Este campo es requerido.'),
   password: yup.string().min(8, 'Mínimo ocho (8) carácteres.').required('Este campo es requerido.'),
   passwordConfirmation: yup.string().required('Este campo es requerido.')
@@ -10,6 +10,6 @@ export const signupSchema = yup.object({
 });
 
 export const signinSchema = yup.object({
-  email: yup.string().email().required('Este campo es requerido.'),
+  email: yup.string().email('Debes proveer un email válido.').required('Este campo es requerido.'),
   password: yup.string().min(8, 'Mínimo ocho (8) carácteres.').required('Este campo es requerido.'),
 });

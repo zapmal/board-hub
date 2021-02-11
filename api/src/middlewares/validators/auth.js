@@ -1,6 +1,10 @@
-import Joi from 'joi';
-import validateSchema from '@libs/validateSchema';
+import validate from '@libs/schemas/validate';
+import {
+  signupSchema,
+  signinSchema,
+} from '@libs/schemas/authSchemas';
 import logger from '@libs/logging/logger';
+
 import dotenv from 'dotenv';
 import { verify } from 'jsonwebtoken';
 import { user } from '@models';
@@ -8,17 +12,7 @@ import { user } from '@models';
 dotenv.config();
 
 const validateSignup = (request, response, next) => {
-  const schema = Joi.object({
-    username: Joi.string().required(),
-    fullname: Joi.string().required(),
-    email: Joi.string().email().required(),
-    password: Joi.string().min(8).required(),
-    passwordConfirmation: Joi.string().valid(Joi.ref('password')).required().messages({
-      'any.only': 'Las contraseñas deben coincidir.',
-    }),
-  });
-
-  const { value, error } = validateSchema(schema, request.body);
+  const { value, error } = validate(signupSchema, request.body);
 
   if (error) {
     const errors = error.details.map(({ message }) => message).join(', ');
@@ -33,12 +27,7 @@ const validateSignup = (request, response, next) => {
 };
 
 const validateSignin = (request, response, next) => {
-  const schema = Joi.object({
-    email: Joi.string().email().required(),
-    password: Joi.string().min(8).required(),
-  });
-
-  const { value, error } = validateSchema(schema, request.body, {
+  const { value, error } = validate(signinSchema, request.body, {
     abortEarly: false,
     allowUnknown: false,
   });
