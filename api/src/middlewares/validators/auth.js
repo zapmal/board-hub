@@ -102,11 +102,21 @@ const checkToken = async (request, response, next) => {
     next();
   }
   catch (error) {
-    response
-      .status(500)
-      .json({
-        message: 'Hubo un error de nuestro lado, intenta otra vez.',
-      });
+    console.log(error.name);
+    if (error.name === 'TokenExpiredError') {
+      response
+        .status(500)
+        .json({
+          message: 'Su sesión ha expirado, por favor, inicie sesión otra vez.',
+        });
+    }
+    else {
+      response
+        .status(500)
+        .json({
+          message: 'Hubo un error de nuestro lado, intenta otra vez.',
+        });
+    }
   }
 };
 
