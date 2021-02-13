@@ -4,11 +4,6 @@ import { signinSchema } from '../libs/validation/auth';
 
 import AuthForm from '../components/AuthForm';
 
-/**
- * 
- * - Context (?).
- */
-
 const Signin = () => {
   return (
     <AuthForm

@@ -3,6 +3,9 @@ import styled from 'styled-components/macro';
 
 import background from '../assets/svgs/background-light.svg'; 
 
+/**
+ * On large screens (height-wise) the footer needs to go a bit down.
+ */
 const StyledFooter = styled.footer`
   padding: 30px 40px;
   background-color: #504491;

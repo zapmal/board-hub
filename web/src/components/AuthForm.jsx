@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Form, Formik, useField } from 'formik';
+import { Form, Formik } from 'formik';
 import { withRouter } from 'react-router-dom';
 import { 
   Grid,
   Typography,
   Paper,
-  TextField,
   Button,
 } from '@material-ui/core';
 import { useMutation } from 'react-query';
@@ -15,8 +14,10 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 import Highlight from '../components/Highlight';
+import CustomTextField from '../components/CustomTextField';
 
 import apiClient from '../services/api';
+import useUserStore from '../stores/useUserStore';
 
 import graduated from '../assets/svgs/graduated.svg';
 import team from '../assets/svgs/team.svg';
@@ -58,6 +59,7 @@ const Container = styled.div`
 
 const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
   const { mutateAsync } = useMutation(data => apiClient.post(route, data));
+  const setUser = useUserStore(state => state.setUser);
 
   const initialValues = route === 'signin'
     ? { 
@@ -83,9 +85,10 @@ const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
 
       localStorage.setItem('token', token);
       history.push('/');
+      setUser();
     }
     catch (error) {
-      setStatus(error.response.data.message);
+      setStatus(error.response ? error.response.data.message : '');
     }
   };
   
@@ -225,13 +228,6 @@ const Signup = () => {
       </Grid>
     </>
   );
-};
-
-const CustomTextField = (props) => {
-  const [field, meta] = useField(props);
-  const error = meta.error && meta.touched ? meta.error : '';
-
-  return <TextField {...field} {...props} helperText={error} error={!!error}/>;
 };
 
 export default withRouter(AuthForm);

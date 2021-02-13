@@ -1,5 +1,7 @@
-import { createUser, getToken, getUser } from './authService';
-import { compare } from 'bcryptjs';
+import { createUser, getUser } from './authService';
+import { compare, decode } from 'bcryptjs';
+
+import getToken from '@libs/getToken';
 
 const signup = async (data, ip) => {
   const {
@@ -37,7 +39,31 @@ const signin = async (email, password, response) => {
   }
 };
 
+/**
+ * Gotta handle that 'edge-case' where the email is not found.
+ * But it'd be weird, this route is authenticated, if he's here
+ * the email *obviously* exists.
+ */
+const getMe = async (email) => {
+  const {
+    id,
+    full_name,
+    user_name,
+    email: foundEmail,
+  } = await getUser(email);
+
+  const user = {
+    id,
+    fullname: full_name,
+    username: user_name,
+    email: foundEmail,
+  };
+
+  return user;
+};
+
 export {
   signup,
   signin,
+  getMe,
 };

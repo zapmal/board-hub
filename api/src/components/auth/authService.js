@@ -1,17 +1,10 @@
 import { user } from '@models';
 import { genSalt, hash } from 'bcryptjs';
 import dotenv from 'dotenv';
-import { sign } from 'jsonwebtoken';
+
+import getToken from '@libs/getToken';
 
 dotenv.config();
-
-const SECRET = process.env.JWT_SECRET;
-
-const getToken = async (email) => {
-  const token = sign({ email }, SECRET, { expiresIn: '90d' });
-
-  return { token };
-};
 
 const createUser = async (fullname, username, password, email, ip) => {
   const salt = await genSalt(10);
@@ -39,5 +32,4 @@ const getUser = async (email) => {
 export {
   createUser,
   getUser,
-  getToken,
 };

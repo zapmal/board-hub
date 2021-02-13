@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { 
   AppBar, 
   Toolbar, 
@@ -10,6 +10,8 @@ import InfoIcon from '@material-ui/icons/Info';
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import { Link } from 'react-router-dom';
+
+import useUserStore from '../stores/useUserStore';
 
 import logoImage from '../assets/images/logo.png';
 
@@ -66,6 +68,10 @@ const navRoutes = [
   },
 ];
 
+/**
+ * problem:
+ * When user just signs in it doesnt show the updated navbar
+ */
 const Nav = () => {
   const { 
     logo,
@@ -74,6 +80,19 @@ const Nav = () => {
     button, 
     actionButtons 
   } = useStyles();
+
+  const {
+    user,
+    setUser,
+    removeUser,
+  } = useUserStore();
+  const token = localStorage.getItem('token');
+
+  useEffect(() => {
+    if (!user && token) {
+      setUser();
+    }
+  }, []);
 
   return (
     <header>
@@ -96,25 +115,41 @@ const Nav = () => {
                 {label}
               </Button>
             ))}
-            <Button 
-              variant='contained' 
-              color='secondary' 
-              to='/signin'
-              component={Link}
-              className={actionButtons}
-            >
-              Inicio de sesión
-            </Button>
 
-            <Button 
-              variant='contained' 
-              color='secondary'
-              to='/signup'
-              component={Link}
-              className={actionButtons}
-            >
-              Registro
-            </Button>
+            {user 
+            ? (
+              <Button 
+                variant='contained' 
+                color='secondary' 
+                className={actionButtons}
+                onClick={removeUser}
+              >
+                Cerrar sesión
+              </Button>
+            )
+            : (
+              <>
+                <Button 
+                  variant='contained' 
+                  color='secondary' 
+                  to='/signin'
+                  component={Link}
+                  className={actionButtons}
+                >
+                  Inicio de sesión
+                </Button>
+
+                <Button 
+                  variant='contained' 
+                  color='secondary'
+                  to='/signup'
+                  component={Link}
+                  className={actionButtons}
+                >
+                  Registro
+                </Button>
+              </>
+            )}
           </Box>
         </Toolbar>
       </AppBar>
