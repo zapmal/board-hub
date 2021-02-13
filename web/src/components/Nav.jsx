@@ -68,10 +68,6 @@ const navRoutes = [
   },
 ];
 
-/**
- * problem:
- * When user just signs in it doesnt show the updated navbar
- */
 const Nav = () => {
   const { 
     logo,

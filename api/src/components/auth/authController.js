@@ -1,5 +1,5 @@
 import { createUser, getUser } from './authService';
-import { compare, decode } from 'bcryptjs';
+import { compare } from 'bcryptjs';
 
 import getToken from '@libs/getToken';
 
