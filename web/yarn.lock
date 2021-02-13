@@ -6156,6 +6156,11 @@ immer@7.0.9:
   resolved "https://registry.yarnpkg.com/immer/-/immer-7.0.9.tgz#28e7552c21d39dd76feccd2b800b7bc86ee4a62e"
   integrity sha512-Vs/gxoM4DqNAYR7pugIxi0Xc8XAun/uy7AQu4fLLqaTBHxjOP9pJ266Q9MWA/ly4z6rAFZbvViOtihxUZ7O28A==
 
+immer@^8.0.1:
+  version "8.0.1"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-8.0.1.tgz#9c73db683e2b3975c424fb0572af5889877ae656"
+  integrity sha512-aqXhGP7//Gui2+UrEtvxZxSquQVXTpZ7KDxfCcKAF3Vysvw0CViVaW9RZ1j1xlIYqaaaipBoqdqeibkc18PNvA==
+
 import-cwd@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/import-cwd/-/import-cwd-2.1.0.tgz#aa6cf36e722761285cb371ec6519f53e2435b0a9"
@@ -12393,3 +12398,8 @@ yup@^0.32.8:
     nanoclone "^0.2.1"
     property-expr "^2.0.4"
     toposort "^2.0.2"
+
+zustand@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.3.1.tgz#de5c4b51112b84e0f819d8b3f336fbfbc087d758"
+  integrity sha512-o0rgrBsi29nCkPHdhtkAHisCIlmRUoXOV+1AmDMeCgkGG0i5edFSpGU0KiZYBvFmBYycnck4Z07JsLYDjSET9g==

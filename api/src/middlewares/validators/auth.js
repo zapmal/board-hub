@@ -102,7 +102,6 @@ const checkToken = async (request, response, next) => {
     next();
   }
   catch (error) {
-    console.log(error.name);
     if (error.name === 'TokenExpiredError') {
       response
         .status(500)
