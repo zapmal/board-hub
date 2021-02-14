@@ -4,11 +4,13 @@ import apiClient from '../services/api';
 
 const useUserStore = create((set, get) => ({
   user: null,
+  loading: false,
   setUser: async () => {
+    set({ loading: true });
     const token = localStorage.getItem('token');
     const { data } = await apiClient.get('/me', { headers: { 'Authorization': `Bearer ${token}` }});
 
-    set({ user: data });
+    set({ user: data, loading: false });
   },
   removeUser: () => {
     localStorage.removeItem('token');

@@ -9,6 +9,7 @@ import {
 import InfoIcon from '@material-ui/icons/Info';
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import PulseLoader from 'react-spinners/PulseLoader';
 import { Link } from 'react-router-dom';
 
 import useUserStore from '../stores/useUserStore';
@@ -79,6 +80,7 @@ const Nav = () => {
 
   const {
     user,
+    loading,
     setUser,
     removeUser,
   } = useUserStore();
@@ -94,7 +96,6 @@ const Nav = () => {
     <header>
       <AppBar className={header}>
         <Toolbar className={toolbar}>
-
           <Link to={'/'}>
             <img src={logoImage} className={logo} width='160px' alt='Logo' />
           </Link>
@@ -112,39 +113,45 @@ const Nav = () => {
               </Button>
             ))}
 
-            {user 
+            {loading 
             ? (
-              <Button 
-                variant='contained' 
-                color='secondary' 
-                className={actionButtons}
-                onClick={removeUser}
-              >
-                Cerrar sesión
-              </Button>
-            )
+              <PulseLoader color='#7352d0' loading={loading} size={25}/> 
+            ) 
             : (
-              <>
-                <Button 
-                  variant='contained' 
-                  color='secondary' 
-                  to='/signin'
-                  component={Link}
-                  className={actionButtons}
-                >
-                  Inicio de sesión
-                </Button>
+              user
+                ? (
+                  <Button 
+                    variant='contained' 
+                    color='secondary' 
+                    className={actionButtons}
+                    onClick={removeUser}
+                  >
+                    Cerrar sesión
+                  </Button>
+                )
+                : (
+                  <>
+                    <Button 
+                      variant='contained' 
+                      color='secondary' 
+                      to='/signin'
+                      component={Link}
+                      className={actionButtons}
+                    >
+                      Inicio de sesión
+                    </Button>
 
-                <Button 
-                  variant='contained' 
-                  color='secondary'
-                  to='/signup'
-                  component={Link}
-                  className={actionButtons}
-                >
-                  Registro
-                </Button>
-              </>
+                    <Button 
+                      variant='contained' 
+                      color='secondary'
+                      to='/signup'
+                      component={Link}
+                      className={actionButtons}
+                    >
+                      Registro
+                    </Button>
+                  </>
+              )
             )}
           </Box>
         </Toolbar>
