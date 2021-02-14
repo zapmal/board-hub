@@ -5,9 +5,12 @@ import Home from './home';
 import About from './about';
 import Contact from './contact';
 import OpenSource from './opensource';
-
 import Signup from './signup';
 import Signin from './signin';
+import NotFound from './notfound';
+
+import Boards from './boards';
+import Board from './boards/board';
 
 const RouteWithSubRoutes = (route) => {
   return (
@@ -25,7 +28,7 @@ export const RenderRoutes = ({ routes }) => {
       {routes.map((route, index) => (
         <RouteWithSubRoutes key={route.key} {...route} />
       ))}
-      <Route component={() => <h1>404 Not Found.</h1>} />
+      <Route component={NotFound} />
     </Switch>
   );
 };
@@ -46,13 +49,13 @@ const ROUTES = [
         path: '/b',
         key: 'BOARDS_ROOT',
         exact: true,
-        component: () => <h1>Boards</h1>
+        component: Boards
       },
       {
         path: '/b/:id',
         key: 'BOARD',
         exact: true,
-        component: () => <h1>Board</h1>
+        component: Board
       }
     ]
   },
