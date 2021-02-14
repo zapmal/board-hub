@@ -80,12 +80,11 @@ const Nav = () => {
 
   const {
     user,
-    // loading,
+    loading,
     setUser,
     removeUser,
   } = useUserStore();
   const token = localStorage.getItem('token');
-  const loading = true;
 
   useEffect(() => {
     if (!user && token) {
@@ -121,14 +120,25 @@ const Nav = () => {
             : (
               user
                 ? (
-                  <Button 
-                    variant='contained' 
-                    color='secondary' 
-                    className={actionButtons}
-                    onClick={removeUser}
-                  >
-                    Cerrar sesión
-                  </Button>
+                  <>
+                    <Button 
+                      variant='contained' 
+                      color='secondary' 
+                      to='/b'
+                      component={Link}
+                      className={actionButtons}
+                    >
+                      Ir a tus Tableros
+                    </Button>
+                    <Button 
+                      variant='contained' 
+                      color='secondary' 
+                      className={actionButtons}
+                      onClick={removeUser}
+                    >
+                      Cerrar sesión
+                    </Button>
+                  </>
                 )
                 : (
                   <>
