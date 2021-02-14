@@ -80,11 +80,12 @@ const Nav = () => {
 
   const {
     user,
-    loading,
+    // loading,
     setUser,
     removeUser,
   } = useUserStore();
   const token = localStorage.getItem('token');
+  const loading = true;
 
   useEffect(() => {
     if (!user && token) {
@@ -115,7 +116,7 @@ const Nav = () => {
 
             {loading 
             ? (
-              <PulseLoader color='#7352d0' loading={loading} size={25}/> 
+              <PulseLoader color='#7352d0' loading={loading} size={10}/> 
             ) 
             : (
               user
