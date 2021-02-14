@@ -128,7 +128,7 @@ const Nav = () => {
                       component={Link}
                       className={actionButtons}
                     >
-                      Ir a tus Tableros
+                      Tus Tableros
                     </Button>
                     <Button 
                       variant='contained' 

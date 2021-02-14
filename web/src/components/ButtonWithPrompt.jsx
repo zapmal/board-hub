@@ -1,10 +1,8 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { Link } from 'react-router-dom';
 
-/**
- * TODO: Try to change to styled(Link) and rename it.
- */
-const Prompt = styled.button`
+const Prompt = styled(Link)`
   padding: 18px;
   font-size: 18px;
   background-color: transparent;
@@ -12,6 +10,7 @@ const Prompt = styled.button`
   border-radius: 10px;
   color: #ffffff;
   cursor: pointer;
+  text-decoration: none;
 
   strong {
     color: #ffffff;
@@ -65,9 +64,9 @@ const Prompt = styled.button`
 /**
  * If a <strong> is passed it will highlight it.
  */
-const ButtonWithPrompt = ({ children }) => {
+const ButtonWithPrompt = ({ to, children }) => {
   return (
-    <Prompt>
+    <Prompt to={to}>
       {children}
     </Prompt>
   );

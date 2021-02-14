@@ -95,7 +95,7 @@ const Home = (props) => {
             Aumenta <strong>tu</strong> eficiencia o la de tu <strong>equipo</strong>
           </Typography>
 
-          <ButtonWithPrompt> 
+          <ButtonWithPrompt to='/b'> 
             <strong>Empieza Ya</strong>
             <span></span>
           </ButtonWithPrompt>
