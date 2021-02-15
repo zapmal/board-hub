@@ -40,9 +40,14 @@ const signin = async (email, password, response) => {
 };
 
 /**
- * Gotta handle that 'edge-case' where the email is not found.
- * But it'd be weird, this route is authenticated, if he's here
- * the email *obviously* exists.
+ * There's a weird case that's not handled here. The
+ * case where the email is not found.
+ *
+ * Here's the thing, this route *explicitly* requires a token,
+ * said token stores an email, from a registered user. If he's
+ * here then the email *obviously* exists.
+ *
+ * TODO: This now needs to include a new field, "role".
  */
 const getMe = async (email) => {
   const {

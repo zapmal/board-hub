@@ -10,7 +10,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import PulseLoader from 'react-spinners/PulseLoader';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import useUserStore from '../stores/useUserStore';
 
@@ -77,7 +77,6 @@ const Nav = ({ location }) => {
     button, 
     actionButtons 
   } = useStyles();
-
   const {
     user,
     loading,
@@ -90,10 +89,10 @@ const Nav = ({ location }) => {
     if (!user && token) {
       setUser();
     }
-  }, []);
+  });
 
   return (
-    <header>
+    <>
       <AppBar className={header}>
         <Toolbar className={toolbar}>
           <Link to={'/'}>
@@ -167,8 +166,8 @@ const Nav = ({ location }) => {
           </Box>
         </Toolbar>
       </AppBar>
-    </header>
+    </>
   );
 };
 
-export default withRouter(Nav);
+export default Nav;
