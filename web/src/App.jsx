@@ -5,7 +5,7 @@ import { QueryClientProvider, QueryClient } from 'react-query';
 import GlobalStyle from './components/GlobalStyle';
 import Pages from './pages';
 
-import theme from './theme';
+import { theme } from './theme';
 
 const queryClient = new QueryClient();
 

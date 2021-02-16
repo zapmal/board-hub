@@ -89,7 +89,7 @@ const Nav = ({ location }) => {
     if (!user && token) {
       setUser();
     }
-  });
+  }, []);
 
   return (
     <>

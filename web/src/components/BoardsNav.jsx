@@ -14,12 +14,18 @@ import {
   makeStyles,
   Paper,
   Switch,
+  Collapse
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import FilterNoneIcon from '@material-ui/icons/FilterNone';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import StarIcon from '@material-ui/icons/Star';
 
 import useUserStore from '../stores/useUserStore';
 
@@ -55,6 +61,13 @@ const useStyles = makeStyles(theme => ({
   },
   listText: {
     color: theme.palette.primary.main,
+  },
+  collapsedListItem: {
+    color: theme.palette.primary.main,
+    paddingLeft: '60px',
+  },
+  collapsedListIcon: {
+    paddingLeft: '30px',
   },
   toolbarMargin: theme.mixins.toolbar,
   aboveDrawer: {
@@ -92,6 +105,12 @@ const BoardsNav = ({ history }) => {
 };
 
 const BoardsToolBar = ({ classes, toggleOpen }) => {
+  const [checked, setChecked] = useState(false);
+
+  const handleChecked = () => {
+    setChecked(!checked);
+  };
+
   return (
     <AppBar className={classes.aboveDrawer} color='secondary'>
       <Toolbar>
@@ -106,7 +125,7 @@ const BoardsToolBar = ({ classes, toggleOpen }) => {
         </Typography>
         <div>
           <Brightness4Icon color='primary' className={classes.darkModeIcon} />
-          <Switch color='primary'/>
+          <Switch checked={checked} onChange={handleChecked} name='theme-switch' color='primary'/>
         </div>
       </Toolbar>
     </AppBar>
@@ -114,13 +133,19 @@ const BoardsToolBar = ({ classes, toggleOpen }) => {
 };
 
 const BoardsDrawer = ({ open, toggleOpen, handleLogout, classes }) => {
+  const [openBoardActions, setOpenBoardActions] = useState(false);
+
+  const handleBoardActions = () => {
+    setOpenBoardActions(!openBoardActions);
+  };
+
   return (
       <Drawer 
         open={open}
         onClose={toggleOpen}
         classes={{ paper: classes.drawerPaper }}
       >
-        <Paper className={classes.paper} variant='outlined' square='true'>
+        <Paper className={classes.paper} variant='outlined' square>
           <img src={logo} alt='Logo' width='200px'/>
         </Paper>
         <List subheader={<ListSubheader color='primary'>Acciones</ListSubheader>}>
@@ -137,14 +162,39 @@ const BoardsDrawer = ({ open, toggleOpen, handleLogout, classes }) => {
 
           <ListItem
             button
-            component={Link}
-            to='/b'
+            onClick={handleBoardActions}
           >
             <ListItemIcon>
               <CollectionsBookmarkIcon color='primary'/>
             </ListItemIcon>
             <ListItemText classes={{ primary: classes.listText }} primary='Tableros' />
+            {openBoardActions ? <ExpandLess color='primary'/> : <ExpandMore color='primary'/>}
           </ListItem>
+
+          <Collapse in={openBoardActions} timeout='auto' unmountOnExit>
+            <List component='div' disablePadding>
+              <ListItem button to='/b'>
+                <ListItemText classes={{ primary: classes.collapsedListItem }} primary='Todos'/>
+                <ListItemIcon className={classes.collapsedListIcon}>
+                  <FilterNoneIcon color='primary'/>
+                </ListItemIcon>
+              </ListItem>
+
+              <ListItem button component={Link} to='/b/favorites'>
+                <ListItemText classes={{ primary: classes.collapsedListItem }} primary='Favoritos'/>
+                <ListItemIcon className={classes.collapsedListIcon}>
+                  <StarIcon color='primary'/>
+                </ListItemIcon>
+              </ListItem>
+
+              <ListItem button>
+                <ListItemText classes={{ primary: classes.collapsedListItem }} primary='Nuevo'/>
+                <ListItemIcon className={classes.collapsedListIcon}>
+                  <AddCircleIcon color='primary'/>
+                </ListItemIcon>
+              </ListItem>
+            </List>
+          </Collapse>
 
           <ListItem
             button
