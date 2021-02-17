@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    description: DataTypes.STRING,
     is_favorite: {
       type: DataTypes.BOOLEAN,
       defaultValue: '0',

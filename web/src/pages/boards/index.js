@@ -4,9 +4,6 @@ import {
   Typography,
 } from '@material-ui/core';
 
-/**
- * No implementation of "favorites" yet.
- */
 const Boards = () => {
   return (
     <>
