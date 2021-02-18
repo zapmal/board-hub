@@ -104,7 +104,7 @@ const BoardsDrawer = ({ isOpen, handleClick }) => {
 
           <Collapse in={openBoardActions} timeout='auto' unmountOnExit>
             <List component='div' disablePadding>
-              <ListItem button to='/b'>
+              <ListItem button component={Link} to='/b'>
                 <ListItemText classes={{ primary: collapsedListItem }} primary='Todos'/>
                 <ListItemIcon className={collapsedListIcon}>
                   <FilterNoneIcon color='primary'/>
@@ -118,7 +118,7 @@ const BoardsDrawer = ({ isOpen, handleClick }) => {
                 </ListItemIcon>
               </ListItem>
 
-              <ListItem button>
+              <ListItem button component={Link} to='/b/new'>
                 <ListItemText classes={{ primary: collapsedListItem }} primary='Nuevo'/>
                 <ListItemIcon className={collapsedListIcon}>
                   <AddCircleIcon color='primary'/>
