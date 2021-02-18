@@ -14,6 +14,7 @@ import {
 import StarIcon from '@material-ui/icons/Star';
 import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
+import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
 import { Link } from 'react-router-dom';
 
@@ -22,6 +23,7 @@ import Highlight from '../../components/Highlight';
 
 import lost from '../../assets/svgs/lost.svg';
 import working from '../../assets/svgs/working.svg';
+import help from '../../assets/svgs/help.svg';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,8 +52,27 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const MessageContainer = styled.div`
+  display: flex;
+  align-items: center;
+  border: 2px solid #7362d0;
+  border-radius: 10px;
   margin: ${({ margin }) => margin}px;
   text-align: center;
+
+  p {
+    font-size: 20px;
+    width: 50%;
+  }
+`;
+
+const Separator = styled.div`
+  height: 100px;
+  background-color: #7362d0;
+  text-align: center;
+
+  h4 {
+    padding-top: 10px;
+  }
 `;
 
 const boards = [
@@ -151,15 +172,32 @@ const Boards = () => {
         )}
         </Grid>
         {boards.length >= 1 && (
-          <MessageContainer margin={30}>
-            <Typography variant='h4'>
-              <Highlight>¿Atascado?</Highlight>
-            </Typography>
-            <img src={working} alt='Working' width='600px'/>
-            <Typography gutterBottom>
-              Rompe tus tareas en trozos digeribles, pequeños y fáciles de procesar.
-            </Typography>
-          </MessageContainer>
+          <>
+            <Separator>
+              <Typography variant='h4'>
+                <Highlight color='#ffffff'>¿Atascado?</Highlight>
+                <div>
+                  <SentimentVeryDissatisfiedIcon color='primary' fontSize='large' />
+                </div>
+              </Typography>
+            </Separator>
+
+            <MessageContainer margin={30}>
+              <img src={working} alt='Working' width='600px'/>
+              <Typography gutterBottom>
+                Rompe tus tareas en trozos digeribles, pequeños y fáciles de procesar. Estos son mucho
+                más fáciles de completar y te ayudan a cumplir tu meta de forma progresiva.
+              </Typography>
+            </MessageContainer>
+
+            <MessageContainer margin={30}>
+              <img src={help} alt='Working' width='600px'/>
+              <Typography gutterBottom>
+                Escribele a algún amigo o pide ayuda en linea. Siempre es mejor trabajar en equipo.
+                Si no tienes a alguien disponible, intenta una comunidad en linea como <Highlight color='#00acee'>Twitter</Highlight> o <Highlight color='#7289da'>Discord</Highlight>
+              </Typography>
+            </MessageContainer>
+          </>
         )}
         <ConfirmationDialog isOpen={isOpen} handleClose={handleClose} />
       </>
