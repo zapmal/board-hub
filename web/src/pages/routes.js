@@ -56,6 +56,12 @@ const ROUTES = [
         component: Boards
       },
       {
+        path: '/b/new',
+        key: 'NEW_BOARD',
+        exact: true,
+        component: () => <h1>New board</h1>,
+      },
+      {
         path: '/b/:id',
         key: 'BOARD',
         exact: true,
