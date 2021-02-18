@@ -55,39 +55,39 @@ const MessageContainer = styled.div`
 `;
 
 const boards = [
-  // {
-  //   'name': 'Escuela',
-  //   'description': 'Aquí guardo cosas de la escuela.',
-  //   'created': '01/01/2001',
-  // },
-  // {
-  //   'name': 'Trabajo',
-  //   'description': 'Aquí guardo cosas del trabajo.',
-  //   'created': '02/02/2002',
-  // },
-  // {
-  //   'name': 'Hogar',
-  //   'description': 'Aquí guardo cosas del hogar.',
-  //   'created': '03/03/2003',
-  // },
-  // {
-  //   'name': 'Entretenimiento',
-  //   'description': 'Aquí guardo cosas para entretenerme.',
-  //   'created': '04/04/2004',
-  //   'isFavorite': true,
-  // },
-  // {
-  //   'name': 'Entretenimiento',
-  //   'description': 'Aquí guardo cosas para entretenerme.',
-  //   'created': '04/04/2004',
-  //   'isFavorite': true,
-  // },
-  // {
-  //   'name': 'Entretenimiento',
-  //   'description': '',
-  //   'created': '04/04/2004',
-  //   'isFavorite': true,
-  // },
+  {
+    'name': 'Escuela',
+    'description': 'Aquí guardo cosas de la escuela.',
+    'created': '01/01/2001',
+  },
+  {
+    'name': 'Trabajo',
+    'description': 'Aquí guardo cosas del trabajo.',
+    'created': '02/02/2002',
+  },
+  {
+    'name': 'Hogar',
+    'description': 'Aquí guardo cosas del hogar.',
+    'created': '03/03/2003',
+  },
+  {
+    'name': 'Entretenimiento',
+    'description': 'Aquí guardo cosas para entretenerme.',
+    'created': '04/04/2004',
+    'isFavorite': true,
+  },
+  {
+    'name': 'Entretenimiento',
+    'description': 'Aquí guardo cosas para entretenerme.',
+    'created': '04/04/2004',
+    'isFavorite': true,
+  },
+  {
+    'name': 'Entretenimiento',
+    'description': '',
+    'created': '04/04/2004',
+    'isFavorite': true,
+  },
 ];
 
 const Boards = () => {
@@ -127,7 +127,6 @@ const Boards = () => {
                 <IconButton className={classes.deleteButton} onClick={handleOpen}>
                   <DeleteIcon />
                 </IconButton>
-                <ConfirmationDialog isOpen={isOpen} handleClose={handleClose} />
               </CardActions>
             </Card>
           </Grid>
@@ -156,12 +155,13 @@ const Boards = () => {
             <Typography variant='h4'>
               <Highlight>¿Atascado?</Highlight>
             </Typography>
-            <img src={working} alt='Working' width='700px'/>
+            <img src={working} alt='Working' width='600px'/>
             <Typography gutterBottom>
               Rompe tus tareas en trozos digeribles, pequeños y fáciles de procesar.
             </Typography>
           </MessageContainer>
         )}
+        <ConfirmationDialog isOpen={isOpen} handleClose={handleClose} />
       </>
   );
 };

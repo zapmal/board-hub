@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React from 'react';
 import {
   Dialog,
   DialogTitle,
@@ -10,7 +10,7 @@ import {
 
 import Highlight from './Highlight';
 
-const ConfirmationDialog = memo(({ isOpen, handleClose}) => {
+const ConfirmationDialog = ({ isOpen, handleClose }) => {
   return (
     <Dialog
         open={isOpen}
@@ -34,6 +34,6 @@ const ConfirmationDialog = memo(({ isOpen, handleClose}) => {
         </DialogActions>
       </Dialog>
   );
-});
+};
 
 export default ConfirmationDialog;
