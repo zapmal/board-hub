@@ -82,12 +82,12 @@ const boards = [
   //   'created': '04/04/2004',
   //   'isFavorite': true,
   // },
-  {
-    'name': 'Entretenimiento',
-    'description': '',
-    'created': '04/04/2004',
-    'isFavorite': true,
-  },
+  // {
+  //   'name': 'Entretenimiento',
+  //   'description': '',
+  //   'created': '04/04/2004',
+  //   'isFavorite': true,
+  // },
 ];
 
 const Boards = () => {
@@ -151,15 +151,17 @@ const Boards = () => {
           </MessageContainer>
         )}
         </Grid>
-        <MessageContainer margin={30}>
-          <Typography variant='h4'>
-            <Highlight>¿Atascado?</Highlight>
-          </Typography>
-          <img src={working} alt='Working' width='500px'/>
-          <Typography gutterBottom>
-            Rompe tus tareas en trozos digeribles, pequeños y fáciles de procesar.
-          </Typography>
-        </MessageContainer>
+        {boards.length >= 1 && (
+          <MessageContainer margin={30}>
+            <Typography variant='h4'>
+              <Highlight>¿Atascado?</Highlight>
+            </Typography>
+            <img src={working} alt='Working' width='700px'/>
+            <Typography gutterBottom>
+              Rompe tus tareas en trozos digeribles, pequeños y fáciles de procesar.
+            </Typography>
+          </MessageContainer>
+        )}
       </>
   );
 };
