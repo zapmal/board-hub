@@ -56,12 +56,16 @@ const MessageContainer = styled.div`
   align-items: center;
   border: 2px solid #7362d0;
   border-radius: 10px;
-  margin: ${({ margin }) => margin}px;
+  width: 60%;
+  margin: ${({ margin }) => margin}px auto;
   text-align: center;
 
   p {
     font-size: 20px;
     width: 50%;
+    padding: 0;
+    text-align: justify;
+    margin-right: 40px;
   }
 `;
 
@@ -194,7 +198,7 @@ const Boards = () => {
               <img src={help} alt='Working' width='600px'/>
               <Typography gutterBottom>
                 Escribele a algún amigo o pide ayuda en linea. Siempre es mejor trabajar en equipo.
-                Si no tienes a alguien disponible, intenta una comunidad en linea como <Highlight color='#00acee'>Twitter</Highlight> o <Highlight color='#7289da'>Discord</Highlight>
+                Si no tienes a alguien disponible, intenta una comunidad en linea como <Highlight color='#00acee'>Twitter</Highlight> o <Highlight color='#7289da'>Discord</Highlight>.
               </Typography>
             </MessageContainer>
           </>
