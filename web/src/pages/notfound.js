@@ -1,24 +1,16 @@
 import React from 'react';
 import styled from 'styled-components/macro';
-import { Typography, Link } from '@material-ui/core';
+import Link from '@material-ui/core/Link';
 
-import logoReversed from '../assets/images/reversed-logo.png';
+import notFound from '../assets/images/404.png';
 import Highlight from '../components/Highlight';
 
 const Container = styled.div`
-  margin: 39px 0;
+  margin: 31px 0;
   text-align: center;
 
   img { 
     margin: 0 auto; 
-  }
-
-  h4 {
-    color: #d32f2f;
-
-    span {
-      font-style: italic;
-    }
   }
 `;
 
@@ -31,23 +23,18 @@ const MessageContainer = styled.div`
     line-height: 40px;
   }
 
-  span {
+  strong {
     color: #d32f2f;
-    font-style: italic;
   }
 `;
-
 
 const NotFound = () => {
   return (
     <Container>
-      <img src={logoReversed} alt='Logo al revés' />
-      <Typography variant='h4' gutterBottom>
-        Oops! Eso está mal, <span>¿no crees?</span>
-      </Typography>
+      <img src={notFound} alt='404 Not Found' width='300px' />
       <MessageContainer>
         <p>
-          <Highlight>Lo sentimos</Highlight>, a no ser que estuvieras buscando de forma <Highlight>intencionada</Highlight> nuestra página para errores <span>4xx</span>, 
+          <Highlight>Lo sentimos</Highlight>, a no ser que estuvieras buscando de forma <Highlight>intencionada</Highlight> nuestra página para errores <strong>4xx</strong>, 
           lo que estás buscando ha sido <Highlight>eliminado</Highlight> o <Highlight>movido</Highlight>.
         </p>
       </MessageContainer>
@@ -61,7 +48,6 @@ const NotFound = () => {
           Reportalo.
         </Link>
       </p>
-      {/* <Button variant='outlined'>Reportalo</Button> */}
     </Container>
   );
 };
