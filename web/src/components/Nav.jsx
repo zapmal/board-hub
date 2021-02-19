@@ -10,7 +10,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import PulseLoader from 'react-spinners/PulseLoader';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
 import useUserStore from '../stores/useUserStore';
 
@@ -170,4 +170,4 @@ const Nav = ({ location }) => {
   );
 };
 
-export default Nav;
+export default withRouter(Nav);
