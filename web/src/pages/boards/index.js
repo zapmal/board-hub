@@ -128,9 +128,9 @@ const Boards = () => {
       <Grid container className={classes.container}>
         {boards.length > 0 ? boards.map((board, index) => (
           <Grid item md={3} key={`${board.name}-${index}`}>
-            <Card className={classes.root} variant="outlined" color='secondary'>
+            <Card className={classes.root} variant='outlined' color='secondary'>
               <CardContent>
-                <Typography className={classes.top} color="textSecondary" gutterBottom>
+                <Typography className={classes.top} color='textSecondary' gutterBottom>
                   {board.created.toString()}
                   <IconButton 
                     className={clsx(classes.favoriteButton, { [classes.isFavorite]: board.isFavorite })}
@@ -139,16 +139,16 @@ const Boards = () => {
                     <StarIcon />
                   </IconButton>
                 </Typography>
-                <Typography className={classes.name} color="secondary">
+                <Typography className={classes.name} color='secondary'>
                   {board.name}
                 </Typography>
-                <Typography variant="body2" component="p">
+                <Typography variant='body2' component='p'>
                   {board.description || 'Este tablero no posee una descripción.'}
                   <br />
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size="small" component={Link} to='/b/id' variant='outlined'>Abrir</Button>
+                <Button size='small' component={Link} to='/b/id' variant='outlined'>Abrir</Button>
                 <IconButton className={classes.deleteButton} onClick={handleOpen}>
                   <DeleteIcon />
                 </IconButton>

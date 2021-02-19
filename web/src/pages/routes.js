@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import PrivateRoute from '../components/PrivateRoute';
+
 import Home from './home';
 import About from './about';
 import Contact from './contact';
@@ -17,7 +19,15 @@ import Board from './boards/board';
  * else render normal route
  */
 const RouteWithSubRoutes = (route) => {
-  return (
+  return route.private
+    ? (
+      <PrivateRoute 
+        path={route.path}
+        exact={route.exact}
+        render={props => <route.component {...props} routes={route.routes} />}
+      />
+    )
+    : (
     <Route 
       path={route.path}
       exact={route.exact}
@@ -47,6 +57,7 @@ const ROUTES = [
   { 
     path: '/b', 
     key: 'BOARDS', 
+    private: true,
     component: RenderRoutes,
     routes: [
       {
