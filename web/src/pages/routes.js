@@ -13,6 +13,7 @@ import NotFound from './notfound';
 
 import Boards from './boards';
 import Board from './boards/board';
+import Favorites from './boards/favorites';
 
 const RouteWithSubRoutes = (route) => {
   return route.protected
@@ -67,6 +68,12 @@ const ROUTES = [
         key: 'NEW_BOARD',
         exact: true,
         component: () => <h1>New board</h1>,
+      },
+      {
+        path: '/b/favorites',
+        key: 'FAVORITE_BOARDS',
+        exact: true,
+        component: Favorites,
       },
       {
         path: '/b/:id',

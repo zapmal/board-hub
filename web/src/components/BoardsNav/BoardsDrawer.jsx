@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Drawer,
   Paper,
@@ -22,6 +22,10 @@ import StarIcon from '@material-ui/icons/Star';
 import SettingsIcon from '@material-ui/icons/Settings';
 import EditIcon from '@material-ui/icons/Edit';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
+
+import NewBoard from '../NewBoard';
+
+import useToggle from '../../hooks/useToggle';
 
 import logo from '../../assets/images/logo.png';
 
@@ -59,16 +63,9 @@ const BoardsDrawer = ({ isOpen, handleClick }) => {
     collapsedListItem,
     collapsedListIcon,
   } = useStyles();
-  const [openBoardActions, setOpenBoardActions] = useState(false);
-  const [openSettings, setOpenSettings] = useState(false);
-
-  const handleBoardActionsClick = () => {
-    setOpenBoardActions(!openBoardActions);
-  };
-
-  const handleSettingsClick = () => {
-    setOpenSettings(!openSettings);
-  };
+  const [boardActionsState, toggleActions] = useToggle();
+  const [settingsState, toggleSettings] = useToggle();
+  const [newBoardState, toggleNewBoard] = useToggle();
 
   return (
       <Drawer 
@@ -93,16 +90,16 @@ const BoardsDrawer = ({ isOpen, handleClick }) => {
 
           <ListItem
             button
-            onClick={handleBoardActionsClick}
+            onClick={toggleActions}
           >
             <ListItemIcon>
               <CollectionsBookmarkIcon color='primary'/>
             </ListItemIcon>
             <ListItemText classes={{ primary: listText }} primary='Tableros' />
-            {openBoardActions ? <ExpandLess color='primary'/> : <ExpandMore color='primary'/>}
+            {boardActionsState ? <ExpandLess color='primary'/> : <ExpandMore color='primary'/>}
           </ListItem>
 
-          <Collapse in={openBoardActions} timeout='auto' unmountOnExit>
+          <Collapse in={boardActionsState} timeout='auto' unmountOnExit>
             <List component='div' disablePadding>
               <ListItem button component={Link} to='/b'>
                 <ListItemText classes={{ primary: collapsedListItem }} primary='Todos'/>
@@ -118,28 +115,29 @@ const BoardsDrawer = ({ isOpen, handleClick }) => {
                 </ListItemIcon>
               </ListItem>
 
-              <ListItem button component={Link} to='/b/new'>
+              <ListItem button onClick={toggleNewBoard}>
                 <ListItemText classes={{ primary: collapsedListItem }} primary='Nuevo'/>
                 <ListItemIcon className={collapsedListIcon}>
                   <AddCircleIcon color='primary'/>
                 </ListItemIcon>
+
               </ListItem>
             </List>
           </Collapse>
 
           <ListItem
             button
-            onClick={handleSettingsClick}
+            onClick={toggleSettings}
           >
             <ListItemIcon>
               <SettingsIcon color='primary'/>
             </ListItemIcon>
             <ListItemText classes={{ primary: listText }} primary='Ajustes' />
-            {openSettings ? <ExpandLess color='primary'/> : <ExpandMore color='primary'/>}
+            {settingsState ? <ExpandLess color='primary'/> : <ExpandMore color='primary'/>}
           </ListItem>
         </List>
 
-        <Collapse in={openSettings} timeout='auto' unmountOnExit>
+        <Collapse in={settingsState} timeout='auto' unmountOnExit>
           <List component='div' disablePadding>
             <ListItem button component={Link} to='/account/change-password'>
               <ListItemText classes={{ primary: collapsedListItem }} primary='Cambiar Contraseña'/>
@@ -156,6 +154,8 @@ const BoardsDrawer = ({ isOpen, handleClick }) => {
             </ListItem>
           </List>
         </Collapse>
+
+        <NewBoard isOpen={newBoardState} handleClose={toggleNewBoard} />
       </Drawer>
   );
 };
