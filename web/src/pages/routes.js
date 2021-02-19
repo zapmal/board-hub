@@ -14,25 +14,21 @@ import NotFound from './notfound';
 import Boards from './boards';
 import Board from './boards/board';
 
-/**
- * if (protected) render protectedroute and redirect if condition is met
- * else render normal route
- */
 const RouteWithSubRoutes = (route) => {
   return route.private
     ? (
       <PrivateRoute 
         path={route.path}
         exact={route.exact}
-        render={props => <route.component {...props} routes={route.routes} />}
+        route={route}
       />
     )
     : (
-    <Route 
-      path={route.path}
-      exact={route.exact}
-      render={props => <route.component {...props} routes={route.routes} />}
-    />
+      <Route 
+        path={route.path}
+        exact={route.exact}
+        render={props => <route.component {...props} routes={route.routes} />}
+      />
   );
 };
 
