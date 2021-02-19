@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import PrivateRoute from '../components/PrivateRoute';
+import ProtectedRoute from '../components/ProtectedRoute';
 
 import Home from './home';
 import About from './about';
@@ -15,9 +15,9 @@ import Boards from './boards';
 import Board from './boards/board';
 
 const RouteWithSubRoutes = (route) => {
-  return route.private
+  return route.protected
     ? (
-      <PrivateRoute 
+      <ProtectedRoute 
         path={route.path}
         exact={route.exact}
         route={route}
@@ -48,12 +48,12 @@ const ROUTES = [
   { path: '/about', key: 'ABOUT_US', component: About },
   { path: '/contact', key: 'CONTACT', component: Contact },
   { path: '/opensource', key: 'OPEN_SOURCE', component: OpenSource },
-  { path: '/signin', key: 'SIGN_IN', component: Signin },
-  { path: '/signup', key: 'SIGN_UP', component: Signup },
+  { path: '/signin', key: 'SIGN_IN', protected: true, component: Signin },
+  { path: '/signup', key: 'SIGN_UP', protected: true, component: Signup },
   { 
     path: '/b', 
     key: 'BOARDS', 
-    private: true,
+    protected: true,
     component: RenderRoutes,
     routes: [
       {
