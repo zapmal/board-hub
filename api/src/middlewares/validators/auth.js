@@ -17,8 +17,8 @@ const validateSignup = (request, response, next) => {
   if (error) {
     const errors = error.details.map(({ message }) => message).join(', ');
 
-    response.status(400).json({ message: errors });
     logger.error(errors);
+    return response.status(400).json({ message: errors });
   }
   else {
     request.body = value;
