@@ -14,7 +14,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 import Highlight from '../components/Highlight';
-import CustomTextField from '../components/CustomTextField';
+import CustomField from '../components/CustomField';
 
 import apiClient from '../services/api';
 import useUserStore from '../stores/useUserStore';
@@ -88,7 +88,7 @@ const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
       setUser();
     }
     catch (error) {
-      setStatus(error.response ? error.response.data.message : '');
+      setStatus(error.response ? error.response.data.message : 'Error.');
     }
   };
   
@@ -147,7 +147,7 @@ const Signin = () => {
         <AccountCircle fontSize='large' color='secondary' />
       </Grid>
       <Grid item xs={11}>
-        <CustomTextField 
+        <CustomField 
           fullWidth
           variant='outlined'
           type='email'
@@ -160,7 +160,7 @@ const Signin = () => {
         <VpnKeyIcon fontSize='large' color='secondary' />
       </Grid>
       <Grid item xs={11}>
-        <CustomTextField 
+        <CustomField 
           fullWidth
           variant='outlined'
           type='password'
@@ -177,7 +177,7 @@ const Signup = () => {
   return (
     <>
       <Grid item xs={6}>
-        <CustomTextField 
+        <CustomField 
           fullWidth
           variant='outlined'
           type='email'
@@ -187,17 +187,17 @@ const Signup = () => {
         />
       </Grid>
       <Grid item xs={6}>
-        <CustomTextField 
+        <CustomField 
           fullWidth
-          variant='outlined'
           type='text'
+          variant='outlined'
           label='Nombre de usuario'
           name='username'
           color='secondary'
         />
       </Grid>
       <Grid item xs={6}>
-        <CustomTextField 
+        <CustomField 
           fullWidth
           variant='outlined'
           type='password'
@@ -207,7 +207,7 @@ const Signup = () => {
         />
       </Grid>
       <Grid item xs={6}>
-        <CustomTextField 
+        <CustomField 
           fullWidth
           variant='outlined'
           type='password'
@@ -217,10 +217,10 @@ const Signup = () => {
         />
       </Grid>
       <Grid item xs={12}>
-        <CustomTextField 
+        <CustomField 
           fullWidth
-          variant='outlined'
           type='text'
+          variant='outlined'
           label='Nombre Completo'
           name='fullname'
           color='secondary'
