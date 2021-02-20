@@ -20,8 +20,6 @@ const getUserBoards = async (userID) => {
 const getSingleBoard = async (boardID) => {
   const foundBoard = await board.findOne({ where: { id: boardID } });
 
-  console.log(foundBoard);
-
   return foundBoard;
 };
 
