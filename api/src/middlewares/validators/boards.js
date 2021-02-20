@@ -41,7 +41,9 @@ const checkDuplicatedBoardName = async (request, response, next) => {
   }
   catch (error) {
     logger.error(error.message);
-    return response.status(500).json({ message: 'Hubo un error de nuestro lado, intenta otra vez.' });
+    return response
+      .status(500)
+      .json({ message: 'Hubo un error de nuestro lado, intenta otra vez.' });
   }
 };
 

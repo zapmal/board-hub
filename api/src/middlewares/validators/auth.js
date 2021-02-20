@@ -72,7 +72,9 @@ const checkDuplicatedUser = async (request, response, next) => {
   }
   catch (error) {
     logger.error(error.message);
-    return response.status(500).json({ message: 'Hubo un error de nuestro lado, intenta otra vez.' });
+    return response
+      .status(500)
+      .json({ message: 'Hubo un error de nuestro lado, intenta otra vez.' });
   }
 };
 
@@ -82,7 +84,9 @@ const checkToken = async (request, response, next) => {
 
   try {
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      response.status(401).json({ message: 'No estás autorizado a ver esta información.' });
+      return response
+        .status(401)
+        .json({ message: 'No estás autorizado a ver esta información.' });
     }
 
     const token = authHeader.split(' ')[1];
