@@ -13,10 +13,10 @@ import {
 import handler from '@libs/controllerHandler';
 
 const router = Router();
+router.use(checkToken);
 
 router.post('/b/new',
   [
-    checkToken,
     validateNewBoard,
     checkDuplicatedBoardName,
   ],
@@ -31,14 +31,12 @@ router.post('/b/new',
 );
 
 router.get('/b/all',
-  checkToken,
   handler(getBoards, (request, response) => (
     [response.locals.user.id, response]
   )),
 );
 
 router.delete('/b/:id',
-  checkToken,
   handler(deleteBoard, (request, response) => (
     [request.params.id, response]
   )),
