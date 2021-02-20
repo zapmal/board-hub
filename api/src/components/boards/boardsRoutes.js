@@ -44,7 +44,6 @@ router.delete('/b/:id',
 );
 
 router.get('/b/:id',
-  checkToken,
   handler(getBoard, (request, response) => (
     [request.params.id, response]
   )),
