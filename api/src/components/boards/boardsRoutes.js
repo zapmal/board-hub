@@ -13,6 +13,7 @@ import {
 import handler from '@libs/controllerHandler';
 
 const router = Router();
+
 router.use(checkToken);
 
 router.post('/b/new',
