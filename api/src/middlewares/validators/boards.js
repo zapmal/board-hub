@@ -14,8 +14,8 @@ const validateNewBoard = (request, response, next) => {
   if (error) {
     const errors = error.details.map(({ message }) => message).join(', ');
 
-    response.status(400).json({ message: errors });
     logger.error(errors);
+    return response.status(400).json({ message: errors });
   }
   else {
     next();
@@ -40,8 +40,8 @@ const checkDuplicatedBoardName = async (request, response, next) => {
     next();
   }
   catch (error) {
-    response.status(500).json({ message: 'Hubo un error de nuestro lado, intenta otra vez.' });
     logger.error(error.message);
+    return response.status(500).json({ message: 'Hubo un error de nuestro lado, intenta otra vez.' });
   }
 };
 

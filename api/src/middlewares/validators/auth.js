@@ -35,8 +35,8 @@ const validateSignin = (request, response, next) => {
   if (error) {
     const errors = error.details.map(({ message }) => message).join(', ');
 
-    response.status(400).json({ message: errors });
     logger.error(errors);
+    return response.status(400).json({ message: errors });
   }
   else {
     request.body = value;
@@ -71,8 +71,8 @@ const checkDuplicatedUser = async (request, response, next) => {
 
   }
   catch (error) {
-    response.status(500).json({ message: 'Hubo un error de nuestro lado, intenta otra vez.' });
     logger.error(error.message);
+    return response.status(500).json({ message: 'Hubo un error de nuestro lado, intenta otra vez.' });
   }
 };
 
@@ -82,7 +82,7 @@ const checkToken = async (request, response, next) => {
 
   try {
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      response.status(401).json({ message: 'Token inválido o no enviado.' });
+      response.status(401).json({ message: 'No estás autorizado a ver esta información.' });
     }
 
     const token = authHeader.split(' ')[1];
@@ -92,7 +92,7 @@ const checkToken = async (request, response, next) => {
     response.locals.user = tokenOwner;
 
     if (!tokenOwner) {
-      response
+      return response
         .status(404)
         .json({
           message: 'El token que provees no está asociado a ninguna cuenta.',
@@ -103,14 +103,14 @@ const checkToken = async (request, response, next) => {
   }
   catch (error) {
     if (error.name === 'TokenExpiredError') {
-      response
+      return response
         .status(500)
         .json({
           message: 'Su sesión ha expirado, por favor, inicie sesión otra vez.',
         });
     }
     else {
-      response
+      return response
         .status(500)
         .json({
           message: 'Hubo un error de nuestro lado, intenta otra vez.',
