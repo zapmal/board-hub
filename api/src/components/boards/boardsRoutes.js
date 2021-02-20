@@ -6,12 +6,20 @@ import {
   getBoard,
 } from './boardsController';
 import { checkToken } from '@middlewares/validators/auth';
+import {
+  validateNewBoard,
+  checkDuplicatedBoardName,
+} from '@middlewares/validators/boards';
 import handler from '@libs/controllerHandler';
 
 const router = Router();
 
 router.post('/b/new',
-  checkToken,
+  [
+    checkToken,
+    validateNewBoard,
+    checkDuplicatedBoardName,
+  ],
   handler(newBoard, (request) => (
     [
       request.body.userID,

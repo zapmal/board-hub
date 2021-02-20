@@ -51,7 +51,7 @@ const checkDuplicatedUser = async (request, response, next) => {
     const emailAlreadyExists = await user.findOne({ where: { email } });
 
     if (emailAlreadyExists) {
-      response
+      return response
         .status(400)
         .json({
           message: 'Ese correo ya está en uso.',
@@ -61,7 +61,7 @@ const checkDuplicatedUser = async (request, response, next) => {
     const usernameAlreadyExists = await user.findOne({ where: { user_name: username } });
 
     if (usernameAlreadyExists) {
-      response
+      return response
         .status(400)
         .json({
           message: 'Ese nombre de usuario ya está en uso.',
