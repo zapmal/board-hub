@@ -10,7 +10,8 @@ import handler from '@libs/controllerHandler';
 
 const router = Router();
 
-router.post('/signup', [validateSignup, checkDuplicatedUser],
+router.post('/signup',
+  [validateSignup, checkDuplicatedUser],
   handler(signup, (request) => (
     [request.body, request.connection.remoteAddress]
   )),
@@ -26,7 +27,7 @@ router.post('/signin',
 router.get('/me',
   checkToken,
   handler(getMe, (request, response) => (
-    [response.locals.email]
+    [response.locals.user]
   )),
 );
 

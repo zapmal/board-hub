@@ -16,15 +16,28 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import CustomField from './CustomField';
 import Highlight from './Highlight';
 
+import useUserStore from '../stores/useUserStore';
+
 import newBoardSchema from '../libs/validation/newBoard';
 
 const NewBoard = ({ isOpen, handleClose }) => {
+  const id = useUserStore(state => state.user.id);
   
   const handleSubmit = (data, { setStatus, resetForm, setSubmitting }) => {
     try {
       setSubmitting(true);
 
-      setTimeout(() => setSubmitting(false), 2000);
+      setTimeout(() => {
+
+        const datav2lmao = {
+          ...data,
+          userID: id,
+        };
+
+        console.log(datav2lmao);
+
+        setSubmitting(false);
+      }, 1000);
     }
     catch (error) {
       setStatus(error.response ? error.response.data.message : 'Error.');

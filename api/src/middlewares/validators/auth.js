@@ -87,9 +87,9 @@ const checkToken = async (request, response, next) => {
 
     const token = authHeader.split(' ')[1];
     const { email } = verify(token, SECRET);
-    response.locals.email = email;
 
     const tokenOwner = await user.findOne({ where: { email } });
+    response.locals.user = tokenOwner;
 
     if (!tokenOwner) {
       response

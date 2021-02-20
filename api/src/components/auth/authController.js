@@ -20,9 +20,8 @@ const signin = async (email, password, response) => {
   const user = await getUser(email);
 
   if (!user) {
-    return response
-      .status(400)
-      .json({ message: 'No existe un usuario con ese email.' });
+    response.status(404);
+    return { message: 'No existe un usuario con ese email.' };
   }
 
   const passwordsMatch = await compare(password, user.password);
@@ -33,9 +32,8 @@ const signin = async (email, password, response) => {
     return token;
   }
   else {
-    return response
-      .status(400)
-      .json({ message: 'Contraseña incorrecta.' });
+    response.status(400);
+    return { message: 'Contraseña incorrecta.' };
   }
 };
 
@@ -49,19 +47,12 @@ const signin = async (email, password, response) => {
  *
  * TODO: This now needs to include a new field, "role".
  */
-const getMe = async (email) => {
-  const {
-    id,
-    full_name,
-    user_name,
-    email: foundEmail,
-  } = await getUser(email);
-
+const getMe = async ({ id, full_name, user_name, email }) => {
   const user = {
     id,
     fullname: full_name,
     username: user_name,
-    email: foundEmail,
+    email,
   };
 
   return user;
