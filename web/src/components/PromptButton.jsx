@@ -64,7 +64,7 @@ const Prompt = styled(Link)`
 /**
  * If a <strong> is passed it will highlight it.
  */
-const ButtonWithPrompt = ({ to, children }) => {
+const PromptButton = ({ to, children }) => {
   return (
     <Prompt to={to}>
       {children}
@@ -72,4 +72,4 @@ const ButtonWithPrompt = ({ to, children }) => {
   );
 };
 
-export default ButtonWithPrompt;
+export default PromptButton;

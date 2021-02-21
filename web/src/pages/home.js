@@ -12,7 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BeenhereIcon from '@material-ui/icons/Beenhere';
 import FaceIcon from '@material-ui/icons/Face';
 
-import ButtonWithPrompt from '../components/ButtonWithPrompt';
+import PromptButton from '../components/PromptButton';
 import Highlight from '../components/Highlight';
 
 import teamStock from '../assets/images/team-stock.png';
@@ -95,10 +95,10 @@ const Home = (props) => {
             Aumenta <strong>tu</strong> eficiencia o la de tu <strong>equipo</strong>
           </Typography>
 
-          <ButtonWithPrompt to='/b'> 
+          <PromptButton to='/b'> 
             <strong>Empieza Ya</strong>
             <span></span>
-          </ButtonWithPrompt>
+          </PromptButton>
         </Banner>
       </Background>
 
