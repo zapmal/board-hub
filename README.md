@@ -8,4 +8,8 @@ Both `api` and `web` have the requirements and instructions necessary to run the
 
 ## License
 
-Creative Commons - [Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/)
+Creative Commons - Attribution-NonCommercial 4.0 International
+
+[Human readable](https://creativecommons.org/licenses/by-nc/4.0/)
+<br />
+[LICENSE](https://creativecommons.org/licenses/by-nc/4.0/legalcode)
