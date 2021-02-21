@@ -10,7 +10,8 @@ const ProtectedRoute = ({ path, exact, route }) => {
 
   if (isLoggedIn && isAccessPage) {
     return <Redirect to= '/' />;
-  } else if (!isLoggedIn && isAccessPage) {
+  }
+  else if (!isLoggedIn && isAccessPage) {
     return (
       <Route 
         path={path}

@@ -1,5 +1,6 @@
 import React from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
+import { useQueryClient, useMutation } from 'react-query';
 import { Form, Formik } from 'formik';
 import {
   Button,
@@ -18,29 +19,36 @@ import Highlight from './Highlight';
 
 import useUserStore from '../stores/useUserStore';
 
+import apiClient from '../services/api';
+
 import newBoardSchema from '../libs/validation/newBoard';
 
 const NewBoard = ({ isOpen, handleClose }) => {
+  const queryClient = useQueryClient();
+  const mutation = useMutation(data => apiClient.post('/b/new', data), {
+    onSuccess: () => queryClient.invalidateQueries('boards')
+  });
   const id = useUserStore(state => state.user.id);
   
-  const handleSubmit = (data, { setStatus, resetForm, setSubmitting }) => {
+  const handleSubmit = async (data, { setStatus, resetForm, setSubmitting }) => {
+    const newBoard = {
+      userID: id,
+      ...data,
+    };
+
     try {
       setSubmitting(true);
 
-      setTimeout(() => {
+      const { data: { message } } = await mutation.mutateAsync(newBoard);
 
-        const datav2lmao = {
-          ...data,
-          userID: id,
-        };
+      setSubmitting(false);
 
-        console.log(datav2lmao);
+      setStatus({ success: message });
 
-        setSubmitting(false);
-      }, 1000);
+      setTimeout(() => handleClose(), 1000);
     }
     catch (error) {
-      setStatus(error.response ? error.response.data.message : 'Error.');
+      setStatus(error.response ? error.response.data.message : 'Ha ocurrido un error, inténtalo de nuevo.');
     }
   };
 
@@ -49,7 +57,7 @@ const NewBoard = ({ isOpen, handleClose }) => {
       <Dialog open={isOpen} onClose={handleClose}>
         <DialogTitle><Highlight>Agrega</Highlight> un nuevo tablero</DialogTitle>
         <Formik
-          initialValues={{ name: '', description: '', isFavorite: '' }}
+          initialValues={{ name: '', description: '', isFavorite: false }}
           validationSchema={newBoardSchema}
           onSubmit={handleSubmit}
         >
@@ -91,11 +99,18 @@ const NewBoard = ({ isOpen, handleClose }) => {
                   />
                 </div>
 
-                {status && 
-                  <Typography variant='body1' color='error'>
-                    {status}
-                  </Typography>
-                }
+                {status && (
+                  status.success 
+                    ? (
+                    <Typography variant='body1' color='secondary'>
+                      {status.success}
+                    </Typography>
+                    ) 
+                  : (
+                    <Typography variant='body1' color='error'>
+                      {status}
+                    </Typography>
+                  ))}
               </DialogContent>
 
               <DialogActions>
@@ -106,7 +121,7 @@ const NewBoard = ({ isOpen, handleClose }) => {
                   color='secondary' 
                   variant='contained' 
                   type='submit'
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || (!!status?.success)}
                   startIcon={<ClipLoader loading={isSubmitting} size={15} color={'#ffffff'} />}
                 >
                   Guardar

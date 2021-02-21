@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/macro';
 import clsx from 'clsx';
+import dayjs from 'dayjs';
 import {
   Card,
   CardContent,
@@ -55,14 +56,14 @@ const useStyles = makeStyles(theme => ({
 
 const MessageContainer = styled.div`
   display: inline-block;
-  border: 2px solid #7362d0;
+  border: ${({ noBorder }) => noBorder ? '' : '2px solid #7362d0'};
   border-radius: 10px;
   width: 40%;
   margin: ${({ margin }) => margin}px 65px;
+  text-align: center;
 
   p {
     padding: 20px;
-    text-align: center;
   }
 
   img {
@@ -81,7 +82,7 @@ const Separator = styled.div`
   }
 `;
 
-const BoardsDisplay = ({ boards }) => {
+const BoardsDisplay = ({ boards = [] }) => {
   const classes = useStyles();
   const [isOpen, toggleOpen] = useToggle();
 
@@ -93,9 +94,9 @@ const BoardsDisplay = ({ boards }) => {
             <Card className={classes.root} variant='outlined' color='secondary'>
               <CardContent>
                 <Typography className={classes.top} color='textSecondary' gutterBottom>
-                  {board.created.toString()}
+                  {dayjs(board.createdAt).format('DD-MM-YYYY')}
                   <IconButton 
-                    className={clsx(classes.favoriteButton, { [classes.isFavorite]: board.isFavorite })}
+                    className={clsx(classes.favoriteButton, { [classes.isFavorite]: board.is_favorite })}
                     onClick={(() => console.log('new favorite'))}
                   >
                     <StarIcon />
@@ -110,7 +111,14 @@ const BoardsDisplay = ({ boards }) => {
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button size='small' component={Link} to='/b/id' variant='outlined'>Abrir</Button>
+                <Button 
+                  size='small' 
+                  component={Link} 
+                  to={`/b/${board.id}`}
+                  variant='outlined'
+                >
+                  Abrir
+                </Button>
                 <IconButton className={classes.deleteButton} onClick={toggleOpen}>
                   <DeleteIcon />
                 </IconButton>
@@ -119,7 +127,7 @@ const BoardsDisplay = ({ boards }) => {
           </Grid>
         )) 
         : (
-          <MessageContainer margin={50}>
+          <MessageContainer margin={20} noBorder>
             <img src={lost} alt='Lost' width='500px'/>
             <Typography variant='h5' gutterBottom>
               Parece que no hay nada aún.

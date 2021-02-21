@@ -58,7 +58,7 @@ const Container = styled.div`
 `;
 
 const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
-  const { mutateAsync } = useMutation(data => apiClient.post(route, data));
+  const mutation = useMutation(data => apiClient.post(route, data));
   const setUser = useUserStore(state => state.setUser);
 
   const initialValues = route === 'signin'
@@ -78,7 +78,8 @@ const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
     try {
       setSubmitting(true);
 
-      const { data: { token } } = await mutateAsync(data);
+      const { data: { token } } = await mutation.mutateAsync(data);
+
       setSubmitting(false);
 
       resetForm();
@@ -88,7 +89,7 @@ const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
       setUser();
     }
     catch (error) {
-      setStatus(error.response ? error.response.data.message : 'Error.');
+      setStatus(error.response ? error.response.data.message : 'Ha ocurrido un error, inténtalo de nuevo.');
     }
   };
   
