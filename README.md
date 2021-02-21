@@ -4,8 +4,8 @@
 
 ## How to run locally
 
-Both `api` and `web` have instructions and requirements to run the project.
+Both `api` and `web` have the requirements and instructions necessary to run the project locally.
 
 ## License
 
-MIT.
+Creative Commons - [Attribution-NonCommercial 4.0 International](https://creativecommons.org/licenses/by-nc/4.0/)
