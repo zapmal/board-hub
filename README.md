@@ -1,3 +1,11 @@
-# Board Hub
+<p align="center">
+  <img src="/logo-github.png" alt="Board Hub logo" />
+</p>
 
-Both the `api` and the `web` folders contain instructions for configuration and use.
+## How to run locally
+
+Both `api` and `web` have instructions and requirements to run the project.
+
+## License
+
+MIT.
