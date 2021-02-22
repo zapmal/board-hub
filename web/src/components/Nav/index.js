@@ -4,7 +4,6 @@ import {
   Toolbar, 
   Button,
   Box,
-  makeStyles,
 } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
@@ -12,44 +11,10 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import PulseLoader from 'react-spinners/PulseLoader';
 import { Link, withRouter } from 'react-router-dom';
 
-import useUserStore from '../stores/useUserStore';
+import useUserStore from 'stores/useUserStore';
+import { useStyles } from './styles';
 
-import logoImage from '../assets/images/logo.png';
-
-const useStyles = makeStyles(theme => ({
-  logo: {
-    marginTop: '5px',
-  },
-
-  toolbar: {
-    display: 'flex',
-    justifyContent: 'space-between',
-  },
-
-  button: {
-    fontWeight: 700,
-    color: theme.palette.extraColors.darkBlue,
-    size: '18px',
-    marginLeft: '5px',
-    marginRight: '20px',
-    transition: '200ms ease-in',
-
-    '&:hover': {
-      color: theme.palette.primary.main,
-      backgroundColor: theme.palette.secondary.light
-    }
-  },
-
-  actionButtons: {
-    marginRight: '10px',
-    color: theme.palette.primary.main,
-    transition: '100ms ease-in',
-
-    '&:hover': {
-      backgroundColor: theme.palette.secondary.main
-    },
-  },
-}));
+import logoImage from 'assets/images/logo.png';
 
 const navRoutes = [
   {
@@ -89,6 +54,7 @@ const Nav = ({ location }) => {
     if (!user && token) {
       setUser();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

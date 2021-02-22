@@ -8,7 +8,6 @@ import {
   ListSubheader,
   ListItemText,
   Collapse,
-  makeStyles,
 } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 
@@ -25,35 +24,10 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 import NewBoard from '../NewBoard';
 
-import useToggle from '../../hooks/useToggle';
+import useToggle from 'hooks/useToggle';
+import { useStyles } from './styles';
 
-import logo from '../../assets/images/logo.png';
-
-const useStyles = makeStyles(theme => ({
-  paper: {
-    height: 100,
-    '& img': {
-      display: 'block',
-      margin: '20px auto',
-    },
-  },
-  drawerPaper: {
-    position: 'relative',
-    backgroundColor: theme.palette.secondary.main,
-    width: 240,
-  },
-  listText: {
-    color: theme.palette.primary.main,
-    fontWeight: 'bold',
-  },
-  collapsedListItem: {
-    color: theme.palette.primary.main,
-    paddingLeft: 60,
-  },
-  collapsedListIcon: {
-    paddingLeft: 30,
-  },
-}));
+import logo from 'assets/images/logo.png';
 
 const BoardsDrawer = ({ isOpen, handleClick }) => {
   const {

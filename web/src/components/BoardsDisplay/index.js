@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/macro';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import {
@@ -10,7 +9,6 @@ import {
   Button,
   IconButton,
   Typography,
-  makeStyles,
 } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -19,68 +17,19 @@ import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissa
 
 import { Link } from 'react-router-dom';
 
-import useToggle from '../hooks/useToggle';
+import useToggle from 'hooks/useToggle';
+import { 
+  useStyles,
+  MessageContainer,
+  Separator,
+} from './styles';
 
-import ConfirmationDialog from '../components/ConfirmationDialog';
-import Highlight from '../components/Highlight';
+import ConfirmationDialog from 'components/ConfirmationDialog';
+import Highlight from 'components/Highlight';
 
-import lost from '../assets/svgs/lost.svg';
-import working from '../assets/svgs/working.svg';
-import help from '../assets/svgs/help.svg';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    minWidth: 275,
-    minHeight: 170,
-    margin: '40px 20px',
-  },
-  favoriteButton: {
-    marginBottom: 3,
-  },
-  deleteButton: {
-    color: theme.palette.error.main,
-  },
-  isFavorite: {
-    color: 'gold',
-  },
-  top: {
-    fontSize: 14,
-  },
-  name: {
-    marginBottom: 12,
-  },
-  container: {
-    justifyContent: 'center',
-  },
-}));
-
-const MessageContainer = styled.div`
-  display: inline-block;
-  border: ${({ noBorder }) => noBorder ? '' : '2px solid #7362d0'};
-  border-radius: 10px;
-  width: 40%;
-  margin: ${({ margin }) => margin}px 65px;
-  text-align: center;
-
-  p {
-    padding: 20px;
-  }
-
-  img {
-    display: block;
-    margin: 0 auto;
-  }
-`;
-
-const Separator = styled.div`
-  height: 100px;
-  background-color: #7362d0;
-  text-align: center;
-
-  h4 {
-    padding-top: 10px;
-  }
-`;
+import lost from 'assets/svgs/lost.svg';
+import working from 'assets/svgs/working.svg';
+import help from 'assets/svgs/help.svg';
 
 const BoardsDisplay = ({ boards = [] }) => {
   const classes = useStyles();

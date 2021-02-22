@@ -4,28 +4,15 @@ import {
   Toolbar,
   IconButton,
   Typography,
-  makeStyles,
   Button,
 } from '@material-ui/core';
 import { withRouter } from 'react-router-dom';
 
-import useUserStore from '../../stores/useUserStore';
+import useUserStore from 'stores/useUserStore';
+import { useStyles } from './styles';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-
-const useStyles = makeStyles(theme => ({
-  aboveDrawer: {
-    zIndex: theme.zIndex.drawer + 1,
-  },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-  flex: {
-    flex: 1,
-  },
-}));
 
 const BoardsToolbar = ({ history, handleClick }) => {
   const { aboveDrawer, menuButton, flex } = useStyles();

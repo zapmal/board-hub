@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
-import styled from 'styled-components/macro';
 
 import BoardsToolbar from './BoardsToolbar';
 import BoardsDrawer from './BoardsDrawer';
 
-const NavContainer = styled.div`
-  flex-grow: 1;
-`;
+import { NavContainer } from './styles';
 
 const BoardsNav = () => {
   const [isOpen, setIsOpen] = useState(false);

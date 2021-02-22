@@ -3,10 +3,10 @@ import styled from 'styled-components/macro';
 import { Typography } from '@material-ui/core';
 import { useQuery } from 'react-query';
 
-import BoardsDisplay from '../../components/BoardsDisplay';
-import Highlight from '../../components/Highlight';
+import BoardsDisplay from 'components/BoardsDisplay';
+import Highlight from 'components/Highlight';
 
-import apiClient from '../../services/api';
+import apiClient from 'services/api';
 
 const MessageContainer = styled.div`
   margin-top: 40px;
