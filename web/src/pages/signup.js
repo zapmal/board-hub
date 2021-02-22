@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { signupSchema } from '../libs/validation/auth';
+import { signupSchema } from '../utils/validation/auth';
 
 import AuthForm from '../components/AuthForm';
 

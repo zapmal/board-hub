@@ -10,7 +10,7 @@ import {
   validateNewBoard,
   checkDuplicatedBoardName,
 } from '@middlewares/validators/boards';
-import handler from '@libs/controllerHandler';
+import handler from '@utils/controllerHandler';
 
 const router = Router();
 

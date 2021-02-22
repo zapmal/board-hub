@@ -2,7 +2,7 @@ import { user } from '@models';
 import { genSalt, hash } from 'bcryptjs';
 import dotenv from 'dotenv';
 
-import getToken from '@libs/getToken';
+import getToken from '@utils/getToken';
 
 dotenv.config();
 

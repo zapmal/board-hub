@@ -2,7 +2,7 @@ import express from 'express';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
-import { customMorganFormat } from '@libs/logging/logger';
+import { customMorganFormat } from '@utils/logging/logger';
 import { authRoutes } from '@components/auth';
 import { boardsRoutes } from '@components/boards';
 

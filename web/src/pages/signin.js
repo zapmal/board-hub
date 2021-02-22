@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { signinSchema } from '../libs/validation/auth';
+import { signinSchema } from '../utils/validation/auth';
 
 import AuthForm from '../components/AuthForm';
 

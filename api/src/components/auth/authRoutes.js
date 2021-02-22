@@ -6,7 +6,7 @@ import {
   checkDuplicatedUser,
   checkToken,
 } from '@middlewares/validators/auth';
-import handler from '@libs/controllerHandler';
+import handler from '@utils/controllerHandler';
 
 const router = Router();
 

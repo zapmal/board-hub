@@ -1,6 +1,6 @@
-import validate from '@libs/schemas/validate';
-import { newBoardSchema } from '@libs/schemas/boardsSchemas';
-import logger from '@libs/logging/logger';
+import validate from '@utils/schemas/validate';
+import { newBoardSchema } from '@utils/schemas/boardsSchemas';
+import logger from '@utils/logging/logger';
 
 import dotenv from 'dotenv';
 

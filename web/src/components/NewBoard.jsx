@@ -21,7 +21,7 @@ import useUserStore from '../stores/useUserStore';
 
 import apiClient from '../services/api';
 
-import newBoardSchema from '../libs/validation/newBoard';
+import newBoardSchema from '../utils/validation/newBoard';
 
 const NewBoard = ({ isOpen, handleClose }) => {
   const queryClient = useQueryClient();

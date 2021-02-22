@@ -7,7 +7,7 @@
         "module-resolver",
         {
             "alias": {
-                "@libs": "./src/libs",
+                "@utils": "./src/utils",
                 "@models": "./src/database",
                 "@middlewares": "./src/middlewares",
                 "@components": "./src/components"

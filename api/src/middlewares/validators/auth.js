@@ -1,9 +1,9 @@
-import validate from '@libs/schemas/validate';
+import validate from '@utils/schemas/validate';
 import {
   signupSchema,
   signinSchema,
-} from '@libs/schemas/authSchemas';
-import logger from '@libs/logging/logger';
+} from '@utils/schemas/authSchemas';
+import logger from '@utils/logging/logger';
 
 import dotenv from 'dotenv';
 import { verify } from 'jsonwebtoken';
