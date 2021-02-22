@@ -22,7 +22,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import EditIcon from '@material-ui/icons/Edit';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
-import NewBoard from '../NewBoard';
+import NewBoardDialog from '../NewBoardDialog';
 
 import useToggle from 'hooks/useToggle';
 import { useStyles } from './styles';
@@ -129,7 +129,7 @@ const BoardsDrawer = ({ isOpen, handleClick }) => {
           </List>
         </Collapse>
 
-        <NewBoard isOpen={newBoardState} handleClose={toggleNewBoard} />
+        <NewBoardDialog isOpen={newBoardState} handleClose={toggleNewBoard} />
       </Drawer>
   );
 };

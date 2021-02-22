@@ -24,7 +24,7 @@ import {
   Separator,
 } from './styles';
 
-import ConfirmationDialog from 'components/ConfirmationDialog';
+import DeleteBoardDialog from 'components/DeleteBoardDialog';
 import Highlight from 'components/Highlight';
 
 import lost from 'assets/svgs/lost.svg';
@@ -122,7 +122,7 @@ const BoardsDisplay = ({ boards = [] }) => {
             </MessageContainer>
           </>
         )}
-        <ConfirmationDialog isOpen={isOpen} handleClose={toggleOpen} />
+        <DeleteBoardDialog isOpen={isOpen} handleClose={toggleOpen} />
       </>
   );
 };

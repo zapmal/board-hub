@@ -10,7 +10,7 @@ import {
 
 import Highlight from './Highlight';
 
-const ConfirmationDialog = ({ isOpen, handleClose }) => {
+const DeleteBoardDialog = ({ isOpen, handleClose }) => {
   return (
     <Dialog
         open={isOpen}
@@ -36,4 +36,4 @@ const ConfirmationDialog = ({ isOpen, handleClose }) => {
   );
 };
 
-export default ConfirmationDialog;
+export default DeleteBoardDialog;

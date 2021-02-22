@@ -10,15 +10,13 @@ const StyledLayout = styled.div`
   padding-top: 60px;
 `;
 
-const Main = styled.main``;
-
 const Layout = ({ location, children }) => {
   const isBoardsPage = location.pathname.includes('/b');
 
   return (
     <StyledLayout>
       {isBoardsPage ? <BoardsNav /> : <Nav />}
-      <Main>{children}</Main>
+      <main>{children}</main>
       <Footer />
     </StyledLayout>
   );

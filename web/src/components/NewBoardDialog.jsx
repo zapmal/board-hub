@@ -23,7 +23,7 @@ import apiClient from '../services/api';
 
 import newBoardSchema from '../utils/validation/newBoard';
 
-const NewBoard = ({ isOpen, handleClose }) => {
+const NewBoardDialog = ({ isOpen, handleClose }) => {
   const queryClient = useQueryClient();
   const mutation = useMutation(data => apiClient.post('/b/new', data), {
     onSuccess: () => queryClient.invalidateQueries('boards')
@@ -135,4 +135,4 @@ const NewBoard = ({ isOpen, handleClose }) => {
   );
 };
 
-export default NewBoard;
+export default NewBoardDialog;
