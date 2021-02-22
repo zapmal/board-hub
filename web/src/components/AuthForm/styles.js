@@ -17,7 +17,7 @@ export const Background = styled.div`
   z-index: -1;
 `;
 
-export const Container = styled.div`
+export const FormContainer = styled.div`
   padding: 25px;
   margin: 0 auto;
   max-width: ${({ maxWidth }) => maxWidth}px;

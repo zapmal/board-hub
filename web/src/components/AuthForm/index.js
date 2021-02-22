@@ -14,7 +14,7 @@ import ClipLoader from 'react-spinners/ClipLoader';
 
 import Highlight from 'components/Highlight';
 import CustomField from 'components/CustomField';
-import { Background, Container } from './styles';
+import { Background, FormContainer } from './styles';
 
 import apiClient from 'services/api';
 import useUserStore from 'stores/useUserStore';
@@ -58,7 +58,7 @@ const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
   return (
     <>
       <Background/>
-      <Container maxWidth={maxWidth}>
+      <FormContainer maxWidth={maxWidth}>
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -98,7 +98,7 @@ const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
         <Typography variant='h6' align='center'>
           Empieza a manejar todo de una <Highlight>mejor forma</Highlight>.
         </Typography>
-      </Container>
+      </FormContainer>
     </>
   );
 };

@@ -1,14 +1,14 @@
 import React from 'react';
 
 import {
-  Container,
+  FooterContainer,
   Information,
   Contributors
 } from './styles';
 
 const Footer = () => {
   return (
-    <Container>
+    <FooterContainer>
       <Information>
         <strong>Copyright © Board Hub 2021</strong>
       </Information>
@@ -18,7 +18,7 @@ const Footer = () => {
           Hablanos de eso
         </Contributors>
       </Information>
-    </Container>
+    </FooterContainer>
   );
 };
 

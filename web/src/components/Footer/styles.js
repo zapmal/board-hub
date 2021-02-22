@@ -5,7 +5,7 @@ import background from 'assets/svgs/background-light.svg';
 /**
  * On large screens (height-wise) the footer needs to go a bit down.
  */
-export const Container = styled.footer`
+export const FooterContainer = styled.footer`
   padding: 30px 40px;
   background-color: #504491;
   background-image: url(${background});

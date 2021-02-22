@@ -7,21 +7,27 @@ export const useStyles = makeStyles(theme => ({
     minHeight: 170,
     margin: '40px 20px',
   },
+
   favoriteButton: {
     marginBottom: 3,
   },
+
   deleteButton: {
     color: theme.palette.error.main,
   },
+
   isFavorite: {
     color: 'gold',
   },
+
   top: {
     fontSize: 14,
   },
+
   name: {
     marginBottom: 12,
   },
+
   container: {
     justifyContent: 'center',
   },
