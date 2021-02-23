@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import {
@@ -33,7 +33,13 @@ import help from 'assets/svgs/help.svg';
 
 const BoardsDisplay = ({ boards = [] }) => {
   const classes = useStyles();
+  const board = useRef(null);
   const [isOpen, toggleOpen] = useToggle();
+
+  const handleDeleteDialogOpen = (boardId) => {
+    toggleOpen();
+    board.current = boardId;
+  };
 
   return (
     <>
@@ -49,7 +55,7 @@ const BoardsDisplay = ({ boards = [] }) => {
                     onClick={(() => console.log('new favorite'))}
                   >
                     <StarIcon />
-                  </IconButton>
+                  </IconButton> 
                 </Typography>
                 <Typography className={classes.name} color='secondary'>
                   {board.name}
@@ -68,7 +74,11 @@ const BoardsDisplay = ({ boards = [] }) => {
                 >
                   Abrir
                 </Button>
-                <IconButton className={classes.deleteButton} onClick={toggleOpen}>
+                <IconButton 
+                  className={classes.deleteButton} 
+                  onClick={() => handleDeleteDialogOpen(board.id)} 
+                  id={board.id}
+                >
                   <DeleteIcon />
                 </IconButton>
               </CardActions>
@@ -122,7 +132,7 @@ const BoardsDisplay = ({ boards = [] }) => {
             </MessageContainer>
           </>
         )}
-        <DeleteBoardDialog isOpen={isOpen} handleClose={toggleOpen} />
+        <DeleteBoardDialog isOpen={isOpen} handleClose={toggleOpen} boardId={board.current} />
       </>
   );
 };

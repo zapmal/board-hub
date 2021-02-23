@@ -17,7 +17,7 @@ const newBoard = async (userID, name, description, isFavorite) => {
 const getBoards = async (userID, response) => {
   const boards = await getUserBoards(userID);
 
-  if (boards.length === 0) {
+  if (!boards) {
     response.status(404);
     return {};
   }

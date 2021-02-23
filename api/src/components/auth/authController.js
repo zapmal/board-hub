@@ -38,13 +38,6 @@ const signin = async (email, password, response) => {
 };
 
 /**
- * There's a weird case that's not handled here. The
- * case where the email is not found.
- *
- * Here's the thing, this route *explicitly* requires a token,
- * said token stores an email, from a registered user. If he's
- * here then the email *obviously* exists.
- *
  * TODO: This now needs to include a new field, "role".
  */
 const getMe = async ({ id, full_name, user_name, email }) => {
