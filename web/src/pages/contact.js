@@ -20,7 +20,7 @@ const Background = styled.header`
   }
 `;
 
-const Wrapper = styled.section`
+const EmailsContainer = styled.section`
   width: 100%;
   height: 140px;
   display: flex;
@@ -43,10 +43,10 @@ const Contact = () => {
         <ChatIcon fontSize='large' />
       </Background>
 
-      <Wrapper>
+      <EmailsContainer>
         <Highlight color='#504491'>inquiries@boardhub.com</Highlight>
         <Highlight color='#8f81d9'>support@boardhub.com</Highlight>
-      </Wrapper>
+      </EmailsContainer>
     </>
   );
 };

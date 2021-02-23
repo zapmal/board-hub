@@ -42,6 +42,17 @@ export const useStyles = makeStyles(theme => ({
   collapsedListIcon: {
     paddingLeft: 30,
   },
+
+  fetchingIndicator: {
+    marginTop: 7,
+    paddingRight: 20,
+    '& .MuiSvgIcon-root': {
+      transition: '500ms',
+    },
+    '& .MuiSvgIcon-root:hover': {
+      rotate: '360deg'
+    },
+  },
 }));
 
 export const NavContainer = styled.div`

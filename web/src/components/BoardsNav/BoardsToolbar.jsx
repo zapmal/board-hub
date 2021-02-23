@@ -1,12 +1,16 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { useIsFetching } from 'react-query';
 import {
   AppBar,
   Toolbar,
+  Tooltip,
   IconButton,
   Typography,
   Button,
 } from '@material-ui/core';
-import { withRouter } from 'react-router-dom';
+import LoopIcon from '@material-ui/icons/Loop';
+import CheckIcon from '@material-ui/icons/Check';
 
 import useUserStore from 'stores/useUserStore';
 import { useStyles } from './styles';
@@ -15,8 +19,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const BoardsToolbar = ({ history, handleClick }) => {
-  const { aboveDrawer, menuButton, flex } = useStyles();
+  const { 
+    aboveDrawer, 
+    menuButton, 
+    flex, 
+    fetchingIndicator 
+  } = useStyles();
   const removeUser = useUserStore(state => state.removeUser);
+  const isFetching = useIsFetching();
 
   const handleLogout = () => {
     removeUser();
@@ -35,6 +45,9 @@ const BoardsToolbar = ({ history, handleClick }) => {
         <Typography variant='h6' color='inherit' className={flex}>
           Tableros
         </Typography>
+        <div className={fetchingIndicator}>
+          <FetchingIndicator fetching={isFetching} />
+        </div>
         <div>
           <Button 
             variant='outlined'
@@ -47,6 +60,21 @@ const BoardsToolbar = ({ history, handleClick }) => {
         </div>
       </Toolbar>
     </AppBar>
+  );
+};
+
+const FetchingIndicator = ({ fetching }) => {
+  const message = fetching 
+    ? 'Estamos chequeando que la información esté al día.'
+    : 'La información está al día.';
+
+  return (
+    <Tooltip title={message}>
+      {fetching 
+        ? <LoopIcon color='primary' /> 
+        : <CheckIcon color='primary' />
+      }
+    </Tooltip>
   );
 };
 
