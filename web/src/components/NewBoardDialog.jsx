@@ -26,7 +26,10 @@ import newBoardSchema from '../utils/validation/newBoard';
 const NewBoardDialog = ({ isOpen, handleClose }) => {
   const queryClient = useQueryClient();
   const mutation = useMutation(data => apiClient.post('/b/new', data), {
-    onSuccess: () => queryClient.invalidateQueries('boards')
+    onSuccess: () => {
+      queryClient.invalidateQueries('boards');
+      queryClient.invalidateQueries('favoriteBoards');
+    }
   });
   const id = useUserStore(state => state.user.id);
   
@@ -45,7 +48,11 @@ const NewBoardDialog = ({ isOpen, handleClose }) => {
 
       setStatus({ success: message });
 
-      setTimeout(() => handleClose(), 1000);
+      setTimeout(() => {
+        if (isOpen) {
+          handleClose();
+        }
+      }, 1000);
     }
     catch (error) {
       setStatus(error.response ? error.response.data.message : 'Ha ocurrido un error, inténtalo de nuevo.');

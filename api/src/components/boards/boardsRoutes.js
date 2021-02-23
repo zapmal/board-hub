@@ -2,6 +2,7 @@ import { Router } from 'express';
 import {
   newBoard,
   getBoards,
+  getFavoriteBoards,
   deleteBoard,
   getBoard,
 } from './boardsController';
@@ -33,6 +34,12 @@ router.post('/b/new',
 
 router.get('/b/all',
   handler(getBoards, (request, response) => (
+    [response.locals.user.id, response]
+  )),
+);
+
+router.get('/b/favorites',
+  handler(getFavoriteBoards, (request, response) => (
     [response.locals.user.id, response]
   )),
 );

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
 import {
@@ -21,6 +21,7 @@ import useToggle from 'hooks/useToggle';
 import { 
   useStyles,
   MessageContainer,
+  HeaderContainer,
   Separator,
 } from './styles';
 
@@ -31,7 +32,7 @@ import lost from 'assets/svgs/lost.svg';
 import working from 'assets/svgs/working.svg';
 import help from 'assets/svgs/help.svg';
 
-const BoardsDisplay = ({ boards = [] }) => {
+const BoardsDisplay = ({ boards = [], header }) => {
   const classes = useStyles();
   const board = useRef(null);
   const [isOpen, toggleOpen] = useToggle();
@@ -43,6 +44,9 @@ const BoardsDisplay = ({ boards = [] }) => {
 
   return (
     <>
+      <HeaderContainer>
+        <Typography variant='h4'>{header}</Typography>
+      </HeaderContainer>
       <Grid container className={classes.container}>
         {boards.length > 0 ? boards.map((board, index) => (
           <Grid item md={3} key={`${board.name}-${index}`}>

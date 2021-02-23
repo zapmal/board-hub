@@ -19,7 +19,10 @@ import apiClient from '../services/api';
 const DeleteBoardDialog = ({ isOpen, handleClose, boardId }) => {
   const queryClient = useQueryClient();
   const mutation = useMutation(({ id }) => apiClient.delete(`/b/${id}`), {
-    onSuccess: () => queryClient.invalidateQueries('boards')
+    onSuccess: () => {
+      queryClient.invalidateQueries('boards');
+      queryClient.invalidateQueries('favoriteBoards');
+    }
   });
 
   console.log(isOpen);

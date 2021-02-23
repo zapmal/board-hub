@@ -17,6 +17,12 @@ const getUserBoards = async (userID) => {
   return boards;
 };
 
+const getFavorites = async (userID) => {
+  const boards = await board.findAll({ where: { user_id: userID, is_favorite: '1' } });
+
+  return boards;
+};
+
 const getSingleBoard = async (boardID) => {
   const foundBoard = await board.findOne({ where: { id: boardID } });
 
@@ -30,6 +36,7 @@ const deleteUserBoard = async (boardID) => {
 export {
   createBoard,
   getUserBoards,
+  getFavorites,
   deleteUserBoard,
   getSingleBoard,
 };

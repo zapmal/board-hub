@@ -51,6 +51,15 @@ export const MessageContainer = styled.div`
   }
 `;
 
+export const HeaderContainer = styled.div`
+  margin-top: 40px;
+  text-align: center;
+
+  strong {
+    color: #7362d0;
+  }
+`;
+
 export const Separator = styled.div`
   height: 100px;
   background-color: #7362d0;

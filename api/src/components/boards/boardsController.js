@@ -1,6 +1,7 @@
 import {
   createBoard,
   getUserBoards,
+  getFavorites,
   deleteUserBoard,
   getSingleBoard,
 } from './boardsService';
@@ -16,6 +17,17 @@ const newBoard = async (userID, name, description, isFavorite) => {
 
 const getBoards = async (userID, response) => {
   const boards = await getUserBoards(userID);
+
+  if (!boards) {
+    response.status(404);
+    return {};
+  }
+
+  return boards;
+};
+
+const getFavoriteBoards = async (userID, response) => {
+  const boards = await getFavorites(userID);
 
   if (!boards) {
     response.status(404);
@@ -54,6 +66,7 @@ const getBoard = async (boardID, response) => {
 export {
   newBoard,
   getBoards,
+  getFavoriteBoards,
   deleteBoard,
   getBoard,
 };
