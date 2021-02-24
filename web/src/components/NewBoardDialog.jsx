@@ -47,12 +47,6 @@ const NewBoardDialog = ({ isOpen, handleClose }) => {
       setSubmitting(false);
 
       setStatus({ success: message });
-
-      setTimeout(() => {
-        if (isOpen) {
-          handleClose();
-        }
-      }, 1000);
     }
     catch (error) {
       setStatus(error.response ? error.response.data.message : 'Ha ocurrido un error, inténtalo de nuevo.');
@@ -122,7 +116,7 @@ const NewBoardDialog = ({ isOpen, handleClose }) => {
 
               <DialogActions>
                 <Button onClick={handleClose} color='secondary'>
-                  Cancelar
+                  {!!status?.success ? 'Cerrar' : 'Cancelar'}
                 </Button>
                 <Button 
                   color='secondary' 

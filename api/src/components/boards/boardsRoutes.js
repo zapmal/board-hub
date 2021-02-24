@@ -3,6 +3,7 @@ import {
   newBoard,
   getBoards,
   getFavoriteBoards,
+  toggleFavoriteBoard,
   deleteBoard,
   getBoard,
 } from './boardsController';
@@ -41,6 +42,12 @@ router.get('/b/all',
 router.get('/b/favorites',
   handler(getFavoriteBoards, (request, response) => (
     [response.locals.user.id, response]
+  )),
+);
+
+router.put('/b/:id/toggle-favorite',
+  handler(toggleFavoriteBoard, (request, response) => (
+    [response.locals.user.id, request.params.id, response]
   )),
 );
 

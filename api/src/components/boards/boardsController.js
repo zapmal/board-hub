@@ -4,6 +4,7 @@ import {
   getFavorites,
   deleteUserBoard,
   getSingleBoard,
+  toggleFavorite,
 } from './boardsService';
 
 const newBoard = async (userID, name, description, isFavorite) => {
@@ -37,6 +38,22 @@ const getFavoriteBoards = async (userID, response) => {
   return boards;
 };
 
+const toggleFavoriteBoard = async (userID, boardID, response) => {
+  const { is_favorite } = await getSingleBoard(boardID);
+  const updatedStatus = await toggleFavorite(is_favorite, userID, boardID);
+
+  if (updatedStatus) {
+    return {
+      message: 'Marcado como favorito.',
+    };
+  }
+  else {
+    return {
+      message: 'Se ha removido de tus favoritos.',
+    };
+  }
+};
+
 const deleteBoard = async (boardID, response) => {
   const board = await getSingleBoard(boardID);
 
@@ -67,6 +84,7 @@ export {
   newBoard,
   getBoards,
   getFavoriteBoards,
+  toggleFavoriteBoard,
   deleteBoard,
   getBoard,
 };

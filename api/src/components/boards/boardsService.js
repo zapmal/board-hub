@@ -23,6 +23,33 @@ const getFavorites = async (userID) => {
   return boards;
 };
 
+const toggleFavorite = async (isFavorite, userID, boardID) => {
+  if (isFavorite) {
+    await board.update({ is_favorite: 0 },
+      {
+        where: {
+          user_id: userID,
+          id: boardID,
+        },
+      },
+    );
+
+    return false;
+  }
+  else {
+    await board.update({ is_favorite: 1 },
+      {
+        where: {
+          user_id: userID,
+          id: boardID,
+        },
+      },
+    );
+
+    return true;
+  }
+};
+
 const getSingleBoard = async (boardID) => {
   const foundBoard = await board.findOne({ where: { id: boardID } });
 
@@ -37,6 +64,7 @@ export {
   createBoard,
   getUserBoards,
   getFavorites,
+  toggleFavorite,
   deleteUserBoard,
   getSingleBoard,
 };
