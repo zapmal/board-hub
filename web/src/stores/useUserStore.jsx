@@ -7,10 +7,9 @@ const useUserStore = create((set, get) => ({
   loading: false,
   setUser: async () => {
     set({ loading: true });
-    const token = localStorage.getItem('token');
 
     try {
-      const { data } = await apiClient.get('/me', { headers: { 'Authorization': `Bearer ${token}` }});
+      const { data } = await apiClient.get('/me');
       set({ user: data, loading: false });
     } catch (error) {
       set({ loading: false });
