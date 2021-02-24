@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import clsx from 'clsx';
 import dayjs from 'dayjs';
+import { Link } from 'react-router-dom';
+import { useMutation, useQueryClient } from 'react-query';
 import {
   Card,
   CardContent,
@@ -15,8 +17,6 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
-import { Link } from 'react-router-dom';
-
 import useToggle from 'hooks/useToggle';
 import { 
   useStyles,
@@ -28,6 +28,8 @@ import {
 import DeleteBoardDialog from 'components/DeleteBoardDialog';
 import Highlight from 'components/Highlight';
 
+import apiClient from 'services/api';
+
 import lost from 'assets/svgs/lost.svg';
 import working from 'assets/svgs/working.svg';
 import help from 'assets/svgs/help.svg';
@@ -36,6 +38,17 @@ const BoardsDisplay = ({ boards = [], header }) => {
   const classes = useStyles();
   const board = useRef(null);
   const [isOpen, toggleOpen] = useToggle();
+  const queryClient = useQueryClient();
+  const mutation = useMutation(({ id }) => apiClient.put(`/b/${id}/toggle-favorite`), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('boards');
+      queryClient.invalidateQueries('favoriteBoards');
+    }
+  });
+
+  const handleFavoriteToggle = async (id) => {
+    await mutation.mutateAsync({ id });
+  };
 
   const handleDeleteDialogOpen = (boardId) => {
     toggleOpen();
@@ -56,7 +69,7 @@ const BoardsDisplay = ({ boards = [], header }) => {
                   {dayjs(board.createdAt).format('DD-MM-YYYY')}
                   <IconButton 
                     className={clsx(classes.favoriteButton, { [classes.isFavorite]: board.is_favorite })}
-                    onClick={(() => console.log('new favorite'))}
+                    onClick={() => handleFavoriteToggle(board.id)}
                   >
                     <StarIcon />
                   </IconButton> 

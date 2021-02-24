@@ -25,8 +25,6 @@ const DeleteBoardDialog = ({ isOpen, handleClose, boardId }) => {
     }
   });
 
-  console.log(isOpen);
-
   const handleSubmit = async (data, { setStatus, setSubmitting }) => {
     try {
       setSubmitting(true);
