@@ -14,7 +14,6 @@ import {
 } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/Star';
 import DeleteIcon from '@material-ui/icons/Delete';
-import AddIcon from '@material-ui/icons/Add';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
 import useToggle from 'hooks/useToggle';
@@ -111,13 +110,6 @@ const BoardsDisplay = ({ boards = [], header }) => {
             <Typography gutterBottom>
               Pero eso no importa, empieza a tu ritmo, nosotros te seguiremos.
             </Typography>
-            <IconButton 
-              component={Link}
-              to='/b/new'
-              color='secondary'
-            >
-              <AddIcon />
-            </IconButton>
           </MessageContainer>
         )}
         </Grid>
