@@ -45,8 +45,8 @@ const validateSignin = (request, response, next) => {
 };
 
 /**
- * Destructured properties have defaults, this is to avoid crashes when
- * using this method to only one property.
+ * Destructured properties have defaults to avoid crashes when
+ * using this method for only one property.
  *
  * This can be done efficiently (prod) by creating the default user/email in
  * seeders and then storing said user in the .env.
