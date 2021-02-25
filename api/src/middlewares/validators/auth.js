@@ -44,8 +44,15 @@ const validateSignin = (request, response, next) => {
   }
 };
 
+/**
+ * Destructured properties have defaults, this is to avoid crashes when
+ * using this method to only one property.
+ *
+ * This can be done efficiently (prod) by creating the default user/email in
+ * seeders and then storing said user in the .env.
+ */
 const checkDuplicatedUser = async (request, response, next) => {
-  const { username, email } = request.body;
+  const { username = 'nullernull', email = 'null@null.com' } = request.body;
 
   try {
     const emailAlreadyExists = await user.findOne({ where: { email } });

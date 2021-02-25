@@ -4,7 +4,7 @@ import {
   updatePassword,
 } from './userController';
 import {
-  // checkDuplicatedUser,
+  checkDuplicatedUser,
   checkToken,
 } from '@middlewares/validators/auth';
 import handler from '@utils/controllerHandler';
@@ -15,6 +15,7 @@ const ROUTE_PREFIX = '/account';
 router.use(checkToken);
 
 router.put(`${ROUTE_PREFIX}/username`,
+  checkDuplicatedUser,
   handler(updateUsername, (request, response) => (
     [response.locals.user.id, request.body.username]
   )),
