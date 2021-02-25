@@ -15,10 +15,11 @@ import {
 import handler from '@utils/controllerHandler';
 
 const router = Router();
+const ROUTE_PREFIX = '/b';
 
 router.use(checkToken);
 
-router.post('/b/new',
+router.post(`${ROUTE_PREFIX}/new`,
   [
     validateNewBoard,
     checkDuplicatedBoardName,
@@ -33,31 +34,31 @@ router.post('/b/new',
   )),
 );
 
-router.get('/b/all',
+router.get(`${ROUTE_PREFIX}/all`,
   handler(getBoards, (request, response) => (
     [response.locals.user.id, response]
   )),
 );
 
-router.get('/b/favorites',
+router.get(`${ROUTE_PREFIX}/favorites`,
   handler(getFavoriteBoards, (request, response) => (
     [response.locals.user.id, response]
   )),
 );
 
-router.put('/b/:id/toggle-favorite',
+router.put(`${ROUTE_PREFIX}/:id/toggle-favorite`,
   handler(toggleFavoriteBoard, (request, response) => (
     [response.locals.user.id, request.params.id, response]
   )),
 );
 
-router.delete('/b/:id',
+router.delete(`${ROUTE_PREFIX}/:id`,
   handler(deleteBoard, (request, response) => (
     [request.params.id, response]
   )),
 );
 
-router.get('/b/:id',
+router.get(`${ROUTE_PREFIX}/:id`,
   handler(getBoard, (request, response) => (
     [request.params.id, response]
   )),

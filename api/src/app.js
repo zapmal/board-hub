@@ -3,8 +3,10 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 import { customMorganFormat } from '@utils/logging/logger';
+
 import { authRoutes } from '@components/auth';
 import { boardsRoutes } from '@components/boards';
+import { userRoutes } from '@components/user';
 
 const app = express();
 const PORT = process.env.PORT || 9000;
@@ -18,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(PREFIX, authRoutes);
 app.use(PREFIX, boardsRoutes);
+app.use(PREFIX, userRoutes);
 
 export {
   app,

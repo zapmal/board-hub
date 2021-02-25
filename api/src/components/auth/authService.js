@@ -1,10 +1,7 @@
 import { user } from '@models';
 import { genSalt, hash } from 'bcryptjs';
-import dotenv from 'dotenv';
 
 import getToken from '@utils/getToken';
-
-dotenv.config();
 
 const createUser = async (fullname, username, password, email, ip) => {
   const salt = await genSalt(10);
@@ -28,6 +25,25 @@ const getUser = async (email) => {
 
   return foundUser;
 };
+
+// const updatePassword = async (password) => {
+//   const salt = await genSalt(10);
+//   const hashedPassword = await hash(password, salt);
+
+//   await user.update({ password: hashedPassword }, { where: { user_id: 1 } });
+
+//   return true;
+// };
+
+// const updateUsername = async (newUsername, userID) => {
+//   await user.update({ user_name: newUsername }, { where: { user_id: userID } });
+
+//   return true;
+// };
+
+// const updateField = async (field, userID, newData) => {
+//   await user.update({ field: newData }, { where: { user_id: userID } });
+// };
 
 export {
   createUser,
