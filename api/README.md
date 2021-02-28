@@ -23,11 +23,10 @@ If needed, migrations and seeding can be reverted:
 - `yarn undo:seeding`.
 
 Logs can be queried with:
-> --lines is an optional argument.
-
-The only valid log names at the moment are **exceptions**, **rejections** and **errors**.
 
 - `yarn query:logs --name <log name> --lines <amount of lines>`.
+
+`--lines` is an optional argument, and the only valid log names at the moment are **exceptions**, **rejections** and **errors**.
 
 ### Builds
 
