@@ -41,4 +41,4 @@ Create a new migration for it, and use **snake_case**.
 - `npx sequelize migration:generate <migration name>`
 - `yarn run sequelize migration:generate <migration name>`
 
-Don't overwrite existing ones, [this article](https://dev.to/anayooleru/modifying-an-existing-sequelize-migration-1mnn)  or [this one](https://sequelize.org/master/manual/migrations.html) can help if needed.
+Don't overwrite existing ones, [this article](https://dev.to/anayooleru/modifying-an-existing-sequelize-migration-1mnn)  or [the official docs](https://sequelize.org/master/manual/migrations.html) can help if needed.
