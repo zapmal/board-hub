@@ -1,20 +1,38 @@
-import { updateField } from './userServices';
+import { compare } from 'bcryptjs';
+import {
+  updateUsername,
+  updatePassword,
+  getCurrentUserPassword,
+} from './userServices';
 
-const updateUsername = async (userID, newUsername) => {
-  await updateField('user_name', newUsername, userID);
+/**
+ * Using <put> because there was a naming conflict
+ * with the service.
+ */
+const putUsername = async (userID, newUsername) => {
+  await updateUsername(newUsername, userID);
 
   return {
     message: `Tu nombre de usuario ha sido cambiado a ${newUsername} exitosamente.`,
   };
 };
 
-const updatePassword = async (userID, newPassword) => {
-  await updateField('password', newPassword, userID);
+const putPassword = async (userID, currentPassword, newPassword, response) => {
+  const storedPassword = await getCurrentUserPassword(userID);
 
-  return { message: 'Contraseña actualizada exitosamente.' };
+  const oldPasswordsMatch = await compare(currentPassword, storedPassword);
+
+  if (oldPasswordsMatch) {
+    await updatePassword(newPassword, userID);
+    return { message: 'Contraseña actualizada exitosamente.' };
+  }
+  else {
+    response.status(400);
+    return { message: 'La contraseña (actual) es incorrecta.' };
+  }
 };
 
 export {
-  updateUsername,
-  updatePassword,
+  putUsername,
+  putPassword,
 };

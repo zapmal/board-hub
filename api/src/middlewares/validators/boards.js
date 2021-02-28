@@ -2,11 +2,7 @@ import validate from '@utils/schemas/validate';
 import { newBoardSchema } from '@utils/schemas/boardsSchemas';
 import logger from '@utils/logging/logger';
 
-import dotenv from 'dotenv';
-
 import { board } from '@models';
-
-dotenv.config();
 
 const validateNewBoard = (request, response, next) => {
   const { error } = validate(newBoardSchema, request.body);

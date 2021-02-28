@@ -1,23 +1,25 @@
 import { user } from '@models';
 import { genSalt, hash } from 'bcryptjs';
 
-/**
- * Only for two cases (password, user_name).
- */
-const updateField = async (field, newValue, userID) => {
-  if (field === 'password') {
-    const salt = await genSalt(10);
-    const hashedPassword = await hash(newValue, salt);
+const updateUsername = async (newUsername, userID) => {
+  await user.update({ user_name: newUsername }, { where: { id: userID } });
+};
 
-    await user.update({ password: hashedPassword }, { where: { id: userID } });
-  }
-  else {
-    await user.update({ user_name: newValue }, { where: { id: userID } });
-  }
+const updatePassword = async (newPassword, userID) => {
+  const salt = await genSalt(10);
+  const hashedPassword = await hash(newPassword, salt);
 
-  return;
+  await user.update({ password: hashedPassword }, { where: { id: userID } });
+};
+
+const getCurrentUserPassword = async (userID) => {
+  const { password } = await user.findOne({ where: { id: userID } });
+
+  return password;
 };
 
 export {
-  updateField,
+  updateUsername,
+  updatePassword,
+  getCurrentUserPassword,
 };
