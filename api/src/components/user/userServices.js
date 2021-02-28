@@ -15,7 +15,7 @@ const updateField = async (field, newValue, userID) => {
     await user.update({ user_name: newValue }, { where: { id: userID } });
   }
 
-  return true;
+  return;
 };
 
 export {

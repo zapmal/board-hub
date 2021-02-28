@@ -5,7 +5,7 @@ import {
   deleteUserBoard,
   getSingleBoard,
   toggleFavorite,
-} from './boardsService';
+} from './boardService';
 
 const newBoard = async (userID, name, description, isFavorite) => {
   const board = await createBoard(userID, name, description, isFavorite);

@@ -3,14 +3,10 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 import { customMorganFormat } from '@utils/logging/logger';
-
-import { authRoutes } from '@components/auth';
-import { boardsRoutes } from '@components/boards';
-import { userRoutes } from '@components/user';
+import loadRoutes from '@components/routes';
 
 const app = express();
 const PORT = process.env.PORT || 9000;
-const PREFIX = '/api';
 
 app.use(morgan(customMorganFormat));
 app.use(helmet());
@@ -18,9 +14,7 @@ app.use(cors({ origin: 'http://localhost:3000' }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use(PREFIX, authRoutes);
-app.use(PREFIX, boardsRoutes);
-app.use(PREFIX, userRoutes);
+loadRoutes(app);
 
 export {
   app,
