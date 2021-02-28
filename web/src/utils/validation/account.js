@@ -10,5 +10,5 @@ export const updatePasswordSchema = yup.object({
   password: yup.string().required('Este campo es requerido.'),
   newPassword: yup.string().min(8, 'Mínimo ocho (8) carácteres.').required('Este campo es requerido.'),
   newPasswordConfirmation: yup.string().required('Este campo es requerido.')
-    .oneOf([yup.ref('password'), null], 'Las contraseñas deben coincidir.'),
+    .oneOf([yup.ref('newPassword'), null], 'Las contraseñas deben coincidir.'),
 });

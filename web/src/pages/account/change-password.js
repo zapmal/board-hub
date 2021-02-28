@@ -7,7 +7,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import UpdateForm from 'components/Forms/UpdateForm';
 import CustomField from 'components/CustomField';
 
-import { updatePasswordSchema } from 'utils/validation/update';
+import { updatePasswordSchema } from 'utils/validation/account';
 
 const ChangeUsername = () => {
   return (

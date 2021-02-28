@@ -6,7 +6,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import UpdateForm from 'components/Forms/UpdateForm';
 import CustomField from 'components/CustomField';
 
-import { updateUsernameSchema } from 'utils/validation/update';
+import { updateUsernameSchema } from 'utils/validation/account';
 
 const ChangeUsername = () => {
   return (
