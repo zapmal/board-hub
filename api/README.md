@@ -26,8 +26,8 @@ Logs can be queried with:
 
 - `yarn query:logs --name <log name> --lines <amount of lines>`.
 
-`--lines` is an optional argument, and the only valid `--name` arg at the moment are
-**exceptions**, **rejections** or **errors**.
+`--lines` is an optional argument and `--name` is required, the only accepted names
+at the moment are **exceptions**, **rejections** or **errors**.
 
 ### Builds
 
