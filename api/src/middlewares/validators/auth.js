@@ -5,11 +5,8 @@ import {
 } from '@utils/schemas/authSchemas';
 import logger from '@utils/logging/logger';
 
-import dotenv from 'dotenv';
 import { verify } from 'jsonwebtoken';
 import { user } from '@models';
-
-dotenv.config();
 
 const validateSignup = (request, response, next) => {
   const { value, error } = validate(signupSchema, request.body);
