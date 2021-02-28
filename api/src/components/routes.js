@@ -1,10 +1,9 @@
-import authRoutes from './auth/';
-import boardRoutes from './board/';
-import userRoutes from './user/';
+import authRoutes from './auth';
+import boardRoutes from './board';
+import userRoutes from './user';
 
 /**
- * This file, if needed, can also export the routes,
- * aside from the loader.
+ * This file, if needed, can also export the routes aside from the loader.
  */
 const PREFIX = '/api';
 const routes = [

@@ -8,18 +8,21 @@ import {
   Button,
 } from '@material-ui/core';
 import { useMutation } from 'react-query';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import VpnKeyIcon from '@material-ui/icons/VpnKey';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 import Highlight from 'components/Highlight';
-import CustomField from 'components/CustomField';
 import { Background, FormContainer } from './styles';
 
 import apiClient from 'services/api';
 import useUserStore from 'stores/useUserStore';
 
-const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
+const AuthForm = ({ 
+  route, 
+  validationSchema, 
+  history, 
+  maxWidth = 700,
+  children
+}) => {
   const mutation = useMutation(data => apiClient.post(route, data));
   const setUser = useUserStore(state => state.setUser);
 
@@ -73,7 +76,7 @@ const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
               <Paper elevation={4} style={{ padding: '30px 20px' }}>
 
                 <Grid container alignItems='flex-start' spacing={4}>
-                  {route === 'signin' ? <Signin /> : <Signup />}
+                  {children}
                 </Grid>
 
                 <Button 
@@ -99,96 +102,6 @@ const AuthForm = ({ route, validationSchema, history, maxWidth = 700 }) => {
           Empieza a manejar todo de una <Highlight>mejor forma</Highlight>.
         </Typography>
       </FormContainer>
-    </>
-  );
-};
-
-const Signin = () => {
-  return (
-    <> 
-      <Grid item xs={1}>
-        <AccountCircle fontSize='large' color='secondary' />
-      </Grid>
-      <Grid item xs={11}>
-        <CustomField 
-          fullWidth
-          variant='outlined'
-          type='email'
-          label='Email'
-          name='email'
-          color='secondary'
-        />
-      </Grid>
-      <Grid item xs={1}>
-        <VpnKeyIcon fontSize='large' color='secondary' />
-      </Grid>
-      <Grid item xs={11}>
-        <CustomField 
-          fullWidth
-          variant='outlined'
-          type='password'
-          label='Password'
-          name='password'
-          color='secondary'
-        />
-      </Grid>
-    </>
-  );
-};
-
-const Signup = () => {
-  return (
-    <>
-      <Grid item xs={6}>
-        <CustomField 
-          fullWidth
-          variant='outlined'
-          type='email'
-          label='Email'
-          name='email'
-          color='secondary'
-        />
-      </Grid>
-      <Grid item xs={6}>
-        <CustomField 
-          fullWidth
-          type='text'
-          variant='outlined'
-          label='Nombre de usuario'
-          name='username'
-          color='secondary'
-        />
-      </Grid>
-      <Grid item xs={6}>
-        <CustomField 
-          fullWidth
-          variant='outlined'
-          type='password'
-          label='Contraseña'
-          name='password'
-          color='secondary'
-        />
-      </Grid>
-      <Grid item xs={6}>
-        <CustomField 
-          fullWidth
-          variant='outlined'
-          type='password'
-          label='Confirmación de contraseña'
-          name='passwordConfirmation'
-          color='secondary'
-        />
-      </Grid>
-      <Grid item xs={12}>
-        <CustomField 
-          fullWidth
-          type='text'
-          variant='outlined'
-          label='Nombre Completo'
-          name='fullname'
-          color='secondary'
-        />
-      </Grid>
     </>
   );
 };

@@ -15,6 +15,9 @@ import Boards from './boards';
 import Board from './boards/board';
 import Favorites from './boards/favorites';
 
+import ChangePassword from './account/change-password';
+import ChangeUsername from './account/change-username';
+
 const RouteWithSubRoutes = (route) => {
   return route.protected
     ? (
@@ -64,12 +67,6 @@ const ROUTES = [
         component: Boards
       },
       {
-        path: '/b/new',
-        key: 'NEW_BOARD',
-        exact: true,
-        component: () => <h1>New board</h1>,
-      },
-      {
         path: '/b/favorites',
         key: 'FAVORITE_BOARDS',
         exact: true,
@@ -83,6 +80,26 @@ const ROUTES = [
       }
     ]
   },
+  {
+    path: '/account',
+    key: 'ACCOUNT',
+    protected: true,
+    component: RenderRoutes,
+    routes: [
+      {
+        path: '/account/change-password',
+        key: 'ACCOUNT_CHANGE_PASSWORD',
+        exact: true,
+        component: ChangePassword
+      },
+      {
+        path: '/account/change-username',
+        key: 'ACCOUNT_CHANGE_USERNAME',
+        exact: true,
+        component: ChangeUsername
+      },
+    ]
+  }
 ];
 
 export default ROUTES;
