@@ -19,8 +19,8 @@ import useUserStore from 'stores/useUserStore';
 const AuthForm = ({ 
   route, 
   validationSchema, 
-  history, 
   maxWidth = 700,
+  history, 
   children
 }) => {
   const mutation = useMutation(data => apiClient.post(route, data));
@@ -39,7 +39,7 @@ const AuthForm = ({
       fullname: '',
     };
   
-  const handleSubmit = async (data, { setStatus, resetForm, setSubmitting })  => {
+  const handleSubmit = async (data, { setStatus, setSubmitting, resetForm })  => {
     try {
       setSubmitting(true);
 

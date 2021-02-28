@@ -5,7 +5,7 @@ import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
 import { signinSchema } from '../utils/validation/auth';
 
-import AuthForm from '../components/AuthForm';
+import AuthForm from '../components/Forms/AuthForm';
 import CustomField from '../components/CustomField';
 
 const Signin = () => {
