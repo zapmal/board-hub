@@ -1,6 +1,6 @@
 # Board Hub API
 
-> For architecture details, check the [architecture document](./ARCHITECTURE.md) (soon, it's not finished, yet).
+> For architecture details, check the [architecture document](./ARCHITECTURE.md) (soon).
 
 ## Configuration and Build steps
 
