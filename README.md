@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/logo-github.png" alt="Board Hub logo" />
+  <img src=".github/assets/logo-github.png" alt="Board Hub logo" />
 </p>
 
 ## How to run locally
