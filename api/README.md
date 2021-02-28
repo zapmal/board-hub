@@ -25,6 +25,8 @@ If needed, migrations and seeding can be reverted:
 Logs can be queried with:
 > --lines is an optional argument.
 
+The only valid log names at the moment are **exceptions**, **rejections** and **errors**.
+
 - `yarn query:logs --name <log name> --lines <amount of lines>`.
 
 ### Builds
@@ -34,4 +36,9 @@ Logs can be queried with:
 
 ### About Migrations
 
-- Create a new migration for it → `npx sequelize migration:generate <migration name>`. Don't overwrite existing ones, [this article](https://dev.to/anayooleru/modifying-an-existing-sequelize-migration-1mnn)  or [this one](https://sequelize.org/master/manual/migrations.html) can help if needed.
+Create a new migration for it, and use **snake_case**.
+
+- `npx sequelize migration:generate <migration name>`
+- `yarn run sequelize migration:generate <migration name>`
+
+Don't overwrite existing ones, [this article](https://dev.to/anayooleru/modifying-an-existing-sequelize-migration-1mnn)  or [this one](https://sequelize.org/master/manual/migrations.html) can help if needed.
