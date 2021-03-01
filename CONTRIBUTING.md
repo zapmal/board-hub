@@ -30,7 +30,7 @@ $ CREATE DATABASE board_hub;
 
 - Run `yarn` to install dependencies.
 
-- Navigate to `/api` and run `cp .env.example .env` to create the enviroment variables.
+- Navigate to `/api` and run `cp .env.example .env`.
 
 - Set the following enviroment variables:
 
