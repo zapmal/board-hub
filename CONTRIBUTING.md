@@ -28,9 +28,9 @@ $ mysql -u <username> -p <password>
 $ CREATE DATABASE board_hub;
 ```
 
-- Run `yarn` to install dependencies.
+- Navigate to `/api` and run `yarn` to install dependencies.
 
-- Navigate to `/api` and run `cp .env.example .env`.
+- Run `cp .env.example .env`.
 
 - Set the following enviroment variables:
 
@@ -39,8 +39,6 @@ DATABASE_USERNAME=
 DATABASE_PASSWORD=
 JWT_SECRET=
 ```
-
-- Navigate to `/api`.
 
 - Run `yarn migrate` for migrations.
 
