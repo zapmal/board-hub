@@ -40,6 +40,8 @@ DATABASE_PASSWORD=
 JWT_SECRET=
 ```
 
+- Navigate to `/api`.
+
 - Run `yarn migrate` for migrations.
 
 - (Optional) Run `yarn seed`, this will create 50 users, the passsword for all of the seeded users is `password`.
