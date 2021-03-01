@@ -18,7 +18,7 @@ All changes happen through pull requests. Pull requests are the best way to prop
 
 > For architecture details, check the [architecture document](./api/ARCHITECTURE.md) (soon).
 
-This assumes that you've installed MySQL (preferable >= 8.0) 
+This assumes that you've installed MySQL (preferable >= 8.0).
 
 - Create a database named `board_hub`.
 
@@ -48,12 +48,12 @@ JWT_SECRET=
 
 If needed, migrations and seeding can be reverted:
 
-- `yarn undo:migration`
-- `yarn undo:seeding`
+- `yarn undo:migration`.
+- `yarn undo:seeding`.
 
 Logs can be queried with:
 
-- `yarn query:logs --name <log name> --lines <amount of lines>`
+- `yarn query:logs --name <log name> --lines <amount of lines>`.
 
 `--lines` is an optional argument and `--name` is required, the only accepted names
 at the moment are **exceptions**, **rejections** or **errors**.
