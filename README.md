@@ -4,4 +4,4 @@
 
 ## How to run locally
 
-Both `api` and `web` have the requirements and instructions necessary to run the project locally.
+Check [this](./CONTRIBUTING.md) on how to run locally.
