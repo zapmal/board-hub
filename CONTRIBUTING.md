@@ -2,7 +2,7 @@
 
 ## Development Process
 
-All changes happen through pull requests. Pull requests are the best way to propose changes, you can submit a pull request
+All changes happen through pull requests. Pull requests are the best way to propose changes, you can submit one  
 <a href="https://github.com/Zondazx/board-hub/pulls">here</a>, and after review, these can be merged into the project.
 
 ## Pull Requests
