@@ -3,7 +3,6 @@ import {
   AppBar, 
   Toolbar, 
   Button,
-  Box,
 } from '@material-ui/core';
 import InfoIcon from '@material-ui/icons/Info';
 import ContactPhoneIcon from '@material-ui/icons/ContactPhone';
@@ -37,7 +36,6 @@ const navRoutes = [
 const Nav = ({ location }) => {
   const { 
     logo,
-    header, 
     toolbar, 
     button, 
     actionButtons 
@@ -58,81 +56,79 @@ const Nav = ({ location }) => {
   }, []);
 
   return (
-    <>
-      <AppBar className={header}>
-        <Toolbar className={toolbar}>
-          <Link to={'/'}>
-            <img src={logoImage} className={logo} width='160px' alt='Logo' />
-          </Link>
+    <AppBar>
+      <Toolbar className={toolbar}>
+        <Link to={'/'}>
+          <img src={logoImage} className={logo} width='160px' alt='Logo' />
+        </Link>
 
-          <Box>
-            {navRoutes.map(({ label, href, icon }) => (
-              <Button
-                startIcon={icon}
-                key={label}
-                to={href}
-                className={button}
-                component={Link}
-              >
-                {label}
-              </Button>
-            ))}
+        <div>
+          {navRoutes.map(({ label, href, icon }) => (
+            <Button
+              startIcon={icon}
+              key={label}
+              to={href}
+              className={button}
+              component={Link}
+            >
+              {label}
+            </Button>
+          ))}
 
-            {loading 
-            ? (
-              <PulseLoader color='#7352d0' loading={loading} size={10}/> 
-            ) 
-            : (
-              user
-                ? (
-                  <>
-                    <Button 
-                      variant='contained' 
-                      color='secondary' 
-                      to='/b'
-                      component={Link}
-                      className={actionButtons}
-                    >
-                      Tus Tableros
-                    </Button>
-                    <Button 
-                      variant='contained' 
-                      color='secondary' 
-                      className={actionButtons}
-                      onClick={removeUser}
-                    >
-                      Cerrar sesión
-                    </Button>
-                  </>
-                )
-                : (
-                  <>
-                    <Button 
-                      variant='contained' 
-                      color='secondary' 
-                      to='/signin'
-                      component={Link}
-                      className={actionButtons}
-                    >
-                      Inicio de sesión
-                    </Button>
-
-                    <Button 
-                      variant='contained' 
-                      color='secondary'
-                      to='/signup'
-                      component={Link}
-                      className={actionButtons}
-                    >
-                      Registro
-                    </Button>
-                  </>
+          {loading 
+          ? (
+            <PulseLoader color='#7352d0' loading={loading} size={10}/> 
+          ) 
+          : (
+            user
+              ? (
+                <>
+                  <Button 
+                    variant='contained' 
+                    color='secondary' 
+                    to='/b'
+                    component={Link}
+                    className={actionButtons}
+                  >
+                    Tus Tableros
+                  </Button>
+                  <Button 
+                    variant='contained' 
+                    color='secondary' 
+                    className={actionButtons}
+                    onClick={removeUser}
+                  >
+                    Cerrar sesión
+                  </Button>
+                </>
               )
-            )}
-          </Box>
-        </Toolbar>
-      </AppBar>
-    </>
+              : (
+                <>
+                  <Button 
+                    variant='contained' 
+                    color='secondary' 
+                    to='/signin'
+                    component={Link}
+                    className={actionButtons}
+                  >
+                    Inicio de sesión
+                  </Button>
+
+                  <Button 
+                    variant='contained' 
+                    color='secondary'
+                    to='/signup'
+                    component={Link}
+                    className={actionButtons}
+                  >
+                    Registro
+                  </Button>
+                </>
+            )
+          )}
+        </div>
+      </Toolbar>
+    </AppBar>
   );
 };
 
