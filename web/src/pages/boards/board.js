@@ -9,8 +9,9 @@ import {
 import InnerList from '../../components/InnerList';
 
 const Container = styled.div`
-  margin-top: 80px;
+  padding: 60px 0 180px 0;
   display: flex;
+  justify-content: center; 
 `;
 
 const initialData = {
@@ -23,21 +24,26 @@ const initialData = {
   lists: {
     'column-1': {
       id: 'column-1',
-      name: 'Pendiente',
+      name: 'Atrasado',
       cardIds: ['card-1', 'card-2', 'card-3', 'card-4'],
     },
     'column-2': {
       id: 'column-2',
-      name: 'Haciendo',
+      name: 'Pendiente',
       cardIds: [],
     },
     'column-3': {
       id: 'column-3',
+      name: 'Haciendo',
+      cardIds: [],
+    },
+    'column-4': {
+      id: 'column-4',
       name: 'Terminado',
       cardIds: [],
     },
   },
-  listOrder: ['column-1', 'column-2', 'column-3'],
+  listOrder: ['column-1', 'column-2', 'column-3', 'column-4'],
 };
 
 const Board = () => {
