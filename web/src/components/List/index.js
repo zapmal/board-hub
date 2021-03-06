@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import AddIcon from '@material-ui/icons/Add';
 import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 import { ListContainer, ListName, CardList } from './styles';
@@ -23,6 +25,9 @@ const List = ({ list, cards, index }) => {
               </CardList>
             )}
           </Droppable>
+          <Button>
+            <AddIcon />
+          </Button>
         </ListContainer>
       )}
     </Draggable>

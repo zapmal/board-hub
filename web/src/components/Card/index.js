@@ -1,19 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { IconButton } from '@material-ui/core';
+import LockIcon from '@material-ui/icons/Lock';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import DeleteBorderIcon from '@material-ui/icons/DeleteOutlined';
 import { Draggable } from 'react-beautiful-dnd';
 
-import { CardContainer } from './styles';
+import { CardContainer, ActionButtons } from './styles';
 
 const Card = ({ card, index }) => {
+  const [isLocked, setIsLocked] = useState(false);
+
+  const handleLockedClick = () => {
+    setIsLocked(!isLocked);
+  };
+
   return (
-    <Draggable draggableId={card.id} index={index}>
+    <Draggable draggableId={card.id} index={index} isDragDisabled={isLocked}>
       {(provided, snapshot) => (
         <CardContainer
           ref={provided.innerRef}
           isDragging={snapshot.isDragging}
+          isDisabled={isLocked}
           {...provided.draggableProps}
           {...provided.dragHandleProps}  
         >
-          {card.title}
+          <span>{card.title}</span>
+          <ActionButtons>
+            <IconButton onClick={handleLockedClick}>
+              {isLocked ? <LockIcon fontSize='small'/> : <LockOpenIcon fontSize='small'/>}
+            </IconButton>
+            <IconButton disabled={isLocked}>
+              <DeleteBorderIcon fontSize='small' />
+            </IconButton>
+          </ActionButtons>
         </CardContainer>
       )}
     </Draggable>
