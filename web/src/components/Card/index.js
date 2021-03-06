@@ -10,6 +10,19 @@ import { CardContainer, ActionButtons } from './styles';
 const Card = ({ card, index }) => {
   const [isLocked, setIsLocked] = useState(false);
 
+  const handleEditClick = (event) => {
+    if (
+      isLocked || 
+      event.target.tagName === 'path' || 
+      event.target.tagName === 'svg' || 
+      event.target.tagName === 'BUTTON'
+    ) {
+      return;
+    }
+
+    alert('stuff');
+  };
+
   const handleLockedClick = () => {
     setIsLocked(!isLocked);
   };
@@ -21,6 +34,7 @@ const Card = ({ card, index }) => {
           ref={provided.innerRef}
           isDragging={snapshot.isDragging}
           isDisabled={isLocked}
+          onClick={handleEditClick}
           {...provided.draggableProps}
           {...provided.dragHandleProps}  
         >
