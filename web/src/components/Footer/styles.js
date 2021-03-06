@@ -7,7 +7,7 @@ import background from 'assets/svgs/background-light.svg';
  */
 export const FooterContainer = styled.footer`
   padding: 30px 40px;
-  background-color: #504491;
+  background-color: #7362d0;
   background-image: url(${background});
   background-size: 80%;
   background-position: 400% 70%;

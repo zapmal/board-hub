@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
 import { useParams } from 'react-router-dom';
 import { 
   DragDropContext,
@@ -8,10 +8,16 @@ import {
 
 import InnerList from '../../components/InnerList';
 
+import background from '../../assets/images/bg-2.jpg';
+
 const Container = styled.div`
-  padding: 60px 0 180px 0;
+  padding: 6% 0 16% 0;
   display: flex;
   justify-content: center; 
+
+  background-image: url(${background});
+  background-position: center top;
+  background-repeat: no-repeat;
 `;
 
 const initialData = {
