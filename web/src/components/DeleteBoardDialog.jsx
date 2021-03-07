@@ -66,7 +66,7 @@ const DeleteBoardDialog = ({ isOpen, handleClose, boardId }) => {
             </DialogContent>
             <DialogActions>
               <Button onClick={handleClose} color='secondary'>
-                Rechazar
+                {!!status?.success ? 'Cerrar' : 'Cancelar'}
               </Button>
               <Button 
                 type='submit'

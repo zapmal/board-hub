@@ -23,9 +23,7 @@ const Card = ({ card, index }) => {
     alert('stuff');
   };
 
-  const handleLockedClick = () => {
-    setIsLocked(!isLocked);
-  };
+  const handleLockedClick = () => setIsLocked(!isLocked);
 
   return (
     <Draggable draggableId={card.id} index={index} isDragDisabled={isLocked}>

@@ -49,7 +49,7 @@ const BoardsDisplay = ({ boards = [], header }) => {
     await mutation.mutateAsync({ id });
   };
 
-  const handleDeleteDialogOpen = (boardId) => {
+  const handleDeleteDialogClick = (boardId) => {
     toggleOpen();
     board.current = boardId;
   };
@@ -92,7 +92,7 @@ const BoardsDisplay = ({ boards = [], header }) => {
                 </Button>
                 <IconButton 
                   className={classes.deleteButton} 
-                  onClick={() => handleDeleteDialogOpen(board.id)} 
+                  onClick={() => handleDeleteDialogClick(board.id)} 
                   id={board.id}
                 >
                   <DeleteIcon />
