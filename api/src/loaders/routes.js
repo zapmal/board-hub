@@ -1,10 +1,7 @@
-import authRoutes from './auth';
-import boardRoutes from './board';
-import userRoutes from './user';
+import authRoutes from '@components/auth';
+import boardRoutes from '@components/board';
+import userRoutes from '@components/user';
 
-/**
- * This file, if needed, can also export the routes aside from the loader.
- */
 const PREFIX = '/api';
 const routes = [
   authRoutes,

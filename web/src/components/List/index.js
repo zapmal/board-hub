@@ -5,6 +5,8 @@ import { Draggable, Droppable } from 'react-beautiful-dnd';
 
 import { ListContainer, ListName, CardList } from './styles';
 
+import Card from '../Card';
+
 import InnerList from '../InnerList';
 
 const List = ({ list, cards, index }) => {
