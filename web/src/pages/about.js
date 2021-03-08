@@ -12,7 +12,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
-import Highlight from '../components/Highlight';
+import { Highlight } from 'components/common';
 
 import wave from '../assets/svgs/wave.svg';
 import noImage from '../assets/images/noimage.png';

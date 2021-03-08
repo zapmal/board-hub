@@ -3,7 +3,8 @@ import styled from 'styled-components/macro';
 import Link from '@material-ui/core/Link';
 
 import notFound from '../assets/images/404.png';
-import Highlight from '../components/Highlight';
+
+import { Highlight } from 'components/common/';
 
 const Container = styled.div`
   margin: 31px 0;

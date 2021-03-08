@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 
 import { signupSchema } from '../utils/validation/auth';
 
-import AuthForm from '../components/Forms/AuthForm';
-import CustomField from '../components/CustomField';
+import { AuthForm } from 'components/account';
+import { CustomField } from 'components/common';
 
 const Signup = () => {
   return (

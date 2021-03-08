@@ -3,8 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import RepeatIcon from '@material-ui/icons/Repeat';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
-import UpdateForm from 'components/Forms/UpdateForm';
-import CustomField from 'components/CustomField';
+import { UpdateForm } from 'components/account';
+import { CustomField } from 'components/common';
 
 import { updateUsernameSchema } from 'utils/validation/account';
 

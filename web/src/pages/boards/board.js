@@ -6,7 +6,7 @@ import {
   Droppable
 } from 'react-beautiful-dnd';
 
-import InnerList from '../../components/InnerList';
+import { InnerList } from 'components/boards';
 
 import background from '../../assets/images/bg-2.jpg';
 

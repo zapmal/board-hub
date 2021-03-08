@@ -1,8 +1,7 @@
 import React from 'react';
 import { useQuery } from 'react-query';
 
-import BoardsDisplay from 'components/BoardsDisplay';
-import Status from 'components/Status';
+import { BoardsDisplay, Status } from 'components/boards';
 
 import apiClient from 'services/api';
 

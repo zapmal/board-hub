@@ -3,7 +3,7 @@ import styled from 'styled-components/macro';
 
 import ChatIcon from '@material-ui/icons/Chat';
 
-import Highlight from '../components/Highlight';
+import { Highlight } from 'components/common';
 
 const Background = styled.header`
   background-color: #7362d0;

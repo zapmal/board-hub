@@ -4,8 +4,8 @@ import RepeatIcon from '@material-ui/icons/Repeat';
 import FiberNewIcon from '@material-ui/icons/FiberNew';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
-import UpdateForm from 'components/Forms/UpdateForm';
-import CustomField from 'components/CustomField';
+import { UpdateForm } from 'components/account';
+import { CustomField } from 'components/common';
 
 import { updatePasswordSchema } from 'utils/validation/account';
 

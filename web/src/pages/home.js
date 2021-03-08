@@ -12,8 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import BeenhereIcon from '@material-ui/icons/Beenhere';
 import FaceIcon from '@material-ui/icons/Face';
 
-import PromptButton from '../components/PromptButton';
-import Highlight from '../components/Highlight';
+import { PromptButton, Highlight } from 'components/common';
 
 import teamStock from '../assets/images/team-stock.png';
 import blankCanvas from '../assets/svgs/blank-canvas.svg';
