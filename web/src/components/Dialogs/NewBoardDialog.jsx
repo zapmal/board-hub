@@ -14,14 +14,14 @@ import {
 import StarIcon from '@material-ui/icons/Star';
 import StarBorderIcon from '@material-ui/icons/StarBorder';
 
-import CustomField from './CustomField';
-import Highlight from './Highlight';
+import CustomField from '../CustomField';
+import Highlight from '../Highlight';
 
-import useUserStore from '../stores/useUserStore';
+import useUserStore from 'stores/useUserStore';
 
-import apiClient from '../services/api';
+import apiClient from 'services/api';
 
-import newBoardSchema from '../utils/validation/newBoard';
+import newBoardSchema from 'utils/validation/newBoard';
 
 const NewBoardDialog = ({ isOpen, handleClose }) => {
   const queryClient = useQueryClient();

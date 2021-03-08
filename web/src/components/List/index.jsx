@@ -8,7 +8,7 @@ import { ListContainer, ListName, CardList } from './styles';
 import useToggle from 'hooks/useToggle';
 
 import InnerList from '../InnerList';
-import NewCardDialog from '../NewCardDialog';
+import NewCardDialog from '../Dialogs/NewCardDialog';
 
 const mock = {
   id: 'card-5',

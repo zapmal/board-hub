@@ -12,9 +12,9 @@ import {
 import { useMutation, useQueryClient } from 'react-query';
 import { Form, Formik } from 'formik';
 
-import Highlight from './Highlight';
+import Highlight from '../Highlight';
 
-import apiClient from '../services/api';
+import apiClient from 'services/api';
 
 const DeleteBoardDialog = ({ isOpen, handleClose, boardId }) => {
   const queryClient = useQueryClient();

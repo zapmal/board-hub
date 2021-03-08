@@ -24,8 +24,8 @@ import {
   Separator,
 } from './styles';
 
-import DeleteBoardDialog from 'components/DeleteBoardDialog';
-import Highlight from 'components/Highlight';
+import DeleteBoardDialog from '../Dialogs/DeleteBoardDialog';
+import Highlight from '../Highlight';
 
 import apiClient from 'services/api';
 

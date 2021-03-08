@@ -2,9 +2,9 @@ import React from 'react';
 import styled from 'styled-components/macro';
 import { withRouter } from 'react-router-dom';
 
-import Footer from './Footer';
-import Nav from './Nav';
-import BoardsNav from './BoardsNav';
+import Footer from '../Footer';
+import Nav from '../Nav';
+import BoardsNav from '../BoardsNav';
 
 const StyledLayout = styled.div`
   padding-top: 60px;

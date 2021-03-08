@@ -1,8 +1,7 @@
-import React from 'react';
 import styled from 'styled-components/macro';
 import { Link } from 'react-router-dom';
 
-const Prompt = styled(Link)`
+export const Prompt = styled(Link)`
   padding: 18px;
   font-size: 18px;
   background-color: transparent;
@@ -60,16 +59,3 @@ const Prompt = styled(Link)`
     100% { opacity: 1; }
   }
 `;
-
-/**
- * If a <strong> is passed it will highlight it.
- */
-const PromptButton = ({ to, children }) => {
-  return (
-    <Prompt to={to}>
-      {children}
-    </Prompt>
-  );
-};
-
-export default PromptButton;

@@ -11,8 +11,8 @@ import {
   Typography,
 } from '@material-ui/core';
 
-import Highlight from './Highlight';
-import CustomField from './CustomField';
+import Highlight from '../Highlight';
+import CustomField from '../CustomField';
 
 const NewCardDialog = ({ isOpen, handleClose }) => {
   return (
