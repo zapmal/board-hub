@@ -16,7 +16,7 @@ All changes happen through pull requests. Pull requests are the best way to prop
 
 ### Backend
 
-> For architecture details, check the [architecture document](./api/ARCHITECTURE.md) (soon).
+> For architecture/structure details, check it's [document](./api/STRUCTURE.md) (soon).
 
 This assumes that you've installed MySQL (preferable >= 8.0).
 
@@ -67,5 +67,7 @@ Create a new migration for it, and use **snake_case**.
 Don't overwrite existing ones, [this article](https://dev.to/anayooleru/modifying-an-existing-sequelize-migration-1mnn)  or [the official docs](https://sequelize.org/master/manual/migrations.html) can help if needed.
 
 ### Frontend
+
+> For architecture/structure details, check it's [document](./web/STRUCTURE.md) (soon).
 
 Navigate to `/web` and run `yarn` and then `yarn start`.

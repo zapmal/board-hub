@@ -3,5 +3,5 @@ node_modules
 dist
 logs
 
-ARCHITECTURE.md
+STRUCTURE.md
 component.example.js

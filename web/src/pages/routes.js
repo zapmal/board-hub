@@ -1,7 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
-
-import ProtectedRoute from '../components/ProtectedRoute';
+import { Route, Switch, Redirect } from 'react-router-dom';
 
 import Home from './home';
 import About from './about';
@@ -17,6 +15,19 @@ import Favorites from './boards/favorites';
 
 import ChangePassword from './account/change-password';
 import ChangeUsername from './account/change-username';
+
+import useUserStore from '../stores/useUserStore';
+
+export const RenderRoutes = ({ routes }) => {
+  return (
+    <Switch>
+      {routes.map((route, index) => (
+        <RouteWithSubRoutes key={route.key} {...route} />
+      ))}
+      <Route component={NotFound} />
+    </Switch>
+  );
+};
 
 const RouteWithSubRoutes = (route) => {
   return route.protected
@@ -36,14 +47,37 @@ const RouteWithSubRoutes = (route) => {
   );
 };
 
-export const RenderRoutes = ({ routes }) => {
+const ProtectedRoute = ({ path, exact, route }) => {
+  const activeSession = useUserStore(state => state.user);
+  const isLoggedIn = localStorage.getItem('token');
+  const isAccessPage = (path === '/signin' || path === '/signup');
+
+  if (isLoggedIn && isAccessPage) {
+    return <Redirect to= '/' />;
+  }
+  else if (!isLoggedIn && isAccessPage) {
+    return (
+      <Route 
+        path={path}
+        exact={exact}
+        render={props => <route.component {...props} routes={route.routes} />}
+      />
+    );
+  }
+
   return (
-    <Switch>
-      {routes.map((route, index) => (
-        <RouteWithSubRoutes key={route.key} {...route} />
-      ))}
-      <Route component={NotFound} />
-    </Switch>
+    <Route 
+      path={path}
+      exact={exact}
+      render={props => activeSession ? (
+        <route.component 
+          {...props}
+          routes={route.routes}
+        />
+      ) : (
+        <Redirect to={{ pathname: '/signin', state: { from: props.location } }} />
+      )} 
+    />
   );
 };
 
