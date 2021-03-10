@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useParams } from 'react-router-dom';
-import { 
-  DragDropContext,
-  Droppable
-} from 'react-beautiful-dnd';
+import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 
 import { InnerList } from 'components/boards';
 
@@ -13,7 +10,7 @@ import background from '../../assets/images/bg-2.jpg';
 const Container = styled.div`
   padding: 6% 0 16% 0;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
 
   background-image: url(${background});
   background-position: center top;
@@ -22,51 +19,63 @@ const Container = styled.div`
 
 const initialData = {
   cards: {
-    'card-1': { id: 'card-1', title: 'Task 1'},
-    'card-2': { id: 'card-2', title: 'Task 2'},
-    'card-3': { id: 'card-3', title: 'Task 3'},
-    'card-4': { id: 'card-4', title: 'Task 4'},
+    '1': { id: '1', title: 'Task 1' },
+    '2': { id: '2', title: 'Task 2' },
+    '3': { id: '3', title: 'Task 3' },
+    '4': { id: '4', title: 'Task 4' },
   },
   lists: {
-    'column-1': {
-      id: 'column-1',
+    'atrasado': {
+      id: 'atrasado',
       name: 'Atrasado',
-      order: 0,
-      cardIds: ['card-1', 'card-2', 'card-3', 'card-4'],
-    },
-    'column-2': {
-      id: 'column-2',
-      name: 'Pendiente',
       order: 1,
+      cardIds: ['1', '2', '3', '4'],
+    },
+    'pendiente': {
+      id: 'pendiente',
+      name: 'Pendiente',
+      order: 0,
       cardIds: [],
     },
-    'column-3': {
-      id: 'column-3',
+    'haciendo': {
+      id: 'haciendo',
       name: 'Haciendo',
       order: 2,
       cardIds: [],
     },
-    'column-4': {
-      id: 'column-4',
+    'terminado': {
+      id: 'terminado',
       name: 'Terminado',
       order: 3,
       cardIds: [],
     },
   },
-  listOrder: ['column-1', 'column-2', 'column-3', 'column-4'],
+  listOrder: ['atrasado', 'pendiente', 'haciendo', 'terminado'],
 };
 
 const Board = () => {
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [data, setData] = useState(initialData);
 
+  const getListOrder = () => {
+    const lists = [];
+
+    for (const key in data.lists) {
+      lists.push({
+        name: data.lists[key].name.toLowerCase(),
+        order: data.lists[key].order 
+      });
+    }
+
+    const orderedLists = lists
+      .sort((first, second) => first.order - second.order)
+      .map(list => list.name);
+
+    return orderedLists;
+  };
+
   const onDragEnd = (result) => {
-     const { 
-      destination, 
-      source, 
-      draggableId, 
-      type 
-    } = result;
+    const { destination, source, draggableId, type } = result;
 
     if (!destination) return;
 
@@ -82,14 +91,7 @@ const Board = () => {
       newListOrder.splice(source.index, 1);
       newListOrder.splice(destination.index, 0, draggableId);
 
-      // const unordered = [];
-      // for (const key in data.lists) {
-      //   unordered.push({
-      //     column: data.lists[key].name,
-      //     order: data.lists[key].order
-      //   });
-      // }
-      // const ordered = unordered.sort((first, second) => first[1] - second[1]);
+      console.log(getListOrder());
 
       const newData = {
         ...data,
@@ -126,8 +128,8 @@ const Board = () => {
 
       return;
     }
-    
-    // Moving from one list to another.
+
+    // Moving a card from one list to another.
     const startCardIds = Array.from(home.cardIds);
     startCardIds.splice(source.index, 1);
     const newStart = {
@@ -163,7 +165,7 @@ const Board = () => {
               const list = data.lists[listId];
 
               return (
-                <InnerList 
+                <InnerList
                   key={list.id}
                   type='list'
                   list={list}
