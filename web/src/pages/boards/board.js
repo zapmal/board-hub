@@ -50,7 +50,7 @@ const initialData = {
       cardIds: [],
     },
   },
-  listOrder: ['atrasado', 'pendiente', 'haciendo', 'terminado'],
+  // listOrder: ['atrasado', 'pendiente', 'haciendo', 'terminado'],
 };
 
 const Board = () => {
@@ -68,8 +68,8 @@ const Board = () => {
     }
 
     const orderedLists = lists
-      .sort((first, second) => first.order - second.order)
-      .map(list => list.name);
+      .sort((first, second) => first.order - second.order);
+      // .map(list => list.name);
 
     return orderedLists;
   };
@@ -87,15 +87,21 @@ const Board = () => {
     }
 
     if (type === 'column') {
-      const newListOrder = Array.from(data.listOrder);
-      newListOrder.splice(source.index, 1);
-      newListOrder.splice(destination.index, 0, draggableId);
-
-      console.log(getListOrder());
+      const currentListOrder = getListOrder();
 
       const newData = {
         ...data,
-        listOrder: newListOrder,
+        lists: {
+          ...data.lists,
+          [currentListOrder[source.index].name]: {
+            ...data.lists[[currentListOrder[source.index].name]],
+            order: currentListOrder[destination.index].order,
+          },
+          [currentListOrder[destination.index].name]: {
+            ...data.lists[[currentListOrder[destination.index].name]],
+            order: currentListOrder[source.index].order,
+          },
+        }
       };
 
       setData(newData);
@@ -156,13 +162,14 @@ const Board = () => {
     setData(newData);
   };
 
+  // data.listOrder
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId='all-lists' direction='horizontal' type='column'>
         {(provided) => (
           <Container {...provided.droppableProps} ref={provided.innerRef}>
-            {data.listOrder.map((listId, index) => {
-              const list = data.lists[listId];
+            {getListOrder().map(({ name }, index) => {
+              const list = data.lists[name];
 
               return (
                 <InnerList
