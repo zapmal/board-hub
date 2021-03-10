@@ -50,7 +50,6 @@ const initialData = {
       cardIds: [],
     },
   },
-  // listOrder: ['atrasado', 'pendiente', 'haciendo', 'terminado'],
 };
 
 const Board = () => {
@@ -69,7 +68,6 @@ const Board = () => {
 
     const orderedLists = lists
       .sort((first, second) => first.order - second.order);
-      // .map(list => list.name);
 
     return orderedLists;
   };
