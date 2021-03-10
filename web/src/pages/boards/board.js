@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components/macro';
 import { useParams } from 'react-router-dom';
 import { 
@@ -31,21 +31,25 @@ const initialData = {
     'column-1': {
       id: 'column-1',
       name: 'Atrasado',
+      order: 0,
       cardIds: ['card-1', 'card-2', 'card-3', 'card-4'],
     },
     'column-2': {
       id: 'column-2',
       name: 'Pendiente',
+      order: 1,
       cardIds: [],
     },
     'column-3': {
       id: 'column-3',
       name: 'Haciendo',
+      order: 2,
       cardIds: [],
     },
     'column-4': {
       id: 'column-4',
       name: 'Terminado',
+      order: 3,
       cardIds: [],
     },
   },
@@ -77,6 +81,15 @@ const Board = () => {
       const newListOrder = Array.from(data.listOrder);
       newListOrder.splice(source.index, 1);
       newListOrder.splice(destination.index, 0, draggableId);
+
+      // const unordered = [];
+      // for (const key in data.lists) {
+      //   unordered.push({
+      //     column: data.lists[key].name,
+      //     order: data.lists[key].order
+      //   });
+      // }
+      // const ordered = unordered.sort((first, second) => first[1] - second[1]);
 
       const newData = {
         ...data,

@@ -42,7 +42,7 @@ export const Card = ({ card, index }) => {
               {isLocked ? <LockIcon fontSize='small'/> : <LockOpenIcon fontSize='small'/>}
             </IconButton>
             <IconButton disabled={isLocked}>
-              <DeleteBorderIcon fontSize='small' />
+              <DeleteBorderIcon fontSize='small' style={{ color:'#f44336' }}/>
             </IconButton>
           </ActionButtons>
         </CardContainer>

@@ -7,7 +7,7 @@ import {
   CardMedia,
   Typography,
   Button,
-  Grid
+  Grid,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
@@ -62,8 +62,10 @@ const About = () => {
   return (
     <>
       <Header>
-        <Waves src={wave} alt='Wave'/>
-        <WaveText>Las mentes detrás de <strong>Board Hub</strong></WaveText>
+        <Waves src={wave} alt='Wave' />
+        <WaveText>
+          Las mentes detrás de <strong>Board Hub</strong>
+        </WaveText>
       </Header>
 
       <main>
@@ -71,13 +73,22 @@ const About = () => {
           <Grid item md={3}>
             <Card className={root}>
               <CardHeader title='Manuel Zapata' />
-              <CardMedia title='Foto de Manuel Zapata' className={media} image={noImage}/>
+              <CardMedia
+                title='Foto de Manuel Zapata'
+                className={media}
+                image={noImage}
+              />
               <CardContent>
                 <Typography variant='body2' component='p'>
                   <Highlight>Frontend, Backend, Database and Design.</Highlight>
                 </Typography>
 
-                <Button color='secondary' href='https://github.com/Zondazx' target='_blank' endIcon={<GitHubIcon/>}>
+                <Button
+                  color='secondary'
+                  href='https://github.com/Zondazx'
+                  target='_blank'
+                  endIcon={<GitHubIcon />}
+                >
                   GitHub
                 </Button>
               </CardContent>
@@ -87,13 +98,22 @@ const About = () => {
           <Grid item md={3}>
             <Card className={root}>
               <CardHeader title='Víctor Homez' />
-              <CardMedia title='Foto de Victor Homez' className={media} image={noImage}/>
+              <CardMedia
+                title='Foto de Victor Homez'
+                className={media}
+                image={noImage}
+              />
               <CardContent>
                 <Typography variant='body2' component='p'>
                   <Highlight>Backend and Documentation.</Highlight>
                 </Typography>
 
-                <Button color='secondary' href='https://github.com/Biktol' target='_blank' endIcon={<GitHubIcon/>}>
+                <Button
+                  color='secondary'
+                  href='https://github.com/Biktol'
+                  target='_blank'
+                  endIcon={<GitHubIcon />}
+                >
                   GitHub
                 </Button>
               </CardContent>
@@ -143,6 +163,6 @@ const About = () => {
       </main>
     </>
   );
-}; 
+};
 
 export default About;
