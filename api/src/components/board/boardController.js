@@ -12,8 +12,6 @@ const newBoard = async (userID, name, description, isFavorite) => {
   const board = await createBoard(userID, name, description, isFavorite);
   const lists = await createDefaultLists(board.id);
 
-  console.log(lists);
-
   return {
     message: 'Tablero creado exitosamente.',
     board,

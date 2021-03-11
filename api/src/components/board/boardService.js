@@ -67,13 +67,6 @@ const createDefaultLists = async (boardID) => {
     { name: 'Haciendo', order: 2, board_id: boardID },
     { name: 'Terminado', order: 3, board_id: boardID },
   ]);
-  // const [results, metadata] = await sequelize.query(
-  //   `INSERT INTO list (name, order, board_id) VALUES
-  //   ('Atrasado', 0, ${boardID}),
-  //   ('Pendiente', 1, ${boardID}),
-  //   ('Haciendo', 2, ${boardID}),
-  //   ('Terminado', 3, ${boardID});`,
-  // );
 
   return lists;
 };
