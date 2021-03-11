@@ -24,12 +24,13 @@ router.post(`${ROUTE_PREFIX}/new`,
     validateNewBoard,
     checkDuplicatedBoardName,
   ],
-  handler(newBoard, (request) => (
+  handler(newBoard, (request, response) => (
     [
       request.body.userID,
       request.body.name,
       request.body.description,
       request.body.isFavorite,
+      response,
     ]
   )),
 );

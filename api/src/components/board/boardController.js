@@ -8,9 +8,17 @@ import {
   createDefaultLists,
 } from './boardService';
 
-const newBoard = async (userID, name, description, isFavorite) => {
+const newBoard = async (userID, name, description, isFavorite, response) => {
   const board = await createBoard(userID, name, description, isFavorite);
   const lists = await createDefaultLists(board.id);
+
+  if (lists.length === 0) {
+    await deleteUserBoard(board.id);
+    response.status(500);
+    return {
+      message: 'Ha ocurrido un error creando el tablero, intentelo de nuevo más tarde.',
+    };
+  }
 
   return {
     message: 'Tablero creado exitosamente.',
