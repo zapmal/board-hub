@@ -26,10 +26,12 @@ router.post(`${ROUTE_PREFIX}/new`,
   ],
   handler(newBoard, (request, response) => (
     [
-      request.body.userID,
-      request.body.name,
-      request.body.description,
-      request.body.isFavorite,
+      {
+        userID: request.body.userID,
+        name: request.body.name,
+        description: request.body.description,
+        isFavorite: request.body.isFavorite,
+      },
       response,
     ]
   )),

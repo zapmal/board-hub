@@ -8,8 +8,8 @@ import {
   createDefaultLists,
 } from './boardService';
 
-const newBoard = async (userID, name, description, isFavorite, response) => {
-  const board = await createBoard(userID, name, description, isFavorite);
+const newBoard = async (data, response) => {
+  const board = await createBoard(data.userID, data.name, data.description, data.isFavorite);
   const lists = await createDefaultLists(board.id);
 
   if (lists.length === 0) {
