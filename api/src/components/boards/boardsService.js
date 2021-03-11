@@ -1,4 +1,4 @@
-import { board, list, sequelize } from '@models';
+import { board, list } from '@models';
 
 const createBoard = async (userID, name, description, isFavorite) => {
   const newBoard = await board.create({

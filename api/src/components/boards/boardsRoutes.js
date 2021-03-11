@@ -6,7 +6,7 @@ import {
   toggleFavoriteBoard,
   deleteBoard,
   getBoard,
-} from './boardController';
+} from './boardsController';
 import { checkToken } from '@middlewares/validators/auth';
 import {
   validateNewBoard,
