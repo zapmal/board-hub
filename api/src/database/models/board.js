@@ -2,6 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Board = sequelize.define('board', {
     id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
     },
     name: {

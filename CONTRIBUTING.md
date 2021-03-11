@@ -60,7 +60,7 @@ at the moment are **exceptions**, **rejections** or **errors**.
 
 #### About Migrations
 
-Create a new migration for it, and use **snake_case**.
+Create a new migration for it, and use **kebab-case**.
 
 - `yarn run sequelize migration:generate <migration name>`
 

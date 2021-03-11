@@ -160,7 +160,6 @@ const Board = () => {
     setData(newData);
   };
 
-  // data.listOrder
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId='all-lists' direction='horizontal' type='column'>

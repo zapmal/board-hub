@@ -2,6 +2,7 @@ module.exports = (sequelize, DataTypes) => {
   const Card = sequelize.define('card', {
     id: {
       type: DataTypes.INTEGER,
+      autoIncrement: true,
       primaryKey: true,
     },
     title: {

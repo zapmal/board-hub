@@ -1,4 +1,4 @@
-import { board } from '@models';
+import { board, list, sequelize } from '@models';
 
 const createBoard = async (userID, name, description, isFavorite) => {
   const newBoard = await board.create({
@@ -60,6 +60,24 @@ const deleteUserBoard = async (boardID) => {
   await board.destroy({ where: { id: boardID } });
 };
 
+const createDefaultLists = async (boardID) => {
+  const lists = await list.bulkCreate([
+    { name: 'Atrasado', order: 0, board_id: boardID },
+    { name: 'Pendiente', order: 1, board_id: boardID },
+    { name: 'Haciendo', order: 2, board_id: boardID },
+    { name: 'Terminado', order: 3, board_id: boardID },
+  ]);
+  // const [results, metadata] = await sequelize.query(
+  //   `INSERT INTO list (name, order, board_id) VALUES
+  //   ('Atrasado', 0, ${boardID}),
+  //   ('Pendiente', 1, ${boardID}),
+  //   ('Haciendo', 2, ${boardID}),
+  //   ('Terminado', 3, ${boardID});`,
+  // );
+
+  return lists;
+};
+
 export {
   createBoard,
   getUserBoards,
@@ -67,4 +85,5 @@ export {
   toggleFavorite,
   deleteUserBoard,
   getSingleBoard,
+  createDefaultLists,
 };
