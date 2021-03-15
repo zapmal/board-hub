@@ -14,6 +14,8 @@ module.exports = {
       board_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
         references: { model: 'board', key: 'id' },
       },
       createdAt: {

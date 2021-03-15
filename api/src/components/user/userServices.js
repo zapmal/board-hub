@@ -13,7 +13,7 @@ const updatePassword = async (newPassword, userID) => {
 };
 
 const getCurrentUserPassword = async (userID) => {
-  const { password } = await user.findOne({ where: { id: userID } });
+  const { password } = await user.findByPk(userID);
 
   return password;
 };

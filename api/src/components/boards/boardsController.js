@@ -66,8 +66,9 @@ const toggleFavorite = async (userID, boardID, response) => {
 
 const deleteBoard = async (boardID, response) => {
   const board = await getSingleBoard(boardID);
+  const userID = response.locals.user.id;
 
-  if (!board) {
+  if (!board || board.user_id !== userID) {
     response.status(404);
     return { message: 'El tablero que intentas eliminar no existe.' };
   }
@@ -81,8 +82,9 @@ const deleteBoard = async (boardID, response) => {
 
 const getBoard = async (boardID, response) => {
   const board = await getSingleBoard(boardID);
+  const userID = response.locals.user.id;
 
-  if (!board) {
+  if (!board || board.user_id !== userID) {
     response.status(404);
     return { message: 'El tablero solicitado no existe.' };
   }

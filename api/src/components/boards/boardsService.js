@@ -51,7 +51,7 @@ const toggleFavoriteBoard = async (isFavorite, userID, boardID) => {
 };
 
 const getSingleBoard = async (boardID) => {
-  const foundBoard = await board.findOne({ where: { id: boardID } });
+  const foundBoard = await board.findByPk(boardID);
 
   return foundBoard;
 };

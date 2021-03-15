@@ -16,8 +16,6 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 import { CustomField, Highlight } from 'components/common';
 
-import useUserStore from 'stores/useUserStore';
-
 import apiClient from 'services/api';
 
 import newBoardSchema from 'utils/validation/newBoard';
@@ -30,18 +28,12 @@ export const NewBoardDialog = ({ isOpen, handleClose }) => {
       queryClient.invalidateQueries('favoriteBoards');
     }
   });
-  const id = useUserStore(state => state.user.id);
   
   const handleSubmit = async (data, { setStatus, resetForm, setSubmitting }) => {
-    const newBoard = {
-      userID: id,
-      ...data,
-    };
-
     try {
       setSubmitting(true);
 
-      const { data: { message } } = await mutation.mutateAsync(newBoard);
+      const { data: { message } } = await mutation.mutateAsync(data);
 
       setSubmitting(false);
 
