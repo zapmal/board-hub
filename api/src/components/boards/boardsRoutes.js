@@ -38,13 +38,13 @@ router.post(`${ROUTE_PREFIX}/new`,
 );
 
 router.get(`${ROUTE_PREFIX}/all`,
-  handler(getBoards, (request, response) => (
+  handler(getBoards, (_, response) => (
     [response.locals.user.id, response]
   )),
 );
 
 router.get(`${ROUTE_PREFIX}/favorites`,
-  handler(getFavorites, (request, response) => (
+  handler(getFavorites, (_, response) => (
     [response.locals.user.id, response]
   )),
 );

@@ -26,7 +26,7 @@ router.post('/signin',
 
 router.get('/me',
   checkToken,
-  handler(getMe, (request, response) => (
+  handler(getMe, (_, response) => (
     [response.locals.user]
   )),
 );
