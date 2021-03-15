@@ -1,10 +1,10 @@
 import {
   createBoard,
   getUserBoards,
-  getFavorites,
-  deleteUserBoard,
+  getFavoriteBoards,
+  eraseBoard,
   getSingleBoard,
-  toggleFavorite,
+  toggleFavoriteBoard,
   createDefaultLists,
 } from './boardsService';
 
@@ -13,7 +13,7 @@ const newBoard = async (data, response) => {
   const lists = await createDefaultLists(board.id);
 
   if (lists.length === 0) {
-    await deleteUserBoard(board.id);
+    await eraseBoard(board.id);
     response.status(500);
     return {
       message: 'Ha ocurrido un error creando el tablero, intentelo de nuevo más tarde.',
@@ -37,8 +37,8 @@ const getBoards = async (userID, response) => {
   return boards;
 };
 
-const getFavoriteBoards = async (userID, response) => {
-  const boards = await getFavorites(userID);
+const getFavorites = async (userID, response) => {
+  const boards = await getFavoriteBoards(userID);
 
   if (!boards) {
     response.status(404);
@@ -48,9 +48,9 @@ const getFavoriteBoards = async (userID, response) => {
   return boards;
 };
 
-const toggleFavoriteBoard = async (userID, boardID, response) => {
+const toggleFavorite = async (userID, boardID, response) => {
   const { is_favorite } = await getSingleBoard(boardID);
-  const updatedStatus = await toggleFavorite(is_favorite, userID, boardID);
+  const updatedStatus = await toggleFavoriteBoard(is_favorite, userID, boardID);
 
   if (updatedStatus) {
     return {
@@ -72,7 +72,7 @@ const deleteBoard = async (boardID, response) => {
     return { message: 'El tablero que intentas eliminar no existe.' };
   }
 
-  await deleteUserBoard(boardID);
+  await eraseBoard(boardID);
 
   return {
     message: 'Tablero eliminado satisfactoriamente.',
@@ -93,8 +93,8 @@ const getBoard = async (boardID, response) => {
 export {
   newBoard,
   getBoards,
-  getFavoriteBoards,
-  toggleFavoriteBoard,
+  getFavorites,
+  toggleFavorite,
   deleteBoard,
   getBoard,
 };

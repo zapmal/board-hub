@@ -3,7 +3,7 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import cors from 'cors';
 
-import { customMorganFormat } from '@utils/logging/logger';
+import { customMorganFormat } from '@utils/logging';
 
 const loadMiddlewares = (app) => {
   app.use(morgan(customMorganFormat));

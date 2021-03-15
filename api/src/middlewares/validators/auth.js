@@ -3,7 +3,7 @@ import {
   signupSchema,
   signinSchema,
 } from '@utils/schemas/authSchemas';
-import logger from '@utils/logging/logger';
+import logger from '@utils/logging';
 
 import { verify } from 'jsonwebtoken';
 import { user } from '@models';

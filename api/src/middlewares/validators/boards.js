@@ -1,6 +1,6 @@
 import validate from '@utils/schemas/validate';
 import { newBoardSchema } from '@utils/schemas/boardsSchemas';
-import logger from '@utils/logging/logger';
+import logger from '@utils/logging';
 
 import { board } from '@models';
 

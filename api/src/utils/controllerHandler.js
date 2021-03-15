@@ -1,4 +1,4 @@
-import logger from './logging/logger';
+import logger from './logging';
 
 /**
  * Handles controller execution and responds to user.

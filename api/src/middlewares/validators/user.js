@@ -3,7 +3,7 @@ import {
   updatePasswordSchema,
   updateUsernameSchema,
 } from '@utils/schemas/userSchemas';
-import logger from '@utils/logging/logger';
+import logger from '@utils/logging';
 
 const validatePasswordUpdate = (request, response, next) => {
   const { value, error } = validate(updatePasswordSchema, request.body);

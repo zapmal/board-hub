@@ -2,8 +2,8 @@ import { Router } from 'express';
 import {
   newBoard,
   getBoards,
-  getFavoriteBoards,
-  toggleFavoriteBoard,
+  getFavorites,
+  toggleFavorite,
   deleteBoard,
   getBoard,
 } from './boardsController';
@@ -44,13 +44,13 @@ router.get(`${ROUTE_PREFIX}/all`,
 );
 
 router.get(`${ROUTE_PREFIX}/favorites`,
-  handler(getFavoriteBoards, (request, response) => (
+  handler(getFavorites, (request, response) => (
     [response.locals.user.id, response]
   )),
 );
 
 router.put(`${ROUTE_PREFIX}/:id/toggle-favorite`,
-  handler(toggleFavoriteBoard, (request, response) => (
+  handler(toggleFavorite, (request, response) => (
     [response.locals.user.id, request.params.id, response]
   )),
 );

@@ -17,13 +17,13 @@ const getUserBoards = async (userID) => {
   return boards;
 };
 
-const getFavorites = async (userID) => {
+const getFavoriteBoards = async (userID) => {
   const boards = await board.findAll({ where: { user_id: userID, is_favorite: '1' } });
 
   return boards;
 };
 
-const toggleFavorite = async (isFavorite, userID, boardID) => {
+const toggleFavoriteBoard = async (isFavorite, userID, boardID) => {
   if (isFavorite) {
     await board.update({ is_favorite: 0 },
       {
@@ -56,7 +56,7 @@ const getSingleBoard = async (boardID) => {
   return foundBoard;
 };
 
-const deleteUserBoard = async (boardID) => {
+const eraseBoard = async (boardID) => {
   await board.destroy({ where: { id: boardID } });
 };
 
@@ -74,9 +74,9 @@ const createDefaultLists = async (boardID) => {
 export {
   createBoard,
   getUserBoards,
-  getFavorites,
-  toggleFavorite,
-  deleteUserBoard,
+  getFavoriteBoards,
+  toggleFavoriteBoard,
+  eraseBoard,
   getSingleBoard,
   createDefaultLists,
 };
