@@ -3,7 +3,7 @@ import {
   newCardSchema,
 } from '@utils/schemas/cardsSchemas';
 import logger from '@utils/logging';
-import { list, card, user, board } from '@models';
+import { list, card, user } from '@models';
 
 const validateNewCard = (request, response, next) => {
   const { error } = validate(newCardSchema, request.body);
