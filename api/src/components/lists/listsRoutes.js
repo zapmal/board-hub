@@ -1,13 +1,14 @@
 import { Router } from 'express';
 import { getLists, putOrder } from './listsController';
 import { checkToken } from '@middlewares/validators/auth';
-import { validateOrderUpdate } from '@middlewares/validators/lists';
+import { validateOrderUpdate, checkListsOwner } from '@middlewares/validators/lists';
 import handler from '@utils/controllerHandler';
 
 const router = Router();
 const ROUTE_PREFIX = '/lists';
 
 router.use(checkToken);
+router.use(checkListsOwner);
 
 router.get(`${ROUTE_PREFIX}/all`,
   handler(getLists, (request, response) => (

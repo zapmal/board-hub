@@ -38,9 +38,9 @@ const checkCardOwner = async (request, response, next) => {
       include: 'userBoards',
     });
 
-    const boards = userBoards.filter(b => b.id === board_id);
+    const isCardOwner = userBoards.filter(b => b.id === board_id);
 
-    if (boards.length === 0) {
+    if (isCardOwner.length === 0) {
       return response
         .status(400)
         .json({
