@@ -1,3 +1,3 @@
-import listsRoutes from './listsController';
+import listsRoutes from './listsRoutes';
 
 export default listsRoutes;
