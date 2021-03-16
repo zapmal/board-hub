@@ -21,7 +21,7 @@ const validateOrderUpdate = (request, response, next) => {
 
 const checkListsOwner = async (request, response, next) => {
   const userID = response.locals.user.id;
-  const boardID = request.body.boardId;
+  const boardID = request.query.boardId;
 
   try {
     const { userBoards } = await user.findOne({
@@ -29,7 +29,7 @@ const checkListsOwner = async (request, response, next) => {
       include: 'userBoards',
     });
 
-    const isOwnerOfBoard = userBoards.filter(b => b.id === boardID);
+    const isOwnerOfBoard = userBoards.filter(b => b.id === Number(boardID));
 
     if (isOwnerOfBoard.length === 0) {
       return response

@@ -15,7 +15,6 @@ const putOrder = async (
   movedListId,
   movedListOrder,
 ) => {
-  console.log('lololol');
   await updateListOrder(previousListId, movedListOrder);
   await updateListOrder(movedListId, previousListOrder);
 

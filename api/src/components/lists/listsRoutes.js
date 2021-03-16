@@ -12,20 +12,10 @@ router.use(checkListsOwner);
 
 router.get(`${ROUTE_PREFIX}/all`,
   handler(getLists, (request, response) => (
-    [request.body.boardId, response]
+    [request.query.boardId, response]
   )),
 );
 
-/**
- * This needs validation with Joi.
- *
- * boardId: 77,
- *
- * previousListId: 43,
- * previousListOrder: 2,
- * movedListId: 44,
- * movedListOrder: 3,
- */
 router.put(`${ROUTE_PREFIX}/order`,
   validateOrderUpdate,
   handler(putOrder, (request) => (
