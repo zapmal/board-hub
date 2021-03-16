@@ -4,4 +4,8 @@
 
 ## Setup
 
-Check [this](./CONTRIBUTING.md) on how to run locally.
+[Here](./CONTRIBUTING.md) you can see how to run it locally.
+
+## Documentation
+
+[Here](./docs/README.md), but bear in mind that it's prone to frequent changes.
