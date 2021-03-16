@@ -16,7 +16,7 @@ All changes happen through pull requests. Pull requests are the best way to prop
 
 ### Backend
 
-> For architecture/structure details, check it's [document](./api/STRUCTURE.md) (soon).
+> For architecture/structure details, check it's [document](./docs/API_ARCHITECTURE.md) (soon).
 
 This assumes that you've installed MySQL (preferable >= 8.0).
 
@@ -68,6 +68,6 @@ Don't overwrite existing ones, [this article](https://dev.to/anayooleru/modifyin
 
 ### Frontend
 
-> For architecture/structure details, check it's [document](./web/STRUCTURE.md) (soon).
+> For architecture/structure details, check it's [document](./docs/WEB_ARCHITECTURE.md) (soon).
 
 Navigate to `/web` and run `yarn` and then `yarn start`.
