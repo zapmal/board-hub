@@ -31,13 +31,13 @@ const getLists = async (boardID, response) => {
 };
 
 const putOrder = async (
-  previousListId,
-  previousListOrder,
-  movedListId,
-  movedListOrder,
+  sourceListId,
+  sourceListOrder,
+  destinationListId,
+  destinationListOrder,
 ) => {
-  await updateListOrder(previousListId, movedListOrder);
-  await updateListOrder(movedListId, previousListOrder);
+  await updateListOrder(sourceListId, destinationListOrder);
+  await updateListOrder(destinationListId, sourceListOrder);
 
   return { message: 'Listas ordenadas exitosamente.' };
 };
