@@ -14,7 +14,7 @@ const getLists = async (boardID, response) => {
       uid: list.id,
       name: list.name,
       order: list.order,
-      cardIds: list.listCards.map(card => card.id),
+      cardIds: list.listCards.map(card => card.id.toString()),
       boardId: list.boardId,
     };
   }
