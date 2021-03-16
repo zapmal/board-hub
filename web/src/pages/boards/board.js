@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/macro';
 import { useParams } from 'react-router-dom';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
+import { useQueryClient, useQuery, useMutation } from 'react-query';
 
-import { InnerList } from 'components/boards';
+import { InnerList, Status } from 'components/boards';
+
+import apiClient from '../../services/api';
 
 import background from '../../assets/images/bg-2.jpg';
 
@@ -54,19 +57,29 @@ const initialData = {
 
 const Board = () => {
   const { id } = useParams();
+  const queryClient = useQueryClient();
+  const { 
+    data: lists,
+    isLoading,
+    isError,
+  } = useQuery('lists', async () => {
+    const { data } = await apiClient.get(`/lists/all`, { params: { boardId: id } });
+    return data;
+  });
+  const mutation = useMutation(data => apiClient.post('/lists/order', data), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('lists');
+    }
+  });
   const [data, setData] = useState(initialData);
 
   const getListOrder = () => {
-    const lists = [];
+    const unorderedLists = lists.map(list => ({ 
+      name: list.name.toLowerCase(), 
+      order: list.order,
+    }));
 
-    for (const key in data.lists) {
-      lists.push({
-        name: data.lists[key].name.toLowerCase(),
-        order: data.lists[key].order 
-      });
-    }
-
-    const orderedLists = lists
+    const orderedLists = unorderedLists
       .sort((first, second) => first.order - second.order);
 
     return orderedLists;
@@ -159,6 +172,14 @@ const Board = () => {
 
     setData(newData);
   };
+
+  if (isLoading) {
+    return <Status status='loading' loading={isLoading}/>;
+  }
+
+  if (isError) {
+    return <Status status='error' />;
+  }
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
