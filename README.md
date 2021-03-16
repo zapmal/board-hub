@@ -8,4 +8,4 @@
 
 ## Documentation
 
-[Here](./docs/README.md), but bear in mind that it's prone to frequent changes.
+[Here](./docs/README.md), but bear in mind that it's prone to frequent changes. Some documents are in spanish.
