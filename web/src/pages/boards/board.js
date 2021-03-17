@@ -36,23 +36,24 @@ const Board = () => {
       queryClient.invalidateQueries('lists');
     }
   });
-  const [boardData, setBoardData] = useState(data);
-  const [listOrder, setListOrder] = useState(() => {
-    const unorderedLists = [];
+  const [listOrder, setListOrder] = useState([]);
+
+  useEffect(() => {
+    const unsortedLists = [];
 
     for (const key in data?.lists) {
-      unorderedLists.push({
+      unsortedLists.push({
         id: data.lists[key].uid,
         name: data.lists[key].id,
         order: data.lists[key].order,
       });
     }
 
-    const orderedLists = unorderedLists
+    const sortedLists = unsortedLists
       .sort((first, second) => first.order - second.order);
 
-    return orderedLists;
-  });
+    setListOrder(sortedLists);
+  }, [data]);
 
   const onDragEnd = async (result) => {
     const { destination, source, draggableId, type } = result;
@@ -106,7 +107,6 @@ const Board = () => {
         ...home,
         cardIds: newCardIds,
       };
-
       const updatedData = {
         ...data,
         lists: {
@@ -116,8 +116,7 @@ const Board = () => {
       };
 
       // Here the cards order needs to be updated.
-      setBoardData(updatedData);
-
+    // setOrder(...);
       return;
     }
 
@@ -146,7 +145,7 @@ const Board = () => {
     };
 
     // Again, update the cards order.
-    setBoardData(newData);
+    // setOrder(...);
   };
 
   if (isLoading) {
@@ -163,14 +162,14 @@ const Board = () => {
         {(provided) => (
           <Container {...provided.droppableProps} ref={provided.innerRef}>
             {listOrder.map(({ name }, index) => {
-              const list = boardData.lists[name];
+              const list = data.lists[name];
 
               return (
                 <InnerList
                   key={list.id}
                   type='list'
                   list={list}
-                  cards={boardData.cards}
+                  cards={data.cards}
                   index={index}
                 />
               );
