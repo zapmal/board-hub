@@ -20,10 +20,10 @@ router.put(`${ROUTE_PREFIX}/order`,
   validateOrderUpdate,
   handler(putOrder, (request) => (
     [
-      request.body.previousListId,
-      request.body.previousListOrder,
-      request.body.movedListId,
-      request.body.movedListOrder,
+      request.body.sourceListId,
+      request.body.sourceListOrder,
+      request.body.destinationListId,
+      request.body.destinationListOrder,
     ]
   )),
 );

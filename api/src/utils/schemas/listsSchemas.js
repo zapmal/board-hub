@@ -1,10 +1,10 @@
 import Joi from 'joi';
 
-export const updateOrderSchema = Joi.object({ 
-  previousListId: Joi.number().required(),
-  previousListOrder: Joi.number().required(),
-  movedListId: Joi.number().required(),
-  movedListOrder: Joi.number().required(),
+export const updateOrderSchema = Joi.object({
+  sourceListId: Joi.number().required(),
+  sourceListOrder: Joi.number().required(),
+  destinationListId: Joi.number().required(),
+  destinationListOrder: Joi.number().required(),
 })
   .messages({
     'any.required': 'Este campo es requerido',
