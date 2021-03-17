@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
 import { useParams } from 'react-router-dom';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
@@ -20,72 +20,41 @@ const Container = styled.div`
   background-repeat: no-repeat;
 `;
 
-const initialData = {
-  cards: {
-    '1': { id: '1', title: 'Task 1' },
-    '2': { id: '2', title: 'Task 2' },
-    '3': { id: '3', title: 'Task 3' },
-    '4': { id: '4', title: 'Task 4' },
-  },
-  lists: {
-    'atrasado': {
-      id: 'atrasado',
-      name: 'Atrasado',
-      order: 1,
-      cardIds: ['1', '2', '3', '4'],
-    },
-    'pendiente': {
-      id: 'pendiente',
-      name: 'Pendiente',
-      order: 0,
-      cardIds: [],
-    },
-    'haciendo': {
-      id: 'haciendo',
-      name: 'Haciendo',
-      order: 2,
-      cardIds: [],
-    },
-    'terminado': {
-      id: 'terminado',
-      name: 'Terminado',
-      order: 3,
-      cardIds: [],
-    },
-  },
-};
-
 const Board = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
   const { 
-    data: lists,
+    data,
     isLoading,
     isError,
   } = useQuery('lists', async () => {
     const { data } = await apiClient.get(`/lists/all`, { params: { boardId: id } });
     return data;
   });
-  const mutation = useMutation(data => apiClient.post('/lists/order', data), {
+  const mutation = useMutation(data => apiClient.put('/lists/order', data), {
     onSuccess: () => {
       queryClient.invalidateQueries('lists');
     }
   });
-  const [data, setData] = useState(initialData);
+  const [boardData, setBoardData] = useState(data);
+  const [listOrder, setListOrder] = useState(() => {
+    const unorderedLists = [];
 
-  const getListOrder = () => {
-    const unorderedLists = lists.map(list => ({ 
-      name: list.name.toLowerCase(), 
-      order: list.order,
-    }));
+    for (const key in data?.lists) {
+      unorderedLists.push({
+        id: data.lists[key].uid,
+        name: data.lists[key].id,
+        order: data.lists[key].order,
+      });
+    }
 
     const orderedLists = unorderedLists
       .sort((first, second) => first.order - second.order);
 
     return orderedLists;
-  };
+  });
 
-  const onDragEnd = (result) => {
+  const onDragEnd = async (result) => {
     const { destination, source, draggableId, type } = result;
 
     if (!destination) return;
@@ -98,24 +67,29 @@ const Board = () => {
     }
 
     if (type === 'column') {
-      const currentListOrder = getListOrder();
-
-      const newData = {
-        ...data,
-        lists: {
-          ...data.lists,
-          [currentListOrder[source.index].name]: {
-            ...data.lists[[currentListOrder[source.index].name]],
-            order: currentListOrder[destination.index].order,
-          },
-          [currentListOrder[destination.index].name]: {
-            ...data.lists[[currentListOrder[destination.index].name]],
-            order: currentListOrder[source.index].order,
-          },
+      // Set the new (world) order.
+      const newOrderObject = {
+        ...listOrder,
+        [source.index]: {
+          ...listOrder[destination.index],
+          order: listOrder[source.index].order,
+        },
+        [destination.index]: {
+          ...listOrder[source.index],
+          order: listOrder[destination.index].order,
         }
       };
+      const newOrder = Array.from(Object.keys(newOrderObject).map(i => newOrderObject[i]));
 
-      setData(newData);
+      setListOrder(newOrder);
+
+      await mutation.mutateAsync({
+        sourceListId: listOrder[source.index].id,
+        sourceListOrder: listOrder[source.index].order,
+        destinationListId: listOrder[destination.index].id,
+        destinationListOrder: listOrder[destination.index].order,
+        boardId: Number(id),
+      });
 
       return;
     }
@@ -141,7 +115,8 @@ const Board = () => {
         },
       };
 
-      setData(updatedData);
+      // Here the cards order needs to be updated.
+      setBoardData(updatedData);
 
       return;
     }
@@ -170,7 +145,8 @@ const Board = () => {
       },
     };
 
-    setData(newData);
+    // Again, update the cards order.
+    setBoardData(newData);
   };
 
   if (isLoading) {
@@ -186,15 +162,15 @@ const Board = () => {
       <Droppable droppableId='all-lists' direction='horizontal' type='column'>
         {(provided) => (
           <Container {...provided.droppableProps} ref={provided.innerRef}>
-            {getListOrder().map(({ name }, index) => {
-              const list = data.lists[name];
+            {listOrder.map(({ name }, index) => {
+              const list = boardData.lists[name];
 
               return (
                 <InnerList
                   key={list.id}
                   type='list'
                   list={list}
-                  cards={data.cards}
+                  cards={boardData.cards}
                   index={index}
                 />
               );
