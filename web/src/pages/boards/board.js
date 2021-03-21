@@ -82,15 +82,17 @@ const Board = () => {
       };
       const newOrder = Array.from(Object.keys(newOrderObject).map(i => newOrderObject[i]));
 
+      console.log(newOrder);
+
       setListOrder(newOrder);
 
-      await mutation.mutateAsync({
-        sourceListId: listOrder[source.index].id,
-        sourceListOrder: listOrder[source.index].order,
-        destinationListId: listOrder[destination.index].id,
-        destinationListOrder: listOrder[destination.index].order,
-        boardId: Number(id),
-      });
+      // await mutation.mutateAsync({
+      //   sourceListId: listOrder[source.index].id,
+      //   sourceListOrder: listOrder[source.index].order,
+      //   destinationListId: listOrder[destination.index].id,
+      //   destinationListOrder: listOrder[destination.index].order,
+      //   boardId: Number(id),
+      // });
 
       return;
     }
@@ -116,7 +118,7 @@ const Board = () => {
       };
 
       // Here the cards order needs to be updated.
-    // setOrder(...);
+      // setOrder(...);
       return;
     }
 

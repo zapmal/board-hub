@@ -48,14 +48,14 @@ const RouteWithSubRoutes = (route) => {
 };
 
 const ProtectedRoute = ({ path, exact, route }) => {
-  const activeSession = useUserStore(state => state.user);
+  const isSessionActive = useUserStore(state => state.user);
+  const isAuthPage = (path === '/signin' || path === '/signup');
   const isLoggedIn = localStorage.getItem('token');
-  const isAccessPage = (path === '/signin' || path === '/signup');
 
-  if (isLoggedIn && isAccessPage) {
+  if (isLoggedIn && isAuthPage) {
     return <Redirect to= '/' />;
   }
-  else if (!isLoggedIn && isAccessPage) {
+  else if (!isLoggedIn && isAuthPage) {
     return (
       <Route 
         path={path}
@@ -69,7 +69,7 @@ const ProtectedRoute = ({ path, exact, route }) => {
     <Route 
       path={path}
       exact={exact}
-      render={props => activeSession ? (
+      render={props => isSessionActive ? (
         <route.component 
           {...props}
           routes={route.routes}
