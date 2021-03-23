@@ -12,6 +12,9 @@ const validateSchema = (schema, data, options = defaultOptions) => {
   return { value, error };
 };
 
+/**
+ * TODO: Start testing this.
+ */
 const validateRequest = (
   requestBody,
   response,
