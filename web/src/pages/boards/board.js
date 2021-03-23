@@ -24,8 +24,8 @@ const handleDrag = (
   draggedElement, 
   dragDifference,
   sourceIndex,
-  rightToLeft = false,
-  isLongDrag = false
+  isLongDrag = false,
+  rightToLeft = false
 ) => {
   const operation = rightToLeft
     ? sourceIndex - dragDifference
@@ -141,13 +141,13 @@ const Board = () => {
       if (dragDistance !== 1) {
         if (source.index >= 2) {
           newOrderObject = isLongDrag 
-           ? handleDrag(newOrderObject, dragDifference, source.index, true, isLongDrag)
-           : handleDrag(newOrderObject, dragDifference, source.index, true);
+           ? handleDrag(newOrderObject, dragDifference, source.index, isLongDrag, true)
+           : handleDrag(newOrderObject, dragDifference, source.index, isLongDrag, true);
         }
         else {
           newOrderObject = isLongDrag
-            ? handleDrag(newOrderObject, dragDifference, source.index, false, isLongDrag)
-            : handleDrag(newOrderObject, dragDifference, source.index, false, isLongDrag);
+            ? handleDrag(newOrderObject, dragDifference, source.index, isLongDrag)
+            : handleDrag(newOrderObject, dragDifference, source.index, isLongDrag);
         }
       } 
 
