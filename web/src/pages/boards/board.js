@@ -80,24 +80,24 @@ const Board = () => {
           order: listOrder[destination.index].order,
         }
       };
-      const dragDifference = Math.abs(listOrder[destination.index].order - listOrder[source.index].order);
-      const diff = dragDifference === 3 ? 2 : 1;
+      const dragDistance = Math.abs(listOrder[destination.index].order - listOrder[source.index].order);
+      const dragDifference = dragDistance >= 3 ? 2 : 1;
 
-      if (dragDifference !== 1) {
+      if (dragDistance !== 1) {
         if (source.index >= 2) {
-          if (dragDifference === 3) {
+          if (dragDistance === 3) {
             newOrderObject = {
               ...newOrderObject,
               [source.index]: {
                 ...newOrderObject[source.index],
-                order: newOrderObject[source.index - diff].order,
+                order: newOrderObject[source.index - dragDifference].order,
               },
-              [source.index - diff]: {
-                ...newOrderObject[source.index - diff],
-                order: newOrderObject[source.index - diff + 1].order,
+              [source.index - dragDifference]: {
+                ...newOrderObject[source.index - dragDifference],
+                order: newOrderObject[source.index - dragDifference + 1].order,
               },
-              [source.index - diff + 1]: {
-                ...newOrderObject[source.index - diff + 1],
+              [source.index - dragDifference + 1]: {
+                ...newOrderObject[source.index - dragDifference + 1],
                 order: newOrderObject[source.index].order,
               }
             };
@@ -107,30 +107,29 @@ const Board = () => {
               ...newOrderObject,
               [source.index]: {
                 ...newOrderObject[source.index],
-                order: newOrderObject[source.index - diff].order,
+                order: newOrderObject[source.index - dragDifference].order,
               },
-              [source.index - diff]: {
-                ...newOrderObject[source.index - diff],
+              [source.index - dragDifference]: {
+                ...newOrderObject[source.index - dragDifference],
                 order: newOrderObject[source.index].order,
               },
             };
           }
-
         }
         else {
-          if (dragDifference === 3) {
+          if (dragDistance === 3) {
             newOrderObject = {
               ...newOrderObject,
               [source.index]: {
                 ...newOrderObject[source.index],
-                order: newOrderObject[source.index + diff].order,
+                order: newOrderObject[source.index + dragDifference].order,
               },
-              [source.index + diff]: {
-                ...newOrderObject[source.index + diff],
-                order: newOrderObject[source.index + diff - 1].order,
+              [source.index + dragDifference]: {
+                ...newOrderObject[source.index + dragDifference],
+                order: newOrderObject[source.index + dragDifference - 1].order,
               },
-              [source.index + diff - 1]: {
-                ...newOrderObject[source.index + diff - 1],
+              [source.index + dragDifference - 1]: {
+                ...newOrderObject[source.index + dragDifference - 1],
                 order: newOrderObject[source.index].order,
               }
             };
@@ -140,10 +139,10 @@ const Board = () => {
               ...newOrderObject,
               [source.index]: {
                 ...newOrderObject[source.index],
-                order: newOrderObject[source.index + diff].order,
+                order: newOrderObject[source.index + dragDifference].order,
               },
-              [source.index + diff]: {
-                ...newOrderObject[source.index + diff],
+              [source.index + dragDifference]: {
+                ...newOrderObject[source.index + dragDifference],
                 order: newOrderObject[source.index].order,
               },
             };
