@@ -69,7 +69,7 @@ const Board = () => {
 
     if (type === 'column') {
       // Set the new (world) order.
-      const newOrderObject = {
+      let newOrderObject = {
         ...listOrder,
         [source.index]: {
           ...listOrder[destination.index],
@@ -80,8 +80,82 @@ const Board = () => {
           order: listOrder[destination.index].order,
         }
       };
-      const newOrder = Array.from(Object.keys(newOrderObject).map(i => newOrderObject[i]));
+      const dragDifference = Math.abs(listOrder[destination.index].order - listOrder[source.index].order);
+      const diff = dragDifference === 3 ? 2 : 1;
 
+      if (dragDifference !== 1) {
+        if (source.index >= 2) {
+          if (dragDifference === 3) {
+            newOrderObject = {
+              ...newOrderObject,
+              [source.index]: {
+                ...newOrderObject[source.index],
+                order: newOrderObject[source.index - diff].order,
+              },
+              [source.index - diff]: {
+                ...newOrderObject[source.index - diff],
+                order: newOrderObject[source.index - diff + 1].order,
+              },
+              [source.index - diff + 1]: {
+                ...newOrderObject[source.index - diff + 1],
+                order: newOrderObject[source.index].order,
+              }
+            };
+          }
+          else {
+            newOrderObject = {
+              ...newOrderObject,
+              [source.index]: {
+                ...newOrderObject[source.index],
+                order: newOrderObject[source.index - diff].order,
+              },
+              [source.index - diff]: {
+                ...newOrderObject[source.index - diff],
+                order: newOrderObject[source.index].order,
+              },
+            };
+          }
+
+        }
+        else {
+          if (dragDifference === 3) {
+            newOrderObject = {
+              ...newOrderObject,
+              [source.index]: {
+                ...newOrderObject[source.index],
+                order: newOrderObject[source.index + diff].order,
+              },
+              [source.index + diff]: {
+                ...newOrderObject[source.index + diff],
+                order: newOrderObject[source.index + diff - 1].order,
+              },
+              [source.index + diff - 1]: {
+                ...newOrderObject[source.index + diff - 1],
+                order: newOrderObject[source.index].order,
+              }
+            };
+          }
+          else {
+            newOrderObject = {
+              ...newOrderObject,
+              [source.index]: {
+                ...newOrderObject[source.index],
+                order: newOrderObject[source.index + diff].order,
+              },
+              [source.index + diff]: {
+                ...newOrderObject[source.index + diff],
+                order: newOrderObject[source.index].order,
+              },
+            };
+          }
+        }
+      } 
+
+      const newOrder = Array.from(
+        Object.keys(newOrderObject)
+          .map(l => newOrderObject[l])
+          .sort((first, second) => first.order - second.order)
+      );
       console.log(newOrder);
 
       setListOrder(newOrder);
