@@ -6,9 +6,9 @@ import { useQueryClient, useQuery, useMutation } from 'react-query';
 
 import { InnerList, Status } from 'components/boards';
 
-import apiClient from '../../services/api';
+import apiClient from 'services/api';
 
-import background from '../../assets/images/bg-2.jpg';
+import background from 'assets/images/bg-2.jpg';
 
 const Container = styled.div`
   padding: 6% 0 16% 0;
@@ -19,6 +19,60 @@ const Container = styled.div`
   background-position: center top;
   background-repeat: no-repeat;
 `;
+
+const handleDrag = (
+  draggedElement, 
+  dragDifference,
+  sourceIndex,
+  rightToLeft = false,
+  isLongDrag = false
+) => {
+  const operation = rightToLeft
+    ? sourceIndex - dragDifference
+    : sourceIndex + dragDifference;
+
+  // const steps = 0;
+  if (isLongDrag) {
+    return {
+      ...draggedElement,
+      [sourceIndex]: {
+        ...draggedElement[sourceIndex],
+        order: draggedElement[operation].order,
+      },
+      [operation]: {
+        ...draggedElement[operation],
+        order: draggedElement[
+          rightToLeft ? operation + 1 : operation - 1
+        ].order,
+      },
+      [
+        rightToLeft
+          ? operation + 1
+          : operation - 1
+      ]: {
+        ...draggedElement[
+            rightToLeft
+              ? operation + 1
+              : operation - 1
+        ],
+        order: draggedElement[sourceIndex].order,
+      }
+    };
+  }
+  else {
+    return {
+      ...draggedElement,
+      [sourceIndex]: {
+        ...draggedElement[sourceIndex],
+        order: draggedElement[operation].order,
+      },
+      [operation]: {
+        ...draggedElement[operation],
+        order: draggedElement[sourceIndex].order,
+      },
+    };
+  }
+};
 
 const Board = () => {
   const { id } = useParams();
@@ -81,72 +135,19 @@ const Board = () => {
         }
       };
       const dragDistance = Math.abs(listOrder[destination.index].order - listOrder[source.index].order);
-      const dragDifference = dragDistance >= 3 ? 2 : 1;
+      const isLongDrag = dragDistance >= 3;
+      const dragDifference = isLongDrag ? 2 : 1;
 
       if (dragDistance !== 1) {
         if (source.index >= 2) {
-          if (dragDistance === 3) {
-            newOrderObject = {
-              ...newOrderObject,
-              [source.index]: {
-                ...newOrderObject[source.index],
-                order: newOrderObject[source.index - dragDifference].order,
-              },
-              [source.index - dragDifference]: {
-                ...newOrderObject[source.index - dragDifference],
-                order: newOrderObject[source.index - dragDifference + 1].order,
-              },
-              [source.index - dragDifference + 1]: {
-                ...newOrderObject[source.index - dragDifference + 1],
-                order: newOrderObject[source.index].order,
-              }
-            };
-          }
-          else {
-            newOrderObject = {
-              ...newOrderObject,
-              [source.index]: {
-                ...newOrderObject[source.index],
-                order: newOrderObject[source.index - dragDifference].order,
-              },
-              [source.index - dragDifference]: {
-                ...newOrderObject[source.index - dragDifference],
-                order: newOrderObject[source.index].order,
-              },
-            };
-          }
+          newOrderObject = isLongDrag 
+           ? handleDrag(newOrderObject, dragDifference, source.index, true, isLongDrag)
+           : handleDrag(newOrderObject, dragDifference, source.index, true);
         }
         else {
-          if (dragDistance === 3) {
-            newOrderObject = {
-              ...newOrderObject,
-              [source.index]: {
-                ...newOrderObject[source.index],
-                order: newOrderObject[source.index + dragDifference].order,
-              },
-              [source.index + dragDifference]: {
-                ...newOrderObject[source.index + dragDifference],
-                order: newOrderObject[source.index + dragDifference - 1].order,
-              },
-              [source.index + dragDifference - 1]: {
-                ...newOrderObject[source.index + dragDifference - 1],
-                order: newOrderObject[source.index].order,
-              }
-            };
-          }
-          else {
-            newOrderObject = {
-              ...newOrderObject,
-              [source.index]: {
-                ...newOrderObject[source.index],
-                order: newOrderObject[source.index + dragDifference].order,
-              },
-              [source.index + dragDifference]: {
-                ...newOrderObject[source.index + dragDifference],
-                order: newOrderObject[source.index].order,
-              },
-            };
-          }
+          newOrderObject = isLongDrag
+            ? handleDrag(newOrderObject, dragDifference, source.index, false, isLongDrag)
+            : handleDrag(newOrderObject, dragDifference, source.index, false, isLongDrag);
         }
       } 
 
@@ -155,9 +156,13 @@ const Board = () => {
           .map(l => newOrderObject[l])
           .sort((first, second) => first.order - second.order)
       );
-      console.log(newOrder);
 
       setListOrder(newOrder);
+
+      // await mutation.mutateAsync({
+      //   newList: newOrder,
+      //   boardId: Number(id),
+      // });
 
       // await mutation.mutateAsync({
       //   sourceListId: listOrder[source.index].id,
