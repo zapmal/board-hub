@@ -20,6 +20,12 @@ const Container = styled.div`
   background-repeat: no-repeat;
 `;
 
+/**
+ * Handler for long drags (when two or more elements are moved) or for short ones,
+ * it's a bit generic because is intended to be used with lists and cards.
+ * 
+ * TODO: Better explanation of this.
+ */
 const handleDrag = (
   draggedElement, 
   dragDifference,
@@ -170,7 +176,6 @@ const Board = () => {
         });
       }
       else {
-        console.log(newOrder[source.index], newOrder[destination.index]);
         await mutation.mutateAsync({
           newOrder: {
             source: newOrder[source.index],
