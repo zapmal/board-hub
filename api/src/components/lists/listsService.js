@@ -26,6 +26,11 @@ const updateListOrder = async (id, order) => {
   await list.update({ order }, { where: { id } });
 };
 
+/**
+ * I believe that sequelize has something like "bulkUpdate", but I didn't
+ * find much info about it on their docs so had to use this. I'm sure it can be
+ * improved.
+ */
 const updateManyListsOrder = async (lists) => {
   for (const key in lists) {
     await updateListOrder(lists[key].id, lists[key].order);

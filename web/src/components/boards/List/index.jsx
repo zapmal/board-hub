@@ -10,22 +10,8 @@ import useToggle from 'hooks/useToggle';
 import { InnerList } from '../InnerList';
 import { NewCardDialog } from '../Dialogs/NewCardDialog';
 
-const mock = {
-  id: 'card-5',
-  title: 'Card 5',
-};
-
 export const List = ({ list, cards, index }) => {
   const [isOpen, toggleOpen] = useToggle();
-
-  const handleNewListDialogClick = () => {
-    toggleOpen();
-    // setList({
-    //   ...list,
-    //   cardIds: [...list.cardIds, mock.id]
-    // });
-    // setCards([...cards, mock]);
-  };
 
   return (
     <>
@@ -45,13 +31,13 @@ export const List = ({ list, cards, index }) => {
                 </CardList>
               )}
             </Droppable>
-            <Button onClick={handleNewListDialogClick}>
+            <Button onClick={toggleOpen}>
               <AddIcon />
             </Button>
           </ListContainer>
         )}
       </Draggable>
-      <NewCardDialog isOpen={isOpen} handleClose={toggleOpen} />
+      <NewCardDialog isOpen={isOpen} handleClose={toggleOpen} listId={list.uid} />
     </>
   );
 };

@@ -17,8 +17,7 @@ import StarBorderIcon from '@material-ui/icons/StarBorder';
 import { CustomField, Highlight } from 'components/common';
 
 import apiClient from 'services/api';
-
-import newBoardSchema from 'utils/validation/newBoard';
+import { newBoardSchema } from 'utils/validation/board';
 
 export const NewBoardDialog = ({ isOpen, handleClose }) => {
   const queryClient = useQueryClient();

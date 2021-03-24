@@ -21,10 +21,7 @@ const Container = styled.div`
 `;
 
 /**
- * Handler for long drags (when two or more elements are moved) or for short ones,
- * it's a bit generic because is intended to be used with lists and cards.
- * 
- * TODO: Better explanation of this.
+ * Comment this.
  */
 const handleDrag = (
   draggedElement, 
@@ -36,9 +33,6 @@ const handleDrag = (
   const operation = rightToLeft
     ? sourceIndex - dragDifference
     : sourceIndex + dragDifference;
-
-  // this variable can be used in a way that it'll make this
-  // method even more generic (to use with cards).
   // const steps = 0;
 
   if (isLongDrag) {

@@ -7,7 +7,7 @@ import {
 const newCard = async (title, listID) => {
   const card = await createCard(title, listID);
 
-  return card;
+  return { message: 'Carta creada exitosamente.' };
 };
 
 const deleteCard = async (cardID, response) => {
