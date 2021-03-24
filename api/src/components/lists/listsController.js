@@ -1,6 +1,7 @@
 import {
   getBoardLists,
   updateListOrder,
+  updateManyListsOrder,
 } from './listsService';
 
 const getLists = async (boardID, response) => {
@@ -31,13 +32,16 @@ const getLists = async (boardID, response) => {
 };
 
 const putOrder = async (
-  sourceListId,
-  sourceListOrder,
-  destinationListId,
-  destinationListOrder,
+  newOrder,
+  isLongDrag = false,
 ) => {
-  await updateListOrder(sourceListId, destinationListOrder);
-  await updateListOrder(destinationListId, sourceListOrder);
+  if (isLongDrag) {
+    await updateManyListsOrder(newOrder);
+  }
+  else {
+    await updateListOrder(newOrder['source'].id, newOrder['source'].order);
+    await updateListOrder(newOrder['destination'].id, newOrder['destination'].order);
+  }
 
   return { message: 'Listas ordenadas exitosamente.' };
 };

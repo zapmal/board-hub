@@ -159,10 +159,24 @@ const Board = () => {
 
       setListOrder(newOrder);
 
-      // await mutation.mutateAsync({
-      //   newList: newOrder,
-      //   boardId: Number(id),
-      // });
+      if (dragDistance >= 2) {
+        await mutation.mutateAsync({
+          newOrder,
+          isLongDrag: true,
+          boardId: Number(id),
+        });
+      }
+      else {
+        console.log(newOrder[source.index], newOrder[destination.index]);
+        await mutation.mutateAsync({
+          newOrder: {
+            source: newOrder[source.index],
+            destination: newOrder[destination.index],
+          },
+          boardId: Number(id),
+        });
+      }
+
 
       // await mutation.mutateAsync({
       //   sourceListId: listOrder[source.index].id,

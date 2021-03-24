@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { getLists, putOrder } from './listsController';
 import { checkToken } from '@middlewares/validators/auth';
-import { validateOrderUpdate, checkListsOwner } from '@middlewares/validators/lists';
+import { checkListsOwner } from '@middlewares/validators/lists';
 import handler from '@utils/controllerHandler';
 
 const router = Router();
@@ -17,13 +17,10 @@ router.get(`${ROUTE_PREFIX}/all`,
 );
 
 router.put(`${ROUTE_PREFIX}/order`,
-  validateOrderUpdate,
   handler(putOrder, (request) => (
     [
-      request.body.sourceListId,
-      request.body.sourceListOrder,
-      request.body.destinationListId,
-      request.body.destinationListOrder,
+      request.body.newOrder,
+      request.body.isLongDrag,
     ]
   )),
 );

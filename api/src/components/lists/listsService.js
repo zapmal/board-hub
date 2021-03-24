@@ -26,7 +26,14 @@ const updateListOrder = async (id, order) => {
   await list.update({ order }, { where: { id } });
 };
 
+const updateManyListsOrder = async (lists) => {
+  for (const key in lists) {
+    await updateListOrder(lists[key].id, lists[key].order);
+  }
+};
+
 export {
   getBoardLists,
   updateListOrder,
+  updateManyListsOrder,
 };
