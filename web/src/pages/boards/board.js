@@ -31,7 +31,10 @@ const handleDrag = (
     ? sourceIndex - dragDifference
     : sourceIndex + dragDifference;
 
+  // this variable can be used in a way that it'll make this
+  // method even more generic (to use with cards).
   // const steps = 0;
+
   if (isLongDrag) {
     return {
       ...draggedElement,
@@ -176,15 +179,6 @@ const Board = () => {
           boardId: Number(id),
         });
       }
-
-
-      // await mutation.mutateAsync({
-      //   sourceListId: listOrder[source.index].id,
-      //   sourceListOrder: listOrder[source.index].order,
-      //   destinationListId: listOrder[destination.index].id,
-      //   destinationListOrder: listOrder[destination.index].order,
-      //   boardId: Number(id),
-      // });
 
       return;
     }
