@@ -22,10 +22,10 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import EditIcon from '@material-ui/icons/Edit';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
-import { NewBoardDialog } from '../Dialogs/NewBoardDialog';
+import { NewBoardDialog } from '../../Dialogs/NewBoardDialog';
 
 import useToggle from 'hooks/useToggle';
-import { useStyles } from './styles';
+import { useStyles } from '../styles';
 
 import logo from 'assets/images/logo.png';
 

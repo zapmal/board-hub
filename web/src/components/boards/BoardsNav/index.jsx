@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-import { BoardsToolbar } from './BoardsToolbar';
-import { BoardsDrawer } from './BoardsDrawer';
+import { BoardsToolbar } from './components/BoardsToolbar';
+import { BoardsDrawer } from './components/BoardsDrawer';
 
 import { NavContainer } from './styles';
 

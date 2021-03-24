@@ -13,7 +13,7 @@ import LoopIcon from '@material-ui/icons/Loop';
 import CheckIcon from '@material-ui/icons/Check';
 
 import useUserStore from 'stores/useUserStore';
-import { useStyles } from './styles';
+import { useStyles } from '../styles';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
