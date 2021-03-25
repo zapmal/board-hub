@@ -8,7 +8,7 @@ import { ListContainer, ListName, CardList } from './styles';
 import useToggle from 'hooks/useToggle';
 
 import { InnerList } from '../InnerList';
-import { NewCardDialog } from '../Dialogs/NewCardDialog';
+import { NewCardDialog } from '../Dialogs';
 
 export const List = ({ list, cards, index }) => {
   const [isOpen, toggleOpen] = useToggle();

@@ -1,3 +1,3 @@
-export * from './NewBoardDialog';
-export * from './DeleteBoardDialog';
-export * from './NewCardDialog';
+export * from './components/NewBoardDialog';
+export * from './components/DeleteBoardDialog';
+export * from './components/NewCardDialog';

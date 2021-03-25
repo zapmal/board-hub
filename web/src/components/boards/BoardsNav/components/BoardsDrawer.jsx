@@ -22,7 +22,7 @@ import SettingsIcon from '@material-ui/icons/Settings';
 import EditIcon from '@material-ui/icons/Edit';
 import VpnKeyIcon from '@material-ui/icons/VpnKey';
 
-import { NewBoardDialog } from '../../Dialogs/NewBoardDialog';
+import { NewBoardDialog } from 'components/boards';
 
 import useToggle from 'hooks/useToggle';
 import { useStyles } from '../styles';
