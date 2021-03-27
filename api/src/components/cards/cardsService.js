@@ -11,9 +11,9 @@ const eraseCard = async (cardID) => {
 };
 
 const getSingleCard = async (cardID) => {
-  const foundBoard = await card.findByPk(cardID);
+  const foundCard = await card.findByPk(cardID);
 
-  return foundBoard;
+  return foundCard;
 };
 
 export {
