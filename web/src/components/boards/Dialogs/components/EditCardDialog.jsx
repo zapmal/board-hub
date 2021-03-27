@@ -155,6 +155,9 @@ export const EditCardDialog = ({ cardId, handleClose }) => {
               rows={8}
               rowsMax={10}
             />
+            <Typography variant='caption' display='block'>
+              Puedes usar <Highlight>Markdown</Highlight>.
+            </Typography>
           </div>
         ) : (
           data.content 
