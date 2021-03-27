@@ -69,6 +69,9 @@ export const NewBoardDialog = ({ isOpen, handleClose }) => {
           name='description'
           label='Descripción'
           color='secondary'
+          multiline
+          rows={2}
+          rowsMax={6}
           fullWidth
         />
       </div>

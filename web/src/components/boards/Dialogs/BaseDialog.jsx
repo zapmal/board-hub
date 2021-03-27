@@ -19,6 +19,7 @@ const BaseDialog = ({
   validationSchema,
   handleSubmit,
   disableOutsideClick = false,
+  customStyles,
   children
 }) => {
   const extraProps = disableOutsideClick 
@@ -30,9 +31,10 @@ const BaseDialog = ({
       <Dialog 
         open={isOpen} 
         onClose={handleClose}
+        className={customStyles}
         {...extraProps}
       >
-        <DialogTitle>{title}</DialogTitle>
+        {title && <DialogTitle>{title}</DialogTitle>}
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
