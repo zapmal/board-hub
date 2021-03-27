@@ -12,17 +12,6 @@ const validateNewCard = (request, response, next) => {
     newCardSchema,
     next,
   );
-  // const { error } = validate(newCardSchema, request.body);
-
-  // if (error) {
-  //   const errors = error.details.map(({ message }) => message).join(', ');
-
-  //   logger.error(errors);
-  //   return response.status(400).json({ message: errors });
-  // }
-  // else {
-  //   next();
-  // }
 };
 
 /**

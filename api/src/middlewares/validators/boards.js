@@ -11,17 +11,6 @@ const validateNewBoard = (request, response, next) => {
     newBoardSchema,
     next,
   );
-  // const { error } = validate(newBoardSchema, request.body);
-
-  // if (error) {
-  //   const errors = error.details.map(({ message }) => message).join(', ');
-
-  //   logger.error(errors);
-  //   return response.status(400).json({ message: errors });
-  // }
-  // else {
-  //   next();
-  // }
 };
 
 const checkDuplicatedBoardName = async (request, response, next) => {
