@@ -1,21 +1,27 @@
-import validate from '@utils/schemas/validate';
-import { newBoardSchema } from '@utils/schemas/boardsSchemas';
+import validateRequest from '@utils/schemas/validate';
 import logger from '@utils/logging';
+import { newBoardSchema } from '@utils/schemas/boardsSchemas';
 
 import { board } from '@models';
 
 const validateNewBoard = (request, response, next) => {
-  const { error } = validate(newBoardSchema, request.body);
+  validateRequest(
+    request.body,
+    response,
+    newBoardSchema,
+    next,
+  );
+  // const { error } = validate(newBoardSchema, request.body);
 
-  if (error) {
-    const errors = error.details.map(({ message }) => message).join(', ');
+  // if (error) {
+  //   const errors = error.details.map(({ message }) => message).join(', ');
 
-    logger.error(errors);
-    return response.status(400).json({ message: errors });
-  }
-  else {
-    next();
-  }
+  //   logger.error(errors);
+  //   return response.status(400).json({ message: errors });
+  // }
+  // else {
+  //   next();
+  // }
 };
 
 const checkDuplicatedBoardName = async (request, response, next) => {

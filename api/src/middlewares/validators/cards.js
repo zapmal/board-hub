@@ -1,22 +1,28 @@
-import validate from '@utils/schemas/validate';
+import validateRequest from '@utils/schemas/validate';
+import logger from '@utils/logging';
 import {
   newCardSchema,
 } from '@utils/schemas/cardsSchemas';
-import logger from '@utils/logging';
 import { list, card, user } from '@models';
 
 const validateNewCard = (request, response, next) => {
-  const { error } = validate(newCardSchema, request.body);
+  validateRequest(
+    request.body,
+    response,
+    newCardSchema,
+    next,
+  );
+  // const { error } = validate(newCardSchema, request.body);
 
-  if (error) {
-    const errors = error.details.map(({ message }) => message).join(', ');
+  // if (error) {
+  //   const errors = error.details.map(({ message }) => message).join(', ');
 
-    logger.error(errors);
-    return response.status(400).json({ message: errors });
-  }
-  else {
-    next();
-  }
+  //   logger.error(errors);
+  //   return response.status(400).json({ message: errors });
+  // }
+  // else {
+  //   next();
+  // }
 };
 
 /**

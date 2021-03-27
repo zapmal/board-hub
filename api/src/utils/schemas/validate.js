@@ -6,23 +6,23 @@ const defaultOptions = {
   stripUnknown: true,
 };
 
-const validateSchema = (schema, data, options = defaultOptions) => {
-  const { value, error } = schema.validate(data, options);
-
-  return { value, error };
-};
-
 /**
- * TODO: Start testing this.
+ * Function that validates the given request, it has two extra options.
+ *
+ * 1. rewriteBody is for validations that after they're succesful need to
+ * rewrite it for any reason.
+ * 2. options is in case that the validation needs different options (not allowing
+ * unknown, not aborting early, etc).
  */
-const validateRequest = (
+export const validateRequest = (
   requestBody,
   response,
   schema,
   next,
   rewriteBody = false,
+  options = defaultOptions,
 ) => {
-  const { value, error } = validateSchema(schema, requestBody);
+  const { value, error } = schema.validate(requestBody, options);
 
   if (error) {
     const errors = error.details.map(({ message }) => message).join(', ');
@@ -32,10 +32,11 @@ const validateRequest = (
   }
   else {
     if (rewriteBody) {
+      next();
       return value;
     }
     next();
   }
 };
 
-export default validateSchema;
+export default validateRequest;

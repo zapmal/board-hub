@@ -1,44 +1,32 @@
-import validate from '@utils/schemas/validate';
+import validateRequest from '@utils/schemas/validate';
+import logger from '@utils/logging';
 import {
   signupSchema,
   signinSchema,
 } from '@utils/schemas/authSchemas';
-import logger from '@utils/logging';
 
 import { verify } from 'jsonwebtoken';
 import { user } from '@models';
 
 const validateSignup = (request, response, next) => {
-  const { value, error } = validate(signupSchema, request.body);
-
-  if (error) {
-    const errors = error.details.map(({ message }) => message).join(', ');
-
-    logger.error(errors);
-    return response.status(400).json({ message: errors });
-  }
-  else {
-    request.body = value;
-    next();
-  }
+  request.body = validateRequest(
+    request.body,
+    response,
+    signupSchema,
+    next,
+    true,
+  );
 };
 
 const validateSignin = (request, response, next) => {
-  const { value, error } = validate(signinSchema, request.body, {
-    abortEarly: false,
-    allowUnknown: false,
-  });
-
-  if (error) {
-    const errors = error.details.map(({ message }) => message).join(', ');
-
-    logger.error(errors);
-    return response.status(400).json({ message: errors });
-  }
-  else {
-    request.body = value;
-    next();
-  }
+  request.body = validateRequest(
+    request.body,
+    response,
+    signinSchema,
+    next,
+    true,
+    { abortEarly: false, allowUnknown: false },
+  );
 };
 
 /**
