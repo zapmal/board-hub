@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Backdrop, Typography, IconButton } from '@material-ui/core';
 import { useQuery, useMutation } from 'react-query';
 import ScaleLoader from 'react-spinners/ScaleLoader';
@@ -27,19 +27,17 @@ import team from 'assets/images/team.png';
 dayjs.extend(relativeTime);
 dayjs.locale('es-us');
 
-/**
- * There's a race condition when switching between cards.
- */
 export const EditCardDialog = ({ cardId, handleClose }) => {
-  const { data, isLoading, isError } = useQuery('card', async () => {
+  const { data: card, isLoading, isError } = useQuery('card', async () => {
     const { data } = await apiClient.get(`/cards/${cardId}`);
     return data;
   });
-  const classes = useStyles();
   const [isEditing, setIsEditing] = useState({
     title: false,
+    duedate: false,
     content: false,
   });
+  const classes = useStyles();
 
   if (isLoading) {
     return (
@@ -62,15 +60,16 @@ export const EditCardDialog = ({ cardId, handleClose }) => {
       isOpen={true}
       handleClose={handleClose}
       initialValues={{
-        title: data.title,
-        content: data.content,
-        duedate: data.duedate,
+        title: card.title,
+        content: card.content,
+        duedate: card.due_date,
       }}
       customStyles={classes.dialog}
+      reinitialize={true}
     >
       <CardTitle
-        title={data.title}
-        createdAt={data.createdAt}
+        title={card.title}
+        createdAt={card.createdAt}
         isEditing={isEditing['title']}
         setIsEditing={setIsEditing}
         classes={{
@@ -79,7 +78,7 @@ export const EditCardDialog = ({ cardId, handleClose }) => {
         }}
       />
       <CardDuedate
-        duedate={data.duedate}
+        duedate={card.duedate}
         isEditing={isEditing['duedate']}
         setIsEditing={setIsEditing}
         classes={{
@@ -88,7 +87,7 @@ export const EditCardDialog = ({ cardId, handleClose }) => {
         }}
       />
       <CardDescription
-        content={data.content}
+        content={card.content}
         isEditing={isEditing['content']}
         setIsEditing={setIsEditing}
         classes={{

@@ -20,9 +20,10 @@ const BaseDialog = ({
   handleSubmit,
   disableOutsideClick = false,
   customStyles,
+  reinitialize = false,
   children
 }) => {
-  const extraProps = disableOutsideClick 
+  const disableOutsideClickProps = disableOutsideClick 
     ? { disableBackdropClick: true, disableEscapeKeyDown: true } 
     : null;
 
@@ -32,13 +33,14 @@ const BaseDialog = ({
         open={isOpen} 
         onClose={handleClose}
         className={customStyles}
-        {...extraProps}
+        {...disableOutsideClickProps}
       >
         {title && <DialogTitle>{title}</DialogTitle>}
         <Formik
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={handleSubmit}
+          enableReinitialize={reinitialize}
         >
           {({ status, isSubmitting }) => (
             <Form>
