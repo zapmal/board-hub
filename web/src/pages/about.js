@@ -5,22 +5,20 @@ import {
   CardHeader,
   CardContent,
   CardMedia,
-  Typography,
   Button,
   Grid,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import GitHubIcon from '@material-ui/icons/GitHub';
 
-import { Highlight } from 'components/common';
-
 import wave from '../assets/svgs/wave.svg';
+import zapmalImage from '../assets/images/zapata-gh.jpeg';
+import biktolImage from '../assets/images/victor-gh.png';
 import noImage from '../assets/images/noimage.png';
 
 const useStyles = makeStyles(() => ({
   root: {
-    maxWidth: 800,
-    margin: '0 15px 50px 15px',
+    margin: 20,
   },
 
   media: {
@@ -56,6 +54,33 @@ const WaveText = styled.h1`
   color: #ffffff;
 `;
 
+const developers = [
+  {
+    username: 'zapmal',
+    name: 'Manuel Zapata',
+    avatar: zapmalImage,
+    link: 'https://github.com/zapmal',
+  },
+  {
+    username: 'biktol',
+    name: 'Víctor Homez',
+    avatar: biktolImage,
+    link: 'https://github.com/biktol',
+  },
+  {
+    name: 'Noel Duque',
+    avatar: noImage
+  },
+  {
+    name: 'Samuel Yépez',
+    avatar: noImage
+  },
+  {
+    name: 'Andrés Gonzáles',
+    avatar: noImage
+  },
+];
+
 const About = () => {
   const { root, media, container } = useStyles();
 
@@ -70,99 +95,44 @@ const About = () => {
 
       <main>
         <Grid container spacing={10} className={container}>
-          <Grid item md={3}>
-            <Card className={root}>
-              <CardHeader title='Manuel Zapata' />
-              <CardMedia
-                title='Foto de Manuel Zapata'
-                className={media}
-                image={noImage}
-              />
-              <CardContent>
-                <Typography variant='body2' component='p'>
-                  <Highlight>Frontend, Backend, Database and Design.</Highlight>
-                </Typography>
-
-                <Button
-                  color='secondary'
-                  href='https://github.com/Zondazx'
-                  target='_blank'
-                  endIcon={<GitHubIcon />}
-                >
-                  GitHub
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item md={3}>
-            <Card className={root}>
-              <CardHeader title='Víctor Homez' />
-              <CardMedia
-                title='Foto de Victor Homez'
-                className={media}
-                image={noImage}
-              />
-              <CardContent>
-                <Typography variant='body2' component='p'>
-                  <Highlight>Backend and Documentation.</Highlight>
-                </Typography>
-
-                <Button
-                  color='secondary'
-                  href='https://github.com/Biktol'
-                  target='_blank'
-                  endIcon={<GitHubIcon />}
-                >
-                  GitHub
-                </Button>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          {/* Estos son solo para fotos del informe. */}
-          {/*
-          <Grid item md={3}>
-            <Card className={root}>
-              <CardHeader title='Samuel Yépez' />
-              <CardMedia title='Foto de Samuel Yépez' className={media} image={noImage}/>
-              <CardContent>
-                <Typography variant='body2' component='p'>
-                  Cédula de identidad: <Highlight>27.363.562</Highlight>.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-
-          <Grid item md={3}>
-            <Card className={root}>
-              <CardHeader title='Andrés Gonzáles' />
-              <CardMedia title='Foto de Andrés Gonzáles' className={media} image={noImage}/>
-              <CardContent>
-                <Typography variant='body2' component='p'>
-                  Cédula de identidad: <Highlight>29.842.253</Highlight>.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-
-          <Grid item md={3}>
-            <Card className={root}>
-              <CardHeader title='Noel Duque' />
-              <CardMedia title='Foto de Noel Duque' className={media} image={noImage}/>
-              <CardContent>
-                <Typography variant='body2' component='p'>
-                  Cédula de identidad: <Highlight>28.061.952</Highlight>.
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-          */}
+          <DevelopersInformation 
+            developers={developers} 
+            classes={{
+              root,
+              media
+            }}
+          />
         </Grid>
       </main>
     </>
   );
+};
+
+const DevelopersInformation = ({ developers, classes }) => {
+
+  return developers.map(dev => (
+    <Grid item md={3}>
+      <Card className={classes.root}>
+        <CardHeader title={dev.name} />
+        <CardMedia
+          title={`Foto de ${dev.name}`}
+          className={classes.media}
+          image={dev.avatar}
+        />
+        <CardContent>
+          <Button
+            color='secondary'
+            href={dev.link}
+            target='_blank'
+            disabled={dev.link ? false : true}
+            endIcon={<GitHubIcon />}
+          >
+            GitHub
+          </Button>
+        </CardContent>
+      </Card>
+    </Grid>
+  ));
 };
 
 export default About;

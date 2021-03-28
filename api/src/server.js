@@ -5,12 +5,6 @@ import clear from 'clear';
 
 app.listen(PORT, () => {
   clear();
-  console.log(
-    chalk.magenta(
-      figlet.textSync('Board Hub API'),
-    ),
-  );
-  console.log(
-    chalk.greenBright(`Up and running on http://localhost:${PORT}/`),
-  );
+  console.log(chalk.magenta(figlet.textSync('Board Hub API')));
+  console.log(chalk.greenBright(`Up and running on http://localhost:${PORT}/`));
 });
