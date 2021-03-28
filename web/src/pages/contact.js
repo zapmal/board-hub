@@ -39,7 +39,6 @@ const Contact = () => {
       <Background>
         ¿Necesitas contactarnos?
         <span>No hay problema.</span>
-
         <ChatIcon fontSize='large' />
       </Background>
 

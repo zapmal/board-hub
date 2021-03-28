@@ -1,9 +1,5 @@
 import { useState } from 'react';
-import { 
-  Backdrop, 
-  Typography, 
-  IconButton,
-} from '@material-ui/core';
+import { Backdrop, Typography, IconButton } from '@material-ui/core';
 import { useQuery, useMutation } from 'react-query';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import ReactMarkdown from 'react-markdown';
@@ -72,106 +68,160 @@ export const EditCardDialog = ({ cardId, handleClose }) => {
       }}
       customStyles={classes.dialog}
     >
-      <div>
-        <Typography variant='subtitle1'>
+      <CardTitle
+        title={data.title}
+        createdAt={data.createdAt}
+        isEditing={isEditing['title']}
+        setIsEditing={setIsEditing}
+        classes={{
+          alignIcon: classes.alignIcon,
+          editIcon: classes.editIcon,
+        }}
+      />
+      <CardDuedate
+        duedate={data.duedate}
+        isEditing={isEditing['duedate']}
+        setIsEditing={setIsEditing}
+        classes={{
+          alignIcon: classes.alignIcon,
+          editIcon: classes.editIcon,
+        }}
+      />
+      <CardDescription
+        content={data.content}
+        isEditing={isEditing['content']}
+        setIsEditing={setIsEditing}
+        classes={{
+          alignIcon: classes.alignIcon,
+          editIcon: classes.editIcon,
+          content: classes.content,
+        }}
+      />
+    </BaseDialog>
+  );
+};
+
+const CardTitle = ({ title, createdAt, classes, isEditing, setIsEditing }) => {
+  return (
+    <div>
+      <Typography variant='subtitle1'>
         <LibraryBooksIcon className={classes.alignIcon} />
-        {isEditing['title'] ? (
-          <CustomField
-            type='text'
-            name='title'
-            color='secondary'
-          />
+        {isEditing ? (
+          <CustomField type='text' name='title' color='secondary' />
         ) : (
-          <strong>{data.title}</strong>
+          <strong>{title}</strong>
         )}
         <IconButton
-            className={classes.editIcon}
-            onClick={() =>
-              setIsEditing({ ...isEditing, title: !isEditing.title })
-            }
-          >
-            {isEditing['title'] ? <CloseIcon fontSize='small' /> : <CreateIcon fontSize='small' />}
-          </IconButton>
+          className={classes.editIcon}
+          onClick={() =>
+            setIsEditing((editing) => ({ 
+              ...editing, 
+              title: !isEditing
+            }))
+          }
+        >
+          {isEditing ? (
+            <CloseIcon fontSize='small' />
+          ) : (
+            <CreateIcon fontSize='small' />
+          )}
+        </IconButton>
+      </Typography>
+      <Typography variant='caption' display='block'>
+        En la lista <Highlight>Research, Ideas n Resources</Highlight>.
+      </Typography>
+      <Typography variant='caption' display='block'>
+        Creada <Highlight>{dayjs(createdAt).fromNow()}</Highlight>.
+      </Typography>
+    </div>
+  );
+};
+
+const CardDuedate = ({ duedate, classes, isEditing, setIsEditing }) => {
+  return (
+    <Field>
+      <Typography variant='subtitle1'>
+        <EventNoteIcon className={classes.alignIcon} />
+        <strong>Fecha Límite</strong>
+        <IconButton
+          className={classes.editIcon}
+          onClick={() =>
+            setIsEditing((editing) => ({ 
+              ...editing, 
+              duedate: !isEditing
+            }))
+          }
+        >
+          {isEditing ? (
+            <CloseIcon fontSize='small' />
+          ) : (
+            <CreateIcon fontSize='small' />
+          )}
+        </IconButton>
+      </Typography>
+      {isEditing ? (
+        <CustomField type='date' name='duedate' color='secondary' />
+      ) : duedate ? (
+        duedate
+      ) : (
+        <Typography variant='caption'>
+          Esta carta <Highlight>no tiene</Highlight> fecha límite.
         </Typography>
-        <Typography variant='caption' display='block'>
-          En la lista <Highlight>Research, Ideas n Resources</Highlight>.
-        </Typography>
-        <Typography variant='caption' display='block'>
-          Creada <Highlight>{dayjs(data.createdAt).fromNow()}</Highlight>.
-        </Typography>
-      </div>
-      <Field>
-        <Typography variant='subtitle1'>
-          <EventNoteIcon className={classes.alignIcon} />
-          <strong>Fecha Límite</strong>
-          <IconButton
-            className={classes.editIcon}
-            onClick={() =>
-              setIsEditing({ ...isEditing, duedate: !isEditing.duedate })
-            }
-          >
-            {isEditing['duedate'] ? <CloseIcon fontSize='small' /> : <CreateIcon fontSize='small' />}
-          </IconButton>
-        </Typography>
-        {isEditing['duedate'] ? (
+      )}
+    </Field>
+  );
+};
+
+const CardDescription = ({ content, classes, isEditing, setIsEditing }) => {
+  return (
+    <Field>
+      <Typography variant='subtitle1'>
+        <DehazeIcon className={classes.alignIcon} />
+        <strong>Descripción</strong>
+        <IconButton
+          className={classes.editIcon}
+          onClick={() =>
+            setIsEditing((editing) => ({ 
+              ...editing, 
+              content: !isEditing
+            }))
+          }
+        >
+          {isEditing ? (
+            <CloseIcon fontSize='small' />
+          ) : (
+            <CreateIcon fontSize='small' />
+          )}
+        </IconButton>
+      </Typography>
+      {isEditing ? (
+        <div style={{ textAlign: 'center' }}>
           <CustomField
-            type='date'
-            name='duedate'
+            type='text'
+            name='content'
             color='secondary'
+            className={classes.content}
+            InputProps={{ disableUnderline: true }}
+            multiline
+            fullWidth
+            rows={8}
+            rowsMax={10}
           />
-        ) : (
-          data.duedate 
-            ? data.duedate
-            : (
-              <Typography variant='caption'>
-                Esta carta <Highlight>no tiene</Highlight> fecha límite.
-              </Typography>
-            )
-        )}
-      </Field>
-      <Field>
-        <Typography variant='subtitle1'>
-          <DehazeIcon className={classes.alignIcon} />
-          <strong>Descripción</strong>
-          <IconButton
-            className={classes.editIcon}
-            onClick={() => (
-              setIsEditing({ ...isEditing, content: !isEditing.content })
-            )}
-          >
-            {isEditing['content'] ? <CloseIcon fontSize='small' /> : <CreateIcon fontSize='small' />}
-          </IconButton>
-        </Typography>
-        {isEditing['content'] ? (
-          <div style={{ textAlign: 'center' }}>
-            <CustomField
-              type='text'
-              name='content'
-              color='secondary'
-              className={classes.content}
-              InputProps={{ disableUnderline: true }}
-              multiline
-              fullWidth
-              rows={8}
-              rowsMax={10}
-            />
-            <Typography variant='caption' display='block'>
-              Puedes usar <Highlight>Markdown</Highlight>.
-            </Typography>
-          </div>
-        ) : (
-          data.content 
-            ? <ReactMarkdown source={data.content} />
-            : (
-              <NoDescription>
-                <img src={team} alt='Team' />
-                <p>
-                  No hay una descripción, agrega una para que sea más fácil <Highlight>manejar esta carta</Highlight>.
-                </p>
-              </NoDescription>
-            )
-        )}
-      </Field>
-    </BaseDialog>
+          <Typography variant='caption' display='block'>
+            Puedes usar <Highlight>Markdown</Highlight>.
+          </Typography>
+        </div>
+      ) : content ? (
+        <ReactMarkdown source={content} />
+      ) : (
+        <NoDescription>
+          <img src={team} alt='Team' />
+          <p>
+            No hay una descripción, agrega una para que sea más fácil{' '}
+            <Highlight>manejar esta carta</Highlight>.
+          </p>
+        </NoDescription>
+      )}
+    </Field>
   );
 };

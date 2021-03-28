@@ -11,7 +11,7 @@ import { useMutation } from 'react-query';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 import { Highlight } from 'components/common';
-import { Background, FormContainer } from '../Form';
+import { Background, FormContainer } from '../styles';
 
 import apiClient from 'services/api';
 import useUserStore from 'stores/useUserStore';

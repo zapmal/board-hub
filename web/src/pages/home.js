@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
 
   media: {
     height: 0,
-    paddingTop: '94.25%'
+    paddingTop: '94.25%',
   },
 
   container: {
@@ -47,13 +47,14 @@ const useStyles = makeStyles(() => ({
 
 const Background = styled.div`
   background-image: linear-gradient(
-    66deg,rgba(0,0,0,.85),
-    rgba(0,0,0,.5) 25%,
-    rgba(0,0,0,.3) 50%,
-    rgba(0,0,0,.1) 75%,
-    rgba(0,0,0,0)),
-    url(${teamStock}
-  );
+      66deg,
+      rgba(0, 0, 0, 0.85),
+      rgba(0, 0, 0, 0.5) 25%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.1) 75%,
+      rgba(0, 0, 0, 0)
+    ),
+    url(${teamStock});
   background-repeat: round;
   padding: 50px 0;
 `;
@@ -91,10 +92,11 @@ const Home = (props) => {
       <Background>
         <Banner>
           <Typography variant='h2' color='primary'>
-            Aumenta <strong>tu</strong> eficiencia o la de tu <strong>equipo</strong>
+            Aumenta <strong>tu</strong> eficiencia o la de tu{' '}
+            <strong>equipo</strong>
           </Typography>
 
-          <PromptButton to='/b'> 
+          <PromptButton to='/b'>
             <strong>Empieza Ya</strong>
             <span></span>
           </PromptButton>
@@ -109,18 +111,19 @@ const Home = (props) => {
           Mantenido de forma abierta y transparente, completamente gratis.
         </Typography>
         <div>
-          <BeenhereIcon color='primary' fontSize='large'/>
+          <BeenhereIcon color='primary' fontSize='large' />
         </div>
       </Separation>
-      
+
       <Grid container className={container}>
         <Grid item md={3}>
           <Card className={root}>
             <CardHeader title='Organización' subheader='Se adaptan a ti.' />
-            <CardMedia title='Organización' className={media} image={card}/>
+            <CardMedia title='Organización' className={media} image={card} />
             <CardContent>
               <Typography variant='body2' component='p'>
-                Organiza a tu manera, sin <Highlight color='#7362d0'>limites</Highlight>.
+                Organiza a tu manera, sin{' '}
+                <Highlight color='#7362d0'>limites</Highlight>.
               </Typography>
             </CardContent>
           </Card>
@@ -128,11 +131,15 @@ const Home = (props) => {
 
         <Grid item md={3}>
           <Card className={root}>
-            <CardHeader title='Creación' subheader='Consistentes y sencillas de hacer.' />
-            <CardMedia title='Creación' className={media} image={note}/>
+            <CardHeader
+              title='Creación'
+              subheader='Consistentes y sencillas de hacer.'
+            />
+            <CardMedia title='Creación' className={media} image={note} />
             <CardContent className={adapt}>
               <Typography variant='body2' component='p'>
-                Crea cartas con <Highlight color='#7362d0'>facilidad</Highlight>.
+                Crea cartas con <Highlight color='#7362d0'>facilidad</Highlight>
+                .
               </Typography>
             </CardContent>
           </Card>
@@ -140,11 +147,15 @@ const Home = (props) => {
 
         <Grid item md={3}>
           <Card className={root}>
-            <CardHeader title='Busquedas' subheader='Fáciles y rapidas de realizar.' />
-            <CardMedia title='Busquedas' className={media} image={review}/>
+            <CardHeader
+              title='Busquedas'
+              subheader='Fáciles y rapidas de realizar.'
+            />
+            <CardMedia title='Busquedas' className={media} image={review} />
             <CardContent>
               <Typography variant='body2' component='p'>
-                Accede rápidamente a tu <Highlight color='#7352d0'>contenido</Highlight>.
+                Accede rápidamente a tu{' '}
+                <Highlight color='#7352d0'>contenido</Highlight>.
               </Typography>
             </CardContent>
           </Card>
@@ -159,27 +170,32 @@ const Home = (props) => {
           La razón detrás de esto es simple, somos como tú.
         </Typography>
         <div>
-          <FaceIcon color='primary' fontSize='large'/>
+          <FaceIcon color='primary' fontSize='large' />
         </div>
       </Separation>
 
       <Grid container className={missionContainer}>
         <Grid item md={4}>
           <Card className={root}>
-            <CardMedia title='Canvas vacío' className={media} image={blankCanvas} />
+            <CardMedia
+              title='Canvas vacío'
+              className={media}
+              image={blankCanvas}
+            />
           </Card>
         </Grid>
 
         <Grid item md={3}>
           <Card className={root}>
-            <CardHeader 
-              title='Somos iguales.' 
+            <CardHeader
+              title='Somos iguales.'
               subheader='Nosotros también perdemos el rumbo en algunos días.'
             />
             <CardContent>
               <Typography variant='body1' component='p'>
-                Tareas, eventos imprevistos, trabajo, etc. Todos vivimos eso, todos necesitamos
-                organizarnos de una forma u otra. Es por eso que creamos <Highlight color='#7352d0'>Board Hub</Highlight>.
+                Tareas, eventos imprevistos, trabajo, etc. Todos vivimos eso,
+                todos necesitamos organizarnos de una forma u otra. Es por eso
+                que creamos <Highlight color='#7352d0'>Board Hub</Highlight>.
               </Typography>
             </CardContent>
           </Card>
@@ -187,15 +203,16 @@ const Home = (props) => {
 
         <Grid item md={3}>
           <Card className={root}>
-            <CardHeader 
-              title='Permitenos ayudarte.' 
+            <CardHeader
+              title='Permitenos ayudarte.'
               subheader='Create una cuenta, acompañanos en este viaje.'
             />
             <CardContent>
               <Typography variant='body1' component='p'>
-                Hagamos tu vida un poco más fácil, <Highlight color='#7352d0'>unete</Highlight>.
-                Y empieza a crear, organizar y manejar de mejor forma tu rutina, o tu equipo en
-                caso de que manejes un proyecto, sin importar su tamaño. 
+                Hagamos tu vida un poco más fácil,{' '}
+                <Highlight color='#7352d0'>unete</Highlight>. Y empieza a crear,
+                organizar y manejar de mejor forma tu rutina, o tu equipo en
+                caso de que manejes un proyecto, sin importar su tamaño.
               </Typography>
             </CardContent>
           </Card>

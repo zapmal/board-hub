@@ -27,7 +27,7 @@ export const NewCardDialog = ({ isOpen, handleClose, listId }) => {
     </span>
   );
 
-  const handleSubmit = async (data, { setStatus, resetForm, setSubmitting }) => {
+  const handleSubmit = async (data, { setStatus, setSubmitting }) => {
     const cardData = {
       ...data,
       listId,

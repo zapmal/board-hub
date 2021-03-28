@@ -17,7 +17,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 
 import useToggle from 'hooks/useToggle';
-import { 
+import {
   useStyles,
   MessageContainer,
   HeaderContainer,
@@ -38,12 +38,15 @@ export const BoardsDisplay = ({ boards = [], header }) => {
   const board = useRef(null);
   const [isOpen, toggleOpen] = useToggle();
   const queryClient = useQueryClient();
-  const mutation = useMutation(({ id }) => apiClient.put(`/b/${id}/toggle-favorite`), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('boards');
-      queryClient.invalidateQueries('favoriteBoards');
+  const mutation = useMutation(
+    ({ id }) => apiClient.put(`/b/${id}/toggle-favorite`),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('boards');
+        queryClient.invalidateQueries('favoriteBoards');
+      },
     }
-  });
+  );
 
   const handleFavoriteToggle = async (id) => {
     await mutation.mutateAsync({ id });
@@ -60,50 +63,62 @@ export const BoardsDisplay = ({ boards = [], header }) => {
         <Typography variant='h4'>{header}</Typography>
       </HeaderContainer>
       <Grid container className={classes.container}>
-        {boards.length > 0 ? boards.map((board, index) => (
-          <Grid item md={3} key={`${board.name}-${index}`}>
-            <Card className={classes.root} variant='outlined' color='secondary'>
-              <CardContent>
-                <Typography className={classes.top} color='textSecondary' gutterBottom>
-                  {dayjs(board.createdAt).format('DD-MM-YYYY')}
-                  <IconButton 
-                    className={clsx(classes.favoriteButton, { [classes.isFavorite]: board.is_favorite })}
-                    onClick={() => handleFavoriteToggle(board.id)}
+        {boards.length > 0 ? (
+          boards.map((board, index) => (
+            <Grid item md={3} key={`${board.name}-${index}`}>
+              <Card
+                className={classes.root}
+                variant='outlined'
+                color='secondary'
+              >
+                <CardContent>
+                  <Typography
+                    className={classes.top}
+                    color='textSecondary'
+                    gutterBottom
                   >
-                    <StarIcon />
-                  </IconButton> 
-                </Typography>
-                <Typography className={classes.name} color='secondary'>
-                  {board.name}
-                </Typography>
-                <Typography variant='body2' component='p'>
-                  {board.description || 'Este tablero no posee una descripción.'}
-                  <br />
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button 
-                  size='small' 
-                  component={Link} 
-                  to={`/b/${board.id}`}
-                  variant='outlined'
-                >
-                  Abrir
-                </Button>
-                <IconButton 
-                  className={classes.deleteButton} 
-                  onClick={() => handleDeleteDialogClick(board.id)} 
-                  id={board.id}
-                >
-                  <DeleteIcon />
-                </IconButton>
-              </CardActions>
-            </Card>
-          </Grid>
-        )) 
-        : (
+                    {dayjs(board.createdAt).format('DD-MM-YYYY')}
+                    <IconButton
+                      className={clsx(classes.favoriteButton, {
+                        [classes.isFavorite]: board.is_favorite,
+                      })}
+                      onClick={() => handleFavoriteToggle(board.id)}
+                    >
+                      <StarIcon />
+                    </IconButton>
+                  </Typography>
+                  <Typography className={classes.name} color='secondary'>
+                    {board.name}
+                  </Typography>
+                  <Typography variant='body2' component='p'>
+                    {board.description ||
+                      'Este tablero no posee una descripción.'}
+                    <br />
+                  </Typography>
+                </CardContent>
+                <CardActions>
+                  <Button
+                    size='small'
+                    component={Link}
+                    to={`/b/${board.id}`}
+                    variant='outlined'
+                  >
+                    Abrir
+                  </Button>
+                  <IconButton
+                    className={classes.deleteButton}
+                    onClick={() => handleDeleteDialogClick(board.id)}
+                    id={board.id}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
+                </CardActions>
+              </Card>
+            </Grid>
+          ))
+        ) : (
           <MessageContainer margin={20} noBorder>
-            <img src={lost} alt='Lost' width='500px'/>
+            <img src={lost} alt='Lost' width='500px' />
             <Typography variant='h5' gutterBottom>
               Parece que no hay nada aún.
             </Typography>
@@ -112,36 +127,49 @@ export const BoardsDisplay = ({ boards = [], header }) => {
             </Typography>
           </MessageContainer>
         )}
-        </Grid>
-        {boards.length >= 1 && (
-          <>
-            <Separator>
-              <Typography variant='h4'>
-                <Highlight color='#ffffff'>¿Atascado?</Highlight>
-                <div>
-                  <SentimentVeryDissatisfiedIcon color='primary' fontSize='large' />
-                </div>
-              </Typography>
-            </Separator>
+      </Grid>
 
-            <MessageContainer margin={30}>
-              <img src={working} alt='Working' width='450px'/>
-              <Typography gutterBottom>
-                Rompe tus tareas en trozos digeribles, pequeños y fáciles de procesar. Estos son mucho
-                más fáciles de completar y te ayudan a cumplir tu meta de forma progresiva.
-              </Typography>
-            </MessageContainer>
+      {boards.length >= 1 && <BoardsHelp />}
 
-            <MessageContainer margin={30}>
-              <img src={help} alt='Working' width='450px'/>
-              <Typography gutterBottom>
-                Escribele a algún amigo o pide ayuda en linea. Siempre es mejor trabajar en equipo.
-                Si no tienes a alguien disponible, intenta una comunidad en linea como <Highlight color='#00acee'>Twitter</Highlight> o <Highlight color='#7289da'>Discord</Highlight>.
-              </Typography>
-            </MessageContainer>
-          </>
-        )}
-        <DeleteBoardDialog isOpen={isOpen} handleClose={toggleOpen} boardId={board.current} />
-      </>
+      <DeleteBoardDialog
+        isOpen={isOpen}
+        handleClose={toggleOpen}
+        boardId={board.current}
+      />
+    </>
+  );
+};
+
+const BoardsHelp = () => {
+  return (
+    <>
+      <Separator>
+        <Typography variant='h4'>
+          <Highlight color='#ffffff'>¿Atascado?</Highlight>
+          <div>
+            <SentimentVeryDissatisfiedIcon color='primary' fontSize='large' />
+          </div>
+        </Typography>
+      </Separator>
+
+      <MessageContainer margin={30}>
+        <img src={working} alt='Working' width='450px' />
+        <Typography gutterBottom>
+          Rompe tus tareas en trozos digeribles, pequeños y fáciles de procesar.
+          Estos son mucho más fáciles de completar y te ayudan a cumplir tu meta
+          de forma progresiva.
+        </Typography>
+      </MessageContainer>
+
+      <MessageContainer margin={30}>
+        <img src={help} alt='Working' width='450px' />
+        <Typography gutterBottom>
+          Escribele a algún amigo o pide ayuda en linea. Siempre es mejor
+          trabajar en equipo. Si no tienes a alguien disponible, intenta una
+          comunidad en linea como <Highlight color='#00acee'>Twitter</Highlight>{' '}
+          o <Highlight color='#7289da'>Discord</Highlight>.
+        </Typography>
+      </MessageContainer>
+    </>
   );
 };

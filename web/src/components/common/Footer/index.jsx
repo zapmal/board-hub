@@ -1,10 +1,6 @@
 import React from 'react';
 
-import {
-  FooterContainer,
-  Information,
-  Contributors
-} from './styles';
+import { FooterContainer, Information, Contributors } from './styles';
 
 export const Footer = () => {
   return (
@@ -14,7 +10,10 @@ export const Footer = () => {
       </Information>
       <Information>
         <p>¿Encontraste un error o tienes una sugerencia?</p>
-        <Contributors href='https://github.com/Zondazx/board-hub/issues' target='_blank'>
+        <Contributors
+          href='https://github.com/zapmal/board-hub/issues'
+          target='_blank'
+        >
           Hablanos de eso
         </Contributors>
       </Information>
