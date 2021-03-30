@@ -16,7 +16,6 @@ const handler = (promise, params) => async (request, response, next) => {
     return response.json(result || { message: 'OK' });
   }
   catch (error) {
-    console.log(error);
     logger.error(error.message);
     return response.status(500).json(error.message);
   }

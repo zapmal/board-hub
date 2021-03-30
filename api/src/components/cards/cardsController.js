@@ -2,6 +2,8 @@ import {
   createCard,
   eraseCard,
   getSingleCard,
+  updateCard,
+  updateCardList,
 } from './cardsService';
 
 const newCard = async (title, listID) => {
@@ -36,8 +38,29 @@ const getCard = async (cardID, response) => {
   return card;
 };
 
+const putCard = async (cardData, response) => {
+  const didUpdate = await updateCard(cardData);
+
+  if (!didUpdate) {
+    return {
+      message: 'Mmm, parece que hubo un error actualizando la carta.',
+    };
+  }
+
+  return { message: 'Carta actualizada.' };
+};
+
+const putCardList = async (origin, destination) => {
+  await updateCardList(origin.id, destination.listId);
+  await updateCardList(destination.id, origin.listId);
+
+  return { message: 'Cartas cambiadas de listas exitosamente.' };
+};
+
 export {
   newCard,
   deleteCard,
   getCard,
+  putCard,
+  putCardList,
 };

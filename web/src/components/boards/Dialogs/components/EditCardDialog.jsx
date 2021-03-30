@@ -78,7 +78,7 @@ export const EditCardDialog = ({ cardId, handleClose }) => {
         }}
       />
       <CardDuedate
-        duedate={card.duedate}
+        duedate={card.due_date}
         isEditing={isEditing['duedate']}
         setIsEditing={setIsEditing}
         classes={{
@@ -99,6 +99,8 @@ export const EditCardDialog = ({ cardId, handleClose }) => {
     </BaseDialog>
   );
 };
+
+// maybe (just maybe) this can be 4 components, using a parent wrapper one
 
 const CardTitle = ({ title, createdAt, classes, isEditing, setIsEditing }) => {
   return (

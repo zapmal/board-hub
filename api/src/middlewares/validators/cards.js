@@ -2,6 +2,7 @@ import validateRequest from '@utils/schemas/validate';
 import logger from '@utils/logging';
 import {
   newCardSchema,
+  editCardSchema,
 } from '@utils/schemas/cardsSchemas';
 import { list, card, user } from '@models';
 
@@ -13,6 +14,17 @@ const validateNewCard = (request, response, next) => {
     next,
   );
 };
+
+const validateCardUpdate = (request, response, next) => {
+  request.body = validateRequest(
+    request.body,
+    response,
+    editCardSchema,
+    next,
+    true,
+  );
+};
+
 
 /**
  * Makes multiple queries to see if the card belongs to the current user.
@@ -55,5 +67,6 @@ const checkCardOwner = async (request, response, next) => {
 
 export {
   validateNewCard,
+  validateCardUpdate,
   checkCardOwner,
 };
