@@ -46,7 +46,7 @@ router.put(`${ROUTE_PREFIX}/:id`,
       duedate: request.body.duedate,
       completed: request.body.completed,
       content: request.body.content,
-    }, response]
+    }]
   )),
 );
 

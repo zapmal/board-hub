@@ -28,7 +28,7 @@ const deleteCard = async (cardID, response) => {
 };
 
 const getCard = async (cardID, response) => {
-  const card = await getSingleCard(cardID);
+  const card = await getSingleCard(cardID, true);
 
   if (!card) {
     response.status(404);
@@ -38,7 +38,7 @@ const getCard = async (cardID, response) => {
   return card;
 };
 
-const putCard = async (cardData, response) => {
+const putCard = async (cardData) => {
   const didUpdate = await updateCard(cardData);
 
   if (!didUpdate) {

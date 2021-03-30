@@ -46,6 +46,6 @@ export const NoDescription = styled.div`
   font-size: 14px;
   text-align: center;
   img {
-    width: 380px;
+    width: 350px;
   }
 `;

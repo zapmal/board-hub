@@ -25,3 +25,6 @@ yarn-error.log*
 
 ref-*.js
 STRUCTURE-BETA.md
+
+# Puke-component for testing-purposes.
+Puke.jsx

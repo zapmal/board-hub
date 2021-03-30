@@ -9,6 +9,9 @@ const defaultOptions = {
 /**
  * Function that validates the given request, it has two extra options.
  *
+ * Currently has a bug that if two errors in the errors array are equal it still
+ * prints both.
+ *
  * 1. rewriteBody is for validations that after they're succesful need to
  * rewrite it for any reason.
  * 2. options is in case that the validation needs different options (not allowing

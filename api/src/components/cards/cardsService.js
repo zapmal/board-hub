@@ -1,4 +1,4 @@
-import { card } from '@models';
+import { card, list } from '@models';
 
 const createCard = async (title, listID) => {
   const newCard = await card.create({ title, list_id: listID });
@@ -10,8 +10,16 @@ const eraseCard = async (cardID) => {
   await card.destroy({ where: { id: cardID } });
 };
 
-const getSingleCard = async (cardID) => {
+const getSingleCard = async (cardID, includeList = false) => {
   const foundCard = await card.findByPk(cardID);
+
+  if (includeList) {
+    const parentList = await list.findByPk(foundCard.list_id);
+    return {
+      ...foundCard.dataValues,
+      list: parentList.name,
+    };
+  }
 
   return foundCard;
 };

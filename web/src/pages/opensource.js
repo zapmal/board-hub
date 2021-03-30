@@ -51,14 +51,14 @@ const OpenSource = () => {
           </Typography>
 
           <Typography variant='body1' color='primary'>
-            <strong>Todo el código es accesible, y cualquiera puede contribuir.</strong>
+            <strong>Hecho con herramientas open-source, si quieres ser parte del equipo entonces</strong>
           </Typography>
 
 
           <Button 
             variant='contained' 
             color='primary' 
-            href='https://github.com/Zondazx/board-hub' 
+            href='https://github.com/zapmal/board-hub' 
             target='_blank'
           >
             Únetenenos

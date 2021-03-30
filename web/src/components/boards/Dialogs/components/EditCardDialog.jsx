@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Backdrop, Typography, IconButton } from '@material-ui/core';
-import { useQuery, useMutation } from 'react-query';
+import { useState } from 'react';
+import { Backdrop, Typography, IconButton, Button } from '@material-ui/core';
+import { useQueryClient, useQuery, useMutation } from 'react-query';
 import ScaleLoader from 'react-spinners/ScaleLoader';
 import ReactMarkdown from 'react-markdown';
 import dayjs from 'dayjs';
@@ -28,9 +28,15 @@ dayjs.extend(relativeTime);
 dayjs.locale('es-us');
 
 export const EditCardDialog = ({ cardId, handleClose }) => {
+  const queryClient = useQueryClient();
   const { data: card, isLoading, isError } = useQuery('card', async () => {
     const { data } = await apiClient.get(`/cards/${cardId}`);
     return data;
+  });
+  const mutation = useMutation((data) => apiClient.put(`/cards/${cardId}`, data), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('lists');
+    },
   });
   const [isEditing, setIsEditing] = useState({
     title: false,
@@ -38,6 +44,25 @@ export const EditCardDialog = ({ cardId, handleClose }) => {
     content: false,
   });
   const classes = useStyles();
+
+  const handleSubmit = async (data, { setStatus, setSubmitting }) => { 
+    try {
+      setSubmitting(true);
+
+      const { data: { message } } = await mutation.mutateAsync(data);
+
+      setSubmitting(false);
+
+      handleClose();
+    }
+    catch (error) {
+      setStatus(
+        error.response
+          ? error.response.data.message
+          : 'Ha ocurrido un error, inténtalo de nuevo.'
+      );
+    }
+  };
 
   if (isLoading) {
     return (
@@ -59,10 +84,11 @@ export const EditCardDialog = ({ cardId, handleClose }) => {
     <BaseDialog
       isOpen={true}
       handleClose={handleClose}
+      handleSubmit={handleSubmit}
       initialValues={{
-        title: card.title,
-        content: card.content,
-        duedate: card.due_date,
+        title: card.title || '',
+        content: card.content || '',
+        duedate: card.due_date || null,
       }}
       customStyles={classes.dialog}
       reinitialize={true}
@@ -70,6 +96,7 @@ export const EditCardDialog = ({ cardId, handleClose }) => {
       <CardTitle
         title={card.title}
         createdAt={card.createdAt}
+        list={card.list}
         isEditing={isEditing['title']}
         setIsEditing={setIsEditing}
         classes={{
@@ -100,9 +127,14 @@ export const EditCardDialog = ({ cardId, handleClose }) => {
   );
 };
 
-// maybe (just maybe) this can be 4 components, using a parent wrapper one
-
-const CardTitle = ({ title, createdAt, classes, isEditing, setIsEditing }) => {
+const CardTitle = ({ 
+  title, 
+  createdAt, 
+  list, 
+  classes, 
+  isEditing, 
+  setIsEditing 
+}) => {
   return (
     <div>
       <Typography variant='subtitle1'>
@@ -129,7 +161,7 @@ const CardTitle = ({ title, createdAt, classes, isEditing, setIsEditing }) => {
         </IconButton>
       </Typography>
       <Typography variant='caption' display='block'>
-        En la lista <Highlight>Research, Ideas n Resources</Highlight>.
+        En la lista <Highlight>{list}</Highlight>.
       </Typography>
       <Typography variant='caption' display='block'>
         Creada <Highlight>{dayjs(createdAt).fromNow()}</Highlight>.
@@ -163,7 +195,14 @@ const CardDuedate = ({ duedate, classes, isEditing, setIsEditing }) => {
       {isEditing ? (
         <CustomField type='date' name='duedate' color='secondary' />
       ) : duedate ? (
-        duedate
+        <>
+          <Typography display='block' gutterBottom>
+            Esta carta vence el <Highlight> {dayjs(duedate).format('DD/MM/YYYY')}</Highlight>
+          </Typography>
+          <Typography variant='caption'>
+            En apróximadamente <Highlight>{dayjs(new Date()).to(duedate, true)}</Highlight>.
+          </Typography>
+        </>
       ) : (
         <Typography variant='caption'>
           Esta carta <Highlight>no tiene</Highlight> fecha límite.
