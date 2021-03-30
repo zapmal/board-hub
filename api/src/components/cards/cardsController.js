@@ -3,7 +3,7 @@ import {
   eraseCard,
   getSingleCard,
   updateCard,
-  updateCardList,
+  updateList,
 } from './cardsService';
 
 const newCard = async (title, listID) => {
@@ -50,9 +50,8 @@ const putCard = async (cardData) => {
   return { message: 'Carta actualizada.' };
 };
 
-const putCardList = async (origin, destination) => {
-  await updateCardList(origin.id, destination.listId);
-  await updateCardList(destination.id, origin.listId);
+const changeCurrentList = async (cardId, destinationListId) => {
+  await updateList(cardId, destinationListId);
 
   return { message: 'Cartas cambiadas de listas exitosamente.' };
 };
@@ -62,5 +61,5 @@ export {
   deleteCard,
   getCard,
   putCard,
-  putCardList,
+  changeCurrentList,
 };

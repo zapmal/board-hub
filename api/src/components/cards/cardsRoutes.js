@@ -4,7 +4,7 @@ import {
   deleteCard,
   getCard,
   putCard,
-  putCardList,
+  changeCurrentList,
 } from './cardsController';
 import { checkToken } from '@middlewares/validators/auth';
 import { validateNewCard, checkCardOwner } from '@middlewares/validators/cards';
@@ -52,10 +52,10 @@ router.put(`${ROUTE_PREFIX}/:id`,
 
 router.put(`${ROUTE_PREFIX}/:id/update-list`,
   checkCardOwner,
-  handler(putCardList, (request) => (
+  handler(changeCurrentList, (request) => (
     [
-      request.body.origin,
-      request.body.destination,
+      request.body.id,
+      request.body.destinationListId,
     ]
   )),
 );

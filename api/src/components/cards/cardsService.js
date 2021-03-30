@@ -35,7 +35,7 @@ const updateCard = async (cardData) => {
   return didUpdate !== 0;
 };
 
-const updateCardList = async (id, listId) => {
+const updateList = async (id, listId) => {
   await card.update({ list_id: listId }, { where: { id } });
 };
 
@@ -44,5 +44,5 @@ export {
   eraseCard,
   getSingleCard,
   updateCard,
-  updateCardList,
+  updateList,
 };

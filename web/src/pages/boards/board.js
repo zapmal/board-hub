@@ -21,10 +21,10 @@ const Container = styled.div`
 `;
 
 /**
- * Comment this.
+ * This is specifically for the drag of lists. 
  */
 const handleDrag = (
-  draggedElement, 
+  draggedElement,
   dragDifference,
   sourceIndex,
   isLongDrag = false,
@@ -44,25 +44,15 @@ const handleDrag = (
       },
       [operation]: {
         ...draggedElement[operation],
-        order: draggedElement[
-          rightToLeft ? operation + 1 : operation - 1
-        ].order,
+        order:
+          draggedElement[rightToLeft ? operation + 1 : operation - 1].order,
       },
-      [
-        rightToLeft
-          ? operation + 1
-          : operation - 1
-      ]: {
-        ...draggedElement[
-            rightToLeft
-              ? operation + 1
-              : operation - 1
-        ],
+      [rightToLeft ? operation + 1 : operation - 1]: {
+        ...draggedElement[rightToLeft ? operation + 1 : operation - 1],
         order: draggedElement[sourceIndex].order,
-      }
+      },
     };
-  }
-  else {
+  } else {
     return {
       ...draggedElement,
       [sourceIndex]: {
@@ -80,19 +70,29 @@ const handleDrag = (
 const Board = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
-  const { 
-    data,
-    isLoading,
-    isError,
-  } = useQuery('lists', async () => {
-    const { data } = await apiClient.get(`/lists/all`, { params: { boardId: id } });
+  const { data: fetchedData, isLoading, isError } = useQuery('lists', async () => {
+    const { data } = await apiClient.get(`/lists/all`, {
+      params: { boardId: id },
+    });
     return data;
   });
-  const mutation = useMutation(data => apiClient.put('/lists/order', data), {
-    onSuccess: () => {
-      queryClient.invalidateQueries('lists');
+  const listOrderMutation = useMutation(
+    (data) => apiClient.put('/lists/order', data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('lists');
+      },
     }
-  });
+  );
+  const changeListMutation = useMutation(
+    (data) => apiClient.put(`/cards/${data.id}/update-list`, data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('lists');
+      },
+    }
+  );
+  const [data, setData] = useState(fetchedData);
   const [listOrder, setListOrder] = useState([]);
 
   useEffect(() => {
@@ -106,8 +106,9 @@ const Board = () => {
       });
     }
 
-    const sortedLists = unsortedLists
-      .sort((first, second) => first.order - second.order);
+    const sortedLists = unsortedLists.sort(
+      (first, second) => first.order - second.order
+    );
 
     setListOrder(sortedLists);
   }, [data]);
@@ -135,42 +136,64 @@ const Board = () => {
         [destination.index]: {
           ...listOrder[source.index],
           order: listOrder[destination.index].order,
-        }
+        },
       };
-      const dragDistance = Math.abs(listOrder[destination.index].order - listOrder[source.index].order);
+      const dragDistance = Math.abs(
+        listOrder[destination.index].order - listOrder[source.index].order
+      );
       const isLongDrag = dragDistance >= 3;
       const dragDifference = isLongDrag ? 2 : 1;
 
       if (dragDistance !== 1) {
         if (source.index >= 2) {
-          newOrderObject = isLongDrag 
-           ? handleDrag(newOrderObject, dragDifference, source.index, isLongDrag, true)
-           : handleDrag(newOrderObject, dragDifference, source.index, isLongDrag, true);
-        }
-        else {
           newOrderObject = isLongDrag
-            ? handleDrag(newOrderObject, dragDifference, source.index, isLongDrag)
-            : handleDrag(newOrderObject, dragDifference, source.index, isLongDrag);
+            ? handleDrag(
+                newOrderObject,
+                dragDifference,
+                source.index,
+                isLongDrag,
+                true
+              )
+            : handleDrag(
+                newOrderObject,
+                dragDifference,
+                source.index,
+                isLongDrag,
+                true
+              );
+        } else {
+          newOrderObject = isLongDrag
+            ? handleDrag(
+                newOrderObject,
+                dragDifference,
+                source.index,
+                isLongDrag
+              )
+            : handleDrag(
+                newOrderObject,
+                dragDifference,
+                source.index,
+                isLongDrag
+              );
         }
-      } 
+      }
 
       const newOrder = Array.from(
         Object.keys(newOrderObject)
-          .map(l => newOrderObject[l])
+          .map((l) => newOrderObject[l])
           .sort((first, second) => first.order - second.order)
       );
 
       setListOrder(newOrder);
 
       if (dragDistance >= 2) {
-        await mutation.mutateAsync({
+        await listOrderMutation.mutateAsync({
           newOrder,
           isLongDrag: true,
           boardId: Number(id),
         });
-      }
-      else {
-        await mutation.mutateAsync({
+      } else {
+        await listOrderMutation.mutateAsync({
           newOrder: {
             source: newOrder[source.index],
             destination: newOrder[destination.index],
@@ -202,14 +225,14 @@ const Board = () => {
         },
       };
 
-      // Here the cards order needs to be updated.
-      // setOrder(...);
+      setData(updatedData);
       return;
     }
 
     // Moving a card from one list to another.
     const startCardIds = Array.from(home.cardIds);
     startCardIds.splice(source.index, 1);
+
     const newStart = {
       ...home,
       cardIds: startCardIds,
@@ -231,12 +254,17 @@ const Board = () => {
       },
     };
 
-    // Again, update the cards order.
-    // setOrder(...);
+    // Updates the current (moved) card list id
+    await changeListMutation.mutateAsync({
+      id: data.cards[draggableId].id,
+      destinationListId: foreign.uid,
+    });
+
+    setData(newData);
   };
 
   if (isLoading) {
-    return <Status status='loading' loading={isLoading}/>;
+    return <Status status='loading' loading={isLoading} />;
   }
 
   if (isError) {
