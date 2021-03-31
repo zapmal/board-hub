@@ -21,7 +21,7 @@ const Container = styled.div`
 `;
 
 /**
- * This is specifically for the drag of lists. 
+ * This is specifically for the drag of lists.
  */
 const handleDrag = (
   draggedElement,
@@ -70,12 +70,15 @@ const handleDrag = (
 const Board = () => {
   const { id } = useParams();
   const queryClient = useQueryClient();
-  const { data: fetchedData, isLoading, isError } = useQuery('lists', async () => {
-    const { data } = await apiClient.get(`/lists/all`, {
-      params: { boardId: id },
-    });
-    return data;
-  });
+  const { data: fetchedData, isLoading, isError } = useQuery(
+    'lists',
+    async () => {
+      const { data } = await apiClient.get(`/lists/all`, {
+        params: { boardId: id },
+      });
+      return data;
+    }
+  );
   const listOrderMutation = useMutation(
     (data) => apiClient.put('/lists/order', data),
     {
@@ -94,8 +97,6 @@ const Board = () => {
   );
   const [data, setData] = useState([]);
   const [listOrder, setListOrder] = useState([]);
-
-  // console.log({ data, fetchedData, isLoading });
 
   useEffect(() => {
     const unsortedLists = [];
@@ -141,6 +142,7 @@ const Board = () => {
           order: listOrder[destination.index].order,
         },
       };
+
       const dragDistance = Math.abs(
         listOrder[destination.index].order - listOrder[source.index].order
       );
@@ -213,8 +215,12 @@ const Board = () => {
 
     if (home === foreign) {
       const newCardIds = Array.from(home.cardIds);
+      const cardsOrder = new Map();
+
       newCardIds.splice(source.index, 1);
       newCardIds.splice(destination.index, 0, draggableId);
+
+      newCardIds.forEach((cardId, index) => cardsOrder.set(cardId, index));
 
       const newList = {
         ...home,
@@ -229,6 +235,9 @@ const Board = () => {
       };
 
       setData(updatedData);
+      // send cardsOrder and that'll persist the vertical order
+      // of the cards
+
       return;
     }
 
@@ -264,11 +273,12 @@ const Board = () => {
       id: data.cards[draggableId].id,
       destinationListId: foreign.uid,
     });
-
   };
 
-  if (isLoading || data.length === 0) {
-    return <Status status='loading' loading={isLoading || data.length === 0} />;
+  if (isLoading || data?.length === 0) {
+    return (
+      <Status status='loading' loading={isLoading || data?.length === 0} />
+    );
   }
 
   if (isError) {

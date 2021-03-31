@@ -6,6 +6,12 @@ const createCard = async (title, listID) => {
   return newCard;
 };
 
+const getAllCards = async (listID) => {
+  const cards = await card.findAll({ where: { list_id: listID } });
+
+  return cards;
+};
+
 const eraseCard = async (cardID) => {
   await card.destroy({ where: { id: cardID } });
 };

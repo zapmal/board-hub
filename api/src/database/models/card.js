@@ -16,6 +16,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: '0',
     },
     due_date: DataTypes.DATE,
+    order: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
     list_id: DataTypes.INTEGER,
   }, { tableName: 'card' });
 
