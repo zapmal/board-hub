@@ -254,13 +254,14 @@ const Board = () => {
       },
     };
 
+    setData(newData);
+
     // Updates the current (moved) card list id
     await changeListMutation.mutateAsync({
       id: data.cards[draggableId].id,
       destinationListId: foreign.uid,
     });
 
-    setData(newData);
   };
 
   if (isLoading) {
