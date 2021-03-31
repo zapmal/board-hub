@@ -11,7 +11,7 @@ import apiClient from 'services/api';
 import background from 'assets/images/bg-2.jpg';
 
 const Container = styled.div`
-  padding: 6% 0 16% 0;
+  padding: 6.5% 0 16% 0;
   display: flex;
   justify-content: center;
 
@@ -92,17 +92,19 @@ const Board = () => {
       },
     }
   );
-  const [data, setData] = useState(fetchedData);
+  const [data, setData] = useState([]);
   const [listOrder, setListOrder] = useState([]);
+
+  // console.log({ data, fetchedData, isLoading });
 
   useEffect(() => {
     const unsortedLists = [];
 
-    for (const key in data?.lists) {
+    for (const key in fetchedData?.lists) {
       unsortedLists.push({
-        id: data.lists[key].uid,
-        name: data.lists[key].id,
-        order: data.lists[key].order,
+        id: fetchedData.lists[key].uid,
+        name: fetchedData.lists[key].id,
+        order: fetchedData.lists[key].order,
       });
     }
 
@@ -111,7 +113,8 @@ const Board = () => {
     );
 
     setListOrder(sortedLists);
-  }, [data]);
+    setData(fetchedData);
+  }, [fetchedData]);
 
   const onDragEnd = async (result) => {
     const { destination, source, draggableId, type } = result;
@@ -264,8 +267,8 @@ const Board = () => {
 
   };
 
-  if (isLoading) {
-    return <Status status='loading' loading={isLoading} />;
+  if (isLoading || data.length === 0) {
+    return <Status status='loading' loading={isLoading || data.length === 0} />;
   }
 
   if (isError) {
