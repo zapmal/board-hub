@@ -87,6 +87,14 @@ const Board = () => {
       },
     }
   );
+  const cardOrderMutation = useMutation(
+    (data) => apiClient.put(`/cards/${data.id}/order`, data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('lists');
+      },
+    }
+  );
   const changeListMutation = useMutation(
     (data) => apiClient.put(`/cards/${data.id}/update-list`, data),
     {
@@ -215,12 +223,14 @@ const Board = () => {
 
     if (home === foreign) {
       const newCardIds = Array.from(home.cardIds);
-      const cardsOrder = new Map();
 
       newCardIds.splice(source.index, 1);
       newCardIds.splice(destination.index, 0, draggableId);
 
-      newCardIds.forEach((cardId, index) => cardsOrder.set(cardId, index));
+      const cardsOrder = newCardIds.map((cardId, index) => ({
+        card: cardId,
+        order: index
+      }));
 
       const newList = {
         ...home,
@@ -235,8 +245,11 @@ const Board = () => {
       };
 
       setData(updatedData);
-      // send cardsOrder and that'll persist the vertical order
-      // of the cards
+
+      await cardOrderMutation.mutateAsync({
+        id: data.cards[draggableId].id,
+        cards: cardsOrder,
+      });
 
       return;
     }

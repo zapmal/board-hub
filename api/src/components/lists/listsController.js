@@ -1,10 +1,10 @@
 import {
   getBoardLists,
   updateListOrder,
-  updateManyListsOrder,
+  updateMultipleListsOrder,
 } from './listsService';
 
-const getLists = async (boardID, response) => {
+const getLists = async (boardID) => {
   const [rawLists, rawCards] = await getBoardLists(boardID);
   const data = { cards: {}, lists: {} };
 
@@ -15,10 +15,14 @@ const getLists = async (boardID, response) => {
       uid: list.id,
       name: list.name,
       order: list.order,
-      cardIds: list.listCards.map(card => card.id.toString()),
+      cardIds: list.listCards
+        .sort((first, second) => first.order - second.order)
+        .map(card => card.id.toString()),
       boardId: list.boardId,
     };
+    console.log(data.lists[key].test);
   }
+
 
   for (const card of rawCards) {
     const key = card.id.toString();
@@ -31,22 +35,18 @@ const getLists = async (boardID, response) => {
   return data;
 };
 
-const putOrder = async (
-  newOrder,
-  isLongDrag = false,
-) => {
+const putOrder = async (newOrder, isLongDrag = false) => {
   if (isLongDrag) {
-    await updateManyListsOrder(newOrder);
-  }
-  else {
+    await updateMultipleListsOrder(newOrder);
+  } else {
     await updateListOrder(newOrder['source'].id, newOrder['source'].order);
-    await updateListOrder(newOrder['destination'].id, newOrder['destination'].order);
+    await updateListOrder(
+      newOrder['destination'].id,
+      newOrder['destination'].order
+    );
   }
 
   return { message: 'Listas ordenadas exitosamente.' };
 };
 
-export {
-  getLists,
-  putOrder,
-};
+export { getLists, putOrder };

@@ -25,7 +25,6 @@ const validateCardUpdate = (request, response, next) => {
   );
 };
 
-
 /**
  * Makes multiple queries to see if the card belongs to the current user.
  *

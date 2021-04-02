@@ -1,7 +1,11 @@
 import { card, list } from '@models';
 
 const createCard = async (title, listID) => {
-  const newCard = await card.create({ title, list_id: listID });
+  const allCards = await getAllCards(listID);
+  const biggestOrder = allCards
+    .map(c => c.order)
+    .sort((first, second) => second - first)[0];
+  const newCard = await card.create({ title, order: biggestOrder + 1, list_id: listID });
 
   return newCard;
 };
@@ -45,10 +49,17 @@ const updateList = async (id, listId) => {
   await card.update({ list_id: listId }, { where: { id } });
 };
 
+const updateOrder = async (cards) => {
+  for (const key in cards) {
+    await card.update({ order: cards[key].order }, { where: { id: cards[key].card } });
+  }
+};
+
 export {
   createCard,
   eraseCard,
   getSingleCard,
   updateCard,
   updateList,
+  updateOrder,
 };

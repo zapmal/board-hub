@@ -7,7 +7,7 @@ const getBoardLists = async (boardID) => {
     include: {
       model: card,
       as: 'listCards',
-      attributes: ['id', 'title'],
+      attributes: ['id', 'title', 'order'],
     },
   });
   const cards = await card.findAll({
@@ -31,7 +31,7 @@ const updateListOrder = async (id, order) => {
  * find much info about it on their docs so had to use this. I'm sure it can be
  * improved.
  */
-const updateManyListsOrder = async (lists) => {
+const updateMultipleListsOrder = async (lists) => {
   for (const key in lists) {
     await updateListOrder(lists[key].id, lists[key].order);
   }
@@ -40,5 +40,5 @@ const updateManyListsOrder = async (lists) => {
 export {
   getBoardLists,
   updateListOrder,
-  updateManyListsOrder,
+  updateMultipleListsOrder,
 };

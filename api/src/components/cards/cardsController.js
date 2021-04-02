@@ -4,6 +4,7 @@ import {
   getSingleCard,
   updateCard,
   updateList,
+  updateOrder,
 } from './cardsService';
 
 const newCard = async (title, listID) => {
@@ -56,10 +57,17 @@ const changeCurrentList = async (cardId, destinationListId) => {
   return { message: 'Cartas cambiadas de listas exitosamente.' };
 };
 
+const putVerticalOrder = async (cards) => {
+  await updateOrder(cards);
+
+  return { message: 'Cartas ordenadas exitosamente.' };
+};
+
 export {
   newCard,
   deleteCard,
   getCard,
   putCard,
   changeCurrentList,
+  putVerticalOrder,
 };
