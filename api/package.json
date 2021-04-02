@@ -1,11 +1,11 @@
 {
   "name": "board-hub-api",
   "version": "1.0.0",
-  "main": "src/serve.js",
+  "main": "src/server.js",
   "scripts": {
     "dev": "nodemon src/server.js --exec babel-node",
     "prod": "babel src --out-dir dist",
-    "start": "node dist/server",
+    "start": "node dist/server.js",
     "migrate": "npx sequelize db:migrate",
     "seed": "npx sequelize db:seed:all",
     "undo:migrations": "npx sequelize db:migrate:undo:all",
