@@ -23,7 +23,6 @@ const getLists = async (boardID) => {
     console.log(data.lists[key].test);
   }
 
-
   for (const card of rawCards) {
     const key = card.id.toString();
     data.cards[key] = {
