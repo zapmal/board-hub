@@ -49,7 +49,10 @@ const RouteWithSubRoutes = (route) => {
 
 const ProtectedRoute = ({ path, exact, route }) => {
   const isSessionActive = useUserStore(state => state.user);
-  const isAuthPage = (path === '/signin' || path === '/signup');
+  const isAuthPage = (
+    path === '/signin' || 
+    path === '/signup' 
+  );
   const isLoggedIn = localStorage.getItem('token');
 
   if (isLoggedIn && isAuthPage) {

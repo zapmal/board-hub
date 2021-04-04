@@ -46,7 +46,6 @@ export const UpdateForm = ({
       setStatus({ success: message });
     }
     catch (error) {
-      console.log(error);
       setStatus(error.response ? error.response.data.message : 'Ha ocurrido un error, inténtalo de nuevo.');
     }
   };
