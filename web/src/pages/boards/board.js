@@ -103,6 +103,14 @@ const Board = () => {
       },
     }
   );
+  const normalizeCardsOrderMutation = useMutation(
+    (data) => apiClient.put(`/cards/${data.id}/normalize-order`, data),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('lists');
+      },
+    }
+  );
   const [data, setData] = useState([]);
   const [listOrder, setListOrder] = useState([]);
 
@@ -279,12 +287,30 @@ const Board = () => {
       },
     };
 
+    const sourceListCards = startCardIds.map((cardId, index) => ({
+      card: cardId,
+      name: data.cards[cardId].title,
+      order: index
+    }));
+    const destinationListCards = finishCardIds.map((cardId, index) => ({
+      card: cardId,
+      name: data.cards[cardId].title,
+      order: index
+    }));
+
     setData(newData);
 
     // Updates the current (moved) card list id
     await changeListMutation.mutateAsync({
       id: data.cards[draggableId].id,
       destinationListId: foreign.uid,
+    });
+
+    // Fix wrong orders when dragging between lists
+    await normalizeCardsOrderMutation.mutateAsync({
+      id: data.cards[draggableId].id,
+      sourceListCards,
+      destinationListCards,
     });
   };
 

@@ -20,7 +20,6 @@ const getLists = async (boardID) => {
         .map(card => card.id.toString()),
       boardId: list.boardId,
     };
-    console.log(data.lists[key].test);
   }
 
   for (const card of rawCards) {

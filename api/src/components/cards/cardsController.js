@@ -57,6 +57,13 @@ const changeCurrentList = async (cardId, destinationListId) => {
   return { message: 'Cartas cambiadas de listas exitosamente.' };
 };
 
+const normalizeCardsOrder = async (originCards, destinationCards) => {
+  await updateOrder(originCards);
+  await updateOrder(destinationCards);
+
+  return { message: 'Información actualizada.' };
+};
+
 const putVerticalOrder = async (cards) => {
   await updateOrder(cards);
 
@@ -69,5 +76,6 @@ export {
   getCard,
   putCard,
   changeCurrentList,
+  normalizeCardsOrder,
   putVerticalOrder,
 };
