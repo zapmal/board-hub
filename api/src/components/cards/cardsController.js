@@ -51,17 +51,21 @@ const putCard = async (cardData) => {
   return { message: 'Carta actualizada.' };
 };
 
-const changeCurrentList = async (cardId, destinationListId) => {
+/**
+ * This handles both the movement between lists and
+ * the normalization of orders.
+ */
+const changeCurrentList = async (
+  cardId,
+  destinationListId,
+  originCards,
+  destinationCards,
+) => {
   await updateList(cardId, destinationListId);
-
-  return { message: 'Cartas cambiadas de listas exitosamente.' };
-};
-
-const normalizeCardsOrder = async (originCards, destinationCards) => {
   await updateOrder(originCards);
   await updateOrder(destinationCards);
 
-  return { message: 'Información actualizada.' };
+  return { message: 'Cartas cambiadas de listas exitosamente.' };
 };
 
 const putVerticalOrder = async (cards) => {
@@ -76,6 +80,5 @@ export {
   getCard,
   putCard,
   changeCurrentList,
-  normalizeCardsOrder,
   putVerticalOrder,
 };
