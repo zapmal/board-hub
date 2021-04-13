@@ -1,4 +1,4 @@
-import { createUser, getUser } from './authService';
+import { createUser, getUser } from './authServices';
 import { compare } from 'bcryptjs';
 
 import getToken from '@utils/getToken';

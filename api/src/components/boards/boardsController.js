@@ -6,7 +6,7 @@ import {
   getSingleBoard,
   toggleFavoriteBoard,
   createDefaultLists,
-} from './boardsService';
+} from './boardsServices';
 
 const newBoard = async (data, response) => {
   const board = await createBoard(data.userID, data.name, data.description, data.isFavorite);

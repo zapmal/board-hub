@@ -2,7 +2,7 @@ import {
   getBoardLists,
   updateListOrder,
   updateMultipleListsOrder,
-} from './listsService';
+} from './listsServices';
 
 const getLists = async (boardID) => {
   const [rawLists, rawCards] = await getBoardLists(boardID);

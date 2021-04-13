@@ -5,7 +5,7 @@ import {
   updateCard,
   updateList,
   updateOrder,
-} from './cardsService';
+} from './cardsServices';
 
 const newCard = async (title, listID) => {
   const card = await createCard(title, listID);
